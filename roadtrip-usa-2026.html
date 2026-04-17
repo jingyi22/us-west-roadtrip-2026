@@ -153,7 +153,6 @@ tr:nth-child(even){background:var(--bg)}
   <button class="tab" onclick="showTab('route')">🗺️ 路线</button>
   <button class="tab" onclick="showTab('daily')">📅 每日</button>
   <button class="tab" onclick="showTab('weather')">🌡️ 气温</button>
-  <button class="tab" onclick="showTab('gear')">🎒 装备</button>
   <button class="tab" onclick="showTab('clothes')">👕 穿衣</button>
   <button class="tab" onclick="showTab('mexico')">🇲🇽 边境</button>
   <button class="tab" onclick="showTab('apps')">📱 App</button>
@@ -702,7 +701,6 @@ function showTab(id) {
     if (t.textContent.includes('路线') && id==='route') t.classList.add('active');
     if (t.textContent.includes('每日') && id==='daily') t.classList.add('active');
     if (t.textContent.includes('气温') && id==='weather') t.classList.add('active');
-    if (t.textContent.includes('装备') && id==='gear') t.classList.add('active');
     if (t.textContent.includes('穿衣') && id==='clothes') t.classList.add('active');
     if (t.textContent.includes('App') && id==='apps') t.classList.add('active');
     if (t.textContent.includes('边境') && id==='mexico') t.classList.add('active');
