@@ -134,6 +134,7 @@ tr:nth-child(even){background:var(--bg)}
 .sr .srd{font-size:11px;color:var(--tl)}
 .sr .srm{font-size:10px;color:var(--tl);margin-left:auto}
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 </head>
 <body>
 <div class="hero">
@@ -222,11 +223,9 @@ tr:nth-child(even){background:var(--bg)}
 <div id="route" class="sec">
   <div class="card">
     <h2><span class="ic">🗺️</span>整体路线地图</h2>
-    <div class="map">
-      <iframe src="https://www.google.com/maps/d/embed?mid=1a6b8a&amp;ll=35.5,-119.5&amp;z=6&amp;maptype=terrain" loading="lazy"></iframe>
-    </div>
+    <div id="route-map" style="height:380px;border-radius:16px;border:1px solid var(--bd);margin-bottom:12px;"></div>
     <div class="mc">
-      <span>🗺️ 红色：CA-1 太平洋海岸 · 蓝色：US-395 内陆 · 绿色：Yosemite 返回路线</span>
+      <span>🗺️ 红色：CA-1 太平洋海岸 · 蓝色：US-395 内陆 · 绿色：Joshua Tree 返回路线</span>
       <a class="mb" href="https://www.google.com/maps/dir/Los+Angeles+International+Airport,+1+World+Way,+Los+Angeles,+CA/Tijuana,+Mexico/Santa+Barbara,+CA/Morro+Bay,+CA/Big+Sur,+CA/Monterey,+CA/Bishop,+CA/Alabama+Hills,+CA/Mono+Lake,+CA/Joshua+Tree+National+Park,+California/Los+Angeles+International+Airport/@35.2,-118.5,7z/data=!3m1!4b1!4m56!4m55!1m5!1m1!1s0x80c2b8e2b0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.4085!2d33.9416!1m5!1m1!1s0x80dcd9999b0b0b0b:0x0!2m2!1d-117.0837!2d32.5149!1m5!1m1!1s0x80c2d0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-119.6982!2d34.4208!1m5!1m1!1s0x80c3d0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-120.7482!2d35.3651!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-121.8951!2d36.6002!1m5!1m1!1s0x80c4c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-121.7875!2d36.6002!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.3876!2d37.3556!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.0629!2d36.6006!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.8977!2d37.8651!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.4085!2d33.9416!3e0" target="_blank">📍 Google Maps 全程导航</a>
     </div>
   </div>
@@ -697,6 +696,52 @@ tr:nth-child(even){background:var(--bg)}
   <span>⚠️ 行程内容仅供参考，出发前请查看实时天气和路况</span>
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (document.getElementById('route-map') && !document.getElementById('route-map').hasAttribute('data-leaflet-init')) {
+    var map = L.map('route-map').setView([35.0, -118.5], 7);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap',
+      maxZoom: 18
+    }).addTo(map);
+
+    var stops = [
+      { name: '1. LAX 洛杉矶', lat: 33.9416, lng: -118.4085, day: 'Day 1' },
+      { name: '2. Tijuana 蒂华纳', lat: 32.5149, lng: -117.0837, day: 'Day 2' },
+      { name: '3. Santa Barbara', lat: 34.4208, lng: -119.6982, day: 'Day 3' },
+      { name: '4. Morro Bay / Cambria', lat: 35.3651, lng: -120.7482, day: 'Day 4' },
+      { name: '5. Big Sur 大苏尔', lat: 36.2704, lng: -121.8081, day: 'Day 5' },
+      { name: '6. Monterey 蒙特雷', lat: 36.6002, lng: -121.8951, day: 'Day 6' },
+      { name: '7. Bishop', lat: 37.3556, lng: -118.3876, day: 'Day 7' },
+      { name: '8. Alabama Hills', lat: 36.6006, lng: -118.0629, day: 'Day 8' },
+      { name: '9. Mono Lake', lat: 37.8651, lng: -118.8977, day: 'Day 9' },
+      { name: '10. Joshua Tree 🌵', lat: 33.8734, lng: -116.3130, day: 'Day 10' },
+      { name: '11. LAX 返回', lat: 33.9416, lng: -118.4085, day: 'Day 11' }
+    ];
+
+    var routeCoords = stops.map(function(s) { return [s.lat, s.lng]; });
+    L.polyline(routeCoords, {color: '#1a6b8a', weight: 3, opacity: 0.8}).addTo(map);
+
+    stops.forEach(function(stop, idx) {
+      var color = idx === 0 || idx === 10 ? '#27ae60' : (idx === 9 ? '#e67e22' : '#1a6b8a');
+      var marker = L.circleMarker([stop.lat, stop.lng], {
+        radius: 10,
+        fillColor: color,
+        color: '#fff',
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 0.9
+      }).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.day);
+    });
+
+    setTimeout(function() { map.invalidateSize(); }, 300);
+    document.getElementById('route-map').setAttribute('data-leaflet-init', 'true');
+  }
+});
+</script>
 </body>
 <script>
 // Tab navigation
