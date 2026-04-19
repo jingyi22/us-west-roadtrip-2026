@@ -700,9 +700,19 @@ tr:nth-child(even){background:var(--bg)}
 <script>
 // Tab navigation
 function showTab(id) {
-  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+  // Hide all sections first using inline style (most reliable)
+  document.querySelectorAll('.sec').forEach(s => {
+    s.style.display = 'none';
+    s.classList.remove('active');
+  });
+  // Show selected section
+  const sel = document.getElementById(id);
+  if (sel) {
+    sel.style.display = 'block';
+    sel.classList.add('active');
+  }
+  // Update tab button states
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
   document.querySelectorAll('.tab').forEach(t => {
     if (t.textContent.includes('概览') && id==='overview') t.classList.add('active');
     if (t.textContent.includes('路线') && id==='route') t.classList.add('active');
