@@ -22,8 +22,8 @@ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;backgr
 .tab{flex-shrink:0;padding:8px 14px;border:none;background:transparent;border-radius:10px 10px 0 0;cursor:pointer;font-size:13px;font-weight:600;color:var(--tl);transition:all .2s}
 .tab:hover{color:var(--p);background:rgba(26,107,138,0.06)}
 .tab.active{background:var(--p);color:#fff}
-.sec{display:none;padding:20px 14px 60px;max-width:940px;margin:0 auto}
-.sec.active{display:block}
+.sec{display:none!important;padding:20px 14px 60px;max-width:940px;margin:0 auto}
+.sec.active{display:block!important}
 .card{background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:20px;margin-bottom:14px;border:1px solid var(--bd)}
 .card h2{font-size:17px;font-weight:700;color:var(--pd);margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .card h2 .ic{width:32px;height:32px;background:linear-gradient(135deg,var(--p),#2980b9);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;flex-shrink:0}
@@ -194,7 +194,7 @@ tr:nth-child(even){background:var(--bg)}
       <div class="rs"></div>
       <div class="rn"><div class="dt a s">9</div><div class="lb">Mono L<br>Bodie</div></div>
       <div class="rs"></div>
-      <div class="rn"><div class="dt a">10</div><div class="lb">Yosemite<br>优山美地</div></div>
+      <div class="rn"><div class="dt a">10</div><div class="lb">Joshua Tree<br>约书亚树</div></div>
       <div class="rs"></div>
       <div class="rn"><div class="dt">11</div><div class="lb">LAX<br>洛杉矶</div></div>
     </div>
@@ -202,7 +202,7 @@ tr:nth-child(even){background:var(--bg)}
       <div class="sr"><div><div class="srl">① 南加州 / 墨西哥边境</div><div class="srd">Day 2 · 蒂华纳边境一日游</div></div><div class="srm">🚗 120mi</div></div>
       <div class="sr"><div><div class="srl">② CA-1 太平洋海岸</div><div class="srd">Day 3-6 · 橙县→大苏尔→蒙特雷</div></div><div class="srm">🚗 350mi</div></div>
       <div class="sr"><div><div class="srl">③ US-395 东 Sierra</div><div class="srd">Day 7-9 · Bishop→Alabama Hills→Mono Lake</div></div><div class="srm">🚗 280mi</div></div>
-      <div class="sr"><div><div class="srl">④ Joshua Tree 返回</div><div class="srd">Day 10 · Lee Vining→Joshua Tree→LA</div></div><div class="srm">🚗 320mi</div></div>
+      <div class="sr"><div><div class="srl">④ 返回洛杉矶</div><div class="srd">Day 10-11 · Joshua Tree→LAX</div></div><div class="srm">🚗 380mi</div></div>
     </div>
   </div>
 
@@ -210,10 +210,11 @@ tr:nth-child(even){background:var(--bg)}
     <h2><span class="ic">🦭</span>象海豹海滩清单（必去！）</h2>
     <div class="ig">
       <div class="ii"><span class="ic">🦭</span><div><div class="lb">Dana Point Harbor</div><div class="vl">Day 3 · 橙县</div></div></div>
+      <div class="ii"><span class="ic">🦭</span><div><div class="lb">Carpinteria State Beach</div><div class="vl">Day 4 · Santa Barbara以南</div></div></div>
       <div class="ii"><span class="ic">🦭</span><div><div class="lb">Piedras Blancas Rookery</div><div class="vl">Day 4 · Cambria以北</div></div></div>
       <div class="ii"><span class="ic">🦭</span><div><div class="lb">Garrapata State Park</div><div class="vl">Day 5 · Big Sur</div></div></div>
-      <div class="ii"><span class="ic">🦭</span><div><div class="lb">Old Fisherman's Wharf</div><div class="vl">Day 5 · Monterey（海狮海獭）</div></div></div>
-      <div class="ii"><span class="ic">🌵</span><div><div class="lb">Joshua Tree NP</div><div class="vl">Day 10 · 沙漠奇岩</div></div></div>
+      <div class="ii"><span class="ic">🦭🌊</span><div><div class="lb">Old Fisherman's Wharf</div><div class="vl">Day 5 · Monterey（海狮海獭）</div></div></div>
+      <div class="ii"><span class="ic">🦦</span><div><div class="lb">Point Lobos</div><div class="vl">Day 6 · 最佳海獭观察点</div></div></div>
     </div>
   </div>
 </div>
@@ -222,79 +223,12 @@ tr:nth-child(even){background:var(--bg)}
 <div id="route" class="sec">
   <div class="card">
     <h2><span class="ic">🗺️</span>整体路线地图</h2>
-    <div style="background:#f8fafc;border-radius:16px;padding:0;border:1px solid #d0d8e0;overflow:hidden;">
-      <div id="route-map" style="height:380px;width:100%;"></div>
-      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-      <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        // Initialize map centered on the route
-        var map = L.map("route-map", {
-          center: [35.5, -118.5],
-          zoom: 6,
-          scrollWheelZoom: true
-        });
-        
-        // Use CartoDB tiles - more reliable in China
-        L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-          attribution: "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> &copy; <a href='https://carto.com/'>CARTO</a>",
-          subdomains: "abcd",
-          maxZoom: 19
-        }).addTo(map);
-        
-        // Route waypoints with actual coordinates
-        var stops = [
-          { name: "D1 洛杉矶 LAX", lat: 33.9416, lng: -118.4085, day: 1, color: "#27ae60" },
-          { name: "D2 蒂华纳边境", lat: 32.5347, lng: -117.1244, day: 2, color: "#e74c3c" },
-          { name: "D3 圣巴巴拉", lat: 34.4208, lng: -119.6982, day: 3, color: "#f39c12" },
-          { name: "D4 Morro Bay", lat: 35.3651, lng: -120.7482, day: 4, color: "#3498db" },
-          { name: "D5 Big Sur", lat: 36.2704, lng: -121.8081, day: 5, color: "#2980b9" },
-          { name: "D6 蒙特雷", lat: 36.6002, lng: -121.8951, day: 6, color: "#2980b9" },
-          { name: "D7 Bishop", lat: 37.3556, lng: -118.3876, day: 7, color: "#8e44ad" },
-          { name: "D8 Alabama Hills", lat: 36.6006, lng: -118.0629, day: 8, color: "#9b59b6" },
-          { name: "D9 Mono Lake", lat: 37.8651, lng: -118.8977, day: 9, color: "#8e44ad" },
-          { name: "D10 Joshua Tree", lat: 33.8734, lng: -116.3130, day: 10, color: "#e67e22" },
-          { name: "D11 返回LAX", lat: 33.9416, lng: -118.4085, day: 11, color: "#27ae60" }
-        ];
-        
-        // Draw route lines connecting stops
-        var routeCoords = stops.map(function(s) { return [s.lat, s.lng]; });
-        
-        // Create polyline for the route
-        L.polyline(routeCoords, {
-          color: "#1a6b8a",
-          weight: 4,
-          opacity: 0.8,
-          smoothFactor: 1
-        }).addTo(map);
-        
-        // Add markers for each stop
-        stops.forEach(function(stop, idx) {
-          // Custom marker with Day number
-          var markerIcon = L.divIcon({
-            className: "custom-marker",
-            html: "<div style=\"background:" + stop.color + ";color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:12px;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);\">D" + stop.day + "</div>",
-            iconSize: [28, 28],
-            iconAnchor: [14, 14]
-          });
-          
-          L.marker([stop.lat, stop.lng], { icon: markerIcon })
-            .bindPopup("<strong>" + stop.name + "</strong><br>Day " + stop.day)
-            .addTo(map);
-        });
-        
-        // Fit map to show the entire route
-        map.fitBounds(routeCoords, { padding: [30, 30] });
-        
-        // Revalidate map size after loading
-        setTimeout(function() { map.invalidateSize(); }, 200);
-      });
-      </script>
-    </div>
+    <div class="map">
+      <iframe src="https://www.google.com/maps/d/embed?mid=1a6b8a&amp;ll=35.5,-119.5&amp;z=6&amp;maptype=terrain" loading="lazy"></iframe>
     </div>
     <div class="mc">
       <span>🗺️ 红色：CA-1 太平洋海岸 · 蓝色：US-395 内陆 · 绿色：Joshua Tree 返回路线</span>
-      <a class="mb" href="https://www.google.com/maps/dir/Los+Angeles+International+Airport,+1+World+Way,+Los+Angeles,+CA/Tijuana,+Mexico/Santa+Barbara,+CA/Morro+Bay,+CA/Big+Sur,+CA/Monterey,+CA/Bishop,+CA/Alabama+Hills,+CA/Mono+Lake,+CA/Joshua+Tree+National+Park,+California/Los+Angeles+International+Airport/@35.2,-118.5,7z/data=!3m1!4b1!4m56!4m55!1m5!1m1!1s0x80c2b8e2b0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.4085!2d33.9416!1m5!1m1!1s0x80dcd9999b0b0b0b:0x0!2m2!1d-117.0837!2d32.5149!1m5!1m1!1s0x80c2d0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-119.6982!2d34.4208!1m5!1m1!1s0x80c3d0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-120.7482!2d35.3651!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-121.8951!2d36.6002!1m5!1m1!1s0x80c4c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-121.7875!2d36.6002!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.3876!2d37.3556!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.0629!2d36.6006!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.8977!2d37.8651!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.4085!2d33.9416!3e0" target="_blank">📍 Google Maps 全程导航</a>
+      <a class="mb" href="https://www.google.com/maps/dir/Los+Angeles+International+Airport,+1+World+Way,+Los+Angeles,+CA/Tijuana,+Mexico/Santa+Barbara,+CA/Morro+Bay,+CA/Big+Sur,+CA/Monterey,+CA/Bishop,+CA/Alabama+Hills,+CA/Mono+Lake,+CA/Joshua+Tree+National+Park,+California/Los+Angeles+International+Airport/@35.2,-119.5,8z/data=!3m1!4b1!4m56!4m55!1m5!1m1!1s0x80c2b8e2b0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.4085!2d33.9416!1m5!1m1!1s0x80dcd9999b0b0b0b:0x0!2m2!1d-117.0837!2d32.5149!1m5!1m1!1s0x80c2d0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-119.6982!2d34.4208!1m5!1m1!1s0x80c3d0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-120.7482!2d35.3651!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-121.8951!2d36.6002!1m5!1m1!1s0x80c4c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-121.7875!2d36.6002!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.3876!2d37.3556!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.0629!2d36.6006!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.8977!2d37.8651!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.4085!2d33.9416!3e0" target="_blank">📍 Google Maps 全程导航</a>
     </div>
   </div>
 
@@ -327,9 +261,8 @@ tr:nth-child(even){background:var(--bg)}
     <div class="seg"><div class="nm">→ Bodie</div><div class="br" style="background:linear-gradient(to right,#f39c12,#f1c40f)"></div><div class="mi">~30mi / 1h（含土路）</div></div>
 
     <div class="sect-title"><div class="nu">⑥</div>Day 10 · Lee Vining → Joshua Tree → LA</div>
-    <div class="seg"><div class="nm">Lee V → JTree</div><div class="br" style="background:linear-gradient(to right,#e67e22,#f39c12)"></div><div class="mi">~270mi / 4h</div></div>
-    <div class="seg"><div class="nm">→ LA 区域</div><div class="br" style="background:linear-gradient(to right,#f39c12,#f1c40f)"></div><div class="mi">~130mi / 2h</div></div>
-    <div class="tp"><span class="ic">💡</span><div class="tx"><div class="tt">Joshua Tree 提示</div>沙漠地区昼夜温差大（白天 80°F+，夜晚可能 40°F）。带足够水、防晒、帽子。日落超美！</div></div>
+    <div class="seg"><div class="nm">Lee Vining → Joshua Tree</div><div class="br" style="background:linear-gradient(to right,#27ae60,#2ecc71)"></div><div class="mi">~140mi / 3h（走 US-395 南下）</div></div>
+    <div class="seg"><div class="nm">→ LAX</div><div class="br" style="background:linear-gradient(to right,#f1c40f,#b7950b)"></div><div class="mi">~130mi / 2h</div></div>
   </div>
 
   <div class="card">
@@ -341,7 +274,8 @@ tr:nth-child(even){background:var(--bg)}
       <div class="ii"><span class="ic">🅿</span><div><div class="lb">停车费</div><div class="vl">17-Mile 1.25 · Hearst Castle 预约制</div></div></div>
     </div>
   </div>
-
+</div>
+  
 <!-- DAILY TAB -->
 <div id="daily" class="sec">
   <div class="card">
@@ -353,8 +287,8 @@ tr:nth-child(even){background:var(--bg)}
     <div class="db"><div class="dc">
       <div class="tl">
         <div class="ti"><div class="tm">17:30</div><div class="tp">✈️ 抵达洛杉矶机场 (LAX)</div><div class="td">办理租车手续（建议提前预约 SUV，机场提车约1-1.5小时）</div></div>
-        <div class="ti"><div class="tm">19:00</div><div class="tp">🍽️ <a href="https://en.wikipedia.org/wiki/Venice_Beach,_Los_Angeles" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Venice Beach</a> 晚餐</div><div class="td">推荐 The Cheesecake Factory 或本地海鲜餐厅</div></div>
-        <div class="ti highlight"><div class="tm">19:30</div><div class="tp">🌅 <a href="https://en.wikipedia.org/wiki/Venice_Beach,_Los_Angeles" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Venice Beach</a> / Santa Monica Pier</div><div class="td">海滨步行道看日落，时差友好，轻松第一天</div></div>
+        <div class="ti"><div class="tm">19:00</div><div class="tp">🍽️ Venice Beach 晚餐</div><div class="td">推荐 The Cheesecake Factory 或本地海鲜餐厅</div></div>
+        <div class="ti highlight"><div class="tm">19:30</div><div class="tp">🌅 Venice Beach / Santa Monica Pier</div><div class="td">海滨步行道看日落，时差友好，轻松第一天</div></div>
         <div class="ti"><div class="tm">21:00</div><div class="tp">🏨 住宿 LAX 附近</div><div class="td">推荐 Hilton LAX 或类似（方便次日南下）</div></div>
       </div>
       <div style="margin-top:10px"><span class="g g-d">🚗 长途飞行后休息为主</span><span class="g g-f">🍽️ Venice 海滨餐厅</span></div>
@@ -367,10 +301,10 @@ tr:nth-child(even){background:var(--bg)}
     <div class="db"><div class="dc">
       <div class="tl">
         <div class="ti"><div class="tm">07:00</div><div class="tp">🚗 退房出发</div><div class="td">沿 I-5 南下，约2小时（120英里）</div></div>
-        <div class="ti highlight"><div class="tm">09:00</div><div class="tp">🇲🇽 抵达 <a href="https://en.wikipedia.org/wiki/San_Ysidro,_San_Diego" target="_blank" style="color:#1a6b8a;text-decoration:underline;">San Ysidro</a> 边境，步行过境</div><div class="td">最繁忙陆路过境口岸，人多需排队约30-60分钟</div></div>
+        <div class="ti highlight"><div class="tm">09:00</div><div class="tp">🇲🇽 抵达 San Ysidro 边境，步行过境</div><div class="td">最繁忙陆路过境口岸，人多需排队约30-60分钟</div></div>
         <div class="ti"><div class="tm">09:30</div><div class="tp">🏙️ 蒂华纳市中心 · Revolución 大道</div><div class="td">步行街游览，兑换比索，购买纪念品</div></div>
         <div class="ti"><div class="tm">12:00</div><div class="tp">🌮 午餐：墨西哥街头美食</div><div class="td">推荐 fish tacos、ceviche、elote（玉米）</div></div>
-        <div class="ti"><div class="tm">14:00</div><div class="tp">🌊 Playas de <a href="https://en.wikipedia.org/wiki/Tijuana" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Tijuana</a> 海滩</div><div class="td">美墨边境线就在海里，向北看加州，向南看墨西哥</div></div>
+        <div class="ti"><div class="tm">14:00</div><div class="tp">🌊 Playas de Tijuana 海滩</div><div class="td">美墨边境线就在海里，向北看加州，向南看墨西哥</div></div>
         <div class="ti"><div class="tm">16:30</div><div class="tp">🇺🇸 返回美国</div><div class="td">步行+驾车，约30分钟返回 San Ysidro</div></div>
         <div class="ti"><div class="tm">19:30</div><div class="tp">🚗 驾车返回洛杉矶（2.5-3小时）</div><div class="td">走 I-5 北上，晚高峰稍堵</div></div>
       </div>
@@ -386,11 +320,11 @@ tr:nth-child(even){background:var(--bg)}
     <div class="db"><div class="dc">
       <div class="tl">
         <div class="ti"><div class="tm">07:30</div><div class="tp">🚗 退房出发，沿 CA-1 北上</div><div class="td">不走 I-5，走 Pacific Coast Highway（PCH），风景更好</div></div>
-        <div class="ti highlight"><div class="tm">09:30</div><div class="tp">🌊 <a href="https://en.wikipedia.org/wiki/Laguna_Beach,_California" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Laguna Beach</a> · Heisler Park</div><div class="td">艺术小镇，涨潮海滩悬崖漫步，经典南加海岸线</div></div>
-        <div class="ti highlight"><div class="tm">11:30</div><div class="tp">🦭 <a href="https://en.wikipedia.org/wiki/Dana_Point_Harbor" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Dana Point Harbor</a></div><div class="td">栈道常年在海豹/海狮栖息地 🦭</div></div>
-        <div class="ti"><div class="tm">13:00</div><div class="tp">🍽️ <a href="https://en.wikipedia.org/wiki/Newport_Beach,_California" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Newport Beach</a> 午餐</div><div class="td">推荐 The Crab Shack（海鲜浓汤）或 The Cannery</div></div>
-        <div class="ti"><div class="tm">15:00</div><div class="tp">🌅 <a href="https://en.wikipedia.org/wiki/Malibu,_California" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Malibu</a> · Zuma Beach</div><div class="td">冲浪圣地，Pepperdine 大学观景点（免费）</div></div>
-        <div class="ti highlight"><div class="tm">17:30</div><div class="tp">🌇 <a href="https://en.wikipedia.org/wiki/Santa_Monica_Pier" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Santa Monica Pier</a></div><div class="td">看日落，摩天轮，街头艺人表演</div></div>
+        <div class="ti highlight"><div class="tm">09:30</div><div class="tp">🌊 Laguna Beach · Heisler Park</div><div class="td">艺术小镇，涨潮海滩悬崖漫步，经典南加海岸线</div></div>
+        <div class="ti highlight"><div class="tm">11:30</div><div class="tp">🦭 Dana Point Harbor</div><div class="td">栈道常年在海豹/海狮栖息地 🦭</div></div>
+        <div class="ti"><div class="tm">13:00</div><div class="tp">🍽️ Newport Beach 午餐</div><div class="td">推荐 The Crab Shack（海鲜浓汤）或 The Cannery</div></div>
+        <div class="ti"><div class="tm">15:00</div><div class="tp">🌅 Malibu · Zuma Beach</div><div class="td">冲浪圣地，Pepperdine 大学观景点（免费）</div></div>
+        <div class="ti highlight"><div class="tm">17:30</div><div class="tp">🌇 Santa Monica Pier</div><div class="td">看日落，摩天轮，街头艺人表演</div></div>
         <div class="ti"><div class="tm">20:00</div><div class="tp">🚗 前往 Carpinteria（不住 Santa Barbara）</div><div class="td">约1.5小时车程，海豹栖息小镇</div></div>
       </div>
       <div style="margin-top:10px"><span class="g g-s">🦭 象海豹海滩</span><span class="g g-c">🎨 艺术小镇</span><span class="g g-f">🍽️ 海鲜午餐</span></div>
@@ -404,11 +338,11 @@ tr:nth-child(even){background:var(--bg)}
     <div class="db"><div class="dc">
       <div class="wb"><span class="ic">⚠️</span><div class="tx"><div class="tt">Yom Kippur 注意</div>9月27日是犹太新年 Santa Barbara 周边非常繁忙，本日已用 Carpinteria/Cambria 替代住宿，避开人流高峰。</div></div>
       <div class="tl">
-        <div class="ti"><div class="tm">08:00</div><div class="tp">🦭 Piedras Blancas Rookery 早观</div><div class="td">象海豹清晨活动高峰期（7-9点最佳），免费，距 Cambria 约20分钟车程</div></div>
-        <div class="ti"><div class="tm">09:00</div><div class="tp">🏛️ <a href="https://en.wikipedia.org/wiki/Mission_Santa_Barbara" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Mission Santa Barbara</a>（快速游览）</div><div class="td">"加州最美教堂"，外观拍照，30分钟</div></div>
-        <div class="ti highlight"><div class="tm">11:00</div><div class="tp">🌊 <a href="https://en.wikipedia.org/wiki/Morro_Bay,_California" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Morro Bay</a> · Morro Rock</div><div class="td">火山岩岬，海边栈道，海鲜午餐（Giovanni's Fresh Fish Market）</div></div>
-        <div class="ti highlight"><div class="tm">13:30</div><div class="tp">🦭 <a href="https://en.wikipedia.org/wiki/Piedras_Blancas" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Piedras Blancas Elephant Seal Rookery</a></div><div class="td">数百只象豹常年栖息 🦭，免费观景点，就在 CA-1 旁</div></div>
-        <div class="ti highlight"><div class="tm">15:00</div><div class="tp">🏰 <a href="https://en.wikipedia.org/wiki/Hearst_Castle" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Hearst Castle</a>（需预约）</div><div class="td">建议提前网上购票（$25-30/人），约2.5小时游览</div></div>
+        <div class="ti"><div class="tm">08:00</div><div class="tp">🦭 Carpinteria State Beach 早观</div><div class="td">象海豹清晨活动高峰期（7-9点最佳），免费，距住宿5分钟</div></div>
+        <div class="ti"><div class="tm">09:00</div><div class="tp">🏛️ Mission Santa Barbara（快速游览）</div><div class="td">"加州最美教堂"，外观拍照，30分钟</div></div>
+        <div class="ti highlight"><div class="tm">11:00</div><div class="tp">🌊 Morro Bay · Morro Rock</div><div class="td">火山岩岬，海边栈道，海鲜午餐（Giovanni's Fresh Fish Market）</div></div>
+        <div class="ti highlight"><div class="tm">13:30</div><div class="tp">🦭 Piedras Blancas Elephant Seal Rookery</div><div class="td">数百只象豹常年栖息 🦭，免费观景点，就在 CA-1 旁</div></div>
+        <div class="ti highlight"><div class="tm">15:00</div><div class="tp">🏰 Hearst Castle（需预约）</div><div class="td">建议提前网上购票（$25-30/人），约2.5小时游览</div></div>
         <div class="ti"><div class="tm">18:00</div><div class="tp">🏨 Cambria 住宿</div><div class="td">海景小镇，避开 Santa Barbara Yom Kippur 人流</div></div>
       </div>
       <div style="margin-top:10px"><span class="g g-s">🦭 象海豹</span><span class="g g-c">🏰 历史城堡</span></div>
@@ -423,12 +357,12 @@ tr:nth-child(even){background:var(--bg)}
       <div class="wb"><span class="ic">⚠️</span><div class="tx"><div class="tt">周日秋假开始</div>建议早出发（7:00前），Big Sur 方向会较堵，高速公路北上蒙特雷方向提前出发。</div></div>
       <div class="tl">
         <div class="ti"><div class="tm">07:30</div><div class="tp">🚗 早出发进入 Big Sur</div><div class="td">建议走 CA-1 南下至 Big Sur 最南端，然后北上一路玩回来</div></div>
-        <div class="ti highlight"><div class="tm">09:00</div><div class="tp">🦭 <a href="https://en.wikipedia.org/wiki/Garrapata_State_Park" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Garrapata State Park</a> · Soberanes Point</div><div class="td">悬崖海景徒步（2.3mi），可能看到象海豹</div></div>
-        <div class="ti highlight"><div class="tm">10:30</div><div class="tp">🌉 <a href="https://en.wikipedia.org/wiki/Bixby_Creek_Bridge" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Bixby Creek Bridge</a></div><div class="td">美国最上镜大桥之一 🏗️，停车拍照（北向观景点最佳）</div></div>
+        <div class="ti highlight"><div class="tm">09:00</div><div class="tp">🦭 Garrapata State Park · Soberanes Point</div><div class="td">悬崖海景徒步（2.3mi），可能看到象海豹</div></div>
+        <div class="ti highlight"><div class="tm">10:30</div><div class="tp">🌉 Bixby Creek Bridge</div><div class="td">美国最上镜大桥之一 🏗️，停车拍照（北向观景点最佳）</div></div>
         <div class="ti"><div class="tm">11:00</div><div class="tp">🌊 Hurricane Point</div><div class="td">俯视大海峡的最佳观景点，风大，海浪声震撼</div></div>
-        <div class="ti highlight"><div class="tm">12:00</div><div class="tp">🟣 <a href="https://en.wikipedia.org/wiki/Pfeiffer_Beach" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Pfeiffer Beach</a> 紫沙海滩</div><div class="td">Keyhole Arch 岩洞，停车$10，下午光线最好</div></div>
-        <div class="ti highlight"><div class="tm">14:00</div><div class="tp">💧 <a href="https://en.wikipedia.org/wiki/Julia_Pfeiffer_Burns_State_Park" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Julia Pfeiffer Burns State Park</a></div><div class="td">徒步至 McWay Falls（80尺瀑布直落入海）🌊</div></div>
-        <div class="ti"><div class="tm">17:00</div><div class="tp">🦭 Monterey · <a href="https://en.wikipedia.org/wiki/Old_Fisherman%27s_Wharf_(Monterey)" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Old Fisherman's Wharf</a></div><div class="td">海狮、海獭常驻栈道，海鲜浓汤必吃</div></div>
+        <div class="ti highlight"><div class="tm">12:00</div><div class="tp">🟣 Pfeiffer Beach 紫沙海滩</div><div class="td">Keyhole Arch 岩洞，停车$10，下午光线最好</div></div>
+        <div class="ti highlight"><div class="tm">14:00</div><div class="tp">💧 Julia Pfeiffer Burns State Park</div><div class="td">徒步至 McWay Falls（80尺瀑布直落入海）🌊</div></div>
+        <div class="ti"><div class="tm">17:00</div><div class="tp">🦭 Monterey · Old Fisherman's Wharf</div><div class="td">海狮、海獭常驻栈道，海鲜浓汤必吃</div></div>
       </div>
       <div style="margin-top:10px"><span class="g g-h">🥾 徒步</span><span class="g g-p">📸 大桥摄影</span><span class="g g-s">🟣 紫沙海滩</span></div>
     </div></div>
@@ -440,13 +374,13 @@ tr:nth-child(even){background:var(--bg)}
     <div class="dh"><div class="dl"><div class="dn">D6</div><div class="di"><div class="dt">Day 6 · 9月29日（周一）</div><div class="ds">17英里Drive · Point Lobos · Carmel-by-the-Sea</div></div></div><div class="da">▼</div></div>
     <div class="db"><div class="dc">
       <div class="tl">
-        <div class="ti highlight"><div class="tm">08:00</div><div class="tp">🌊 Monterey Bay Aquarium（可选）</div><div class="td">全球顶级水族馆，海獭、鲸鱼、水母。门票约 $50/人，建议提前网购</div></div>
-        <div class="ti highlight"><div class="tm">10:30</div><div class="tp">🛤️ <a href="https://en.wikipedia.org/wiki/17-Mile_Drive" target="_blank" style="color:#1a6b8a;text-decoration:underline;">17-Mile Drive</a>（Pebble Beach）</div><div class="td">私家门禁路段，Lone Cypress、Ghost Trees 必停，门票$11.25/车，约2小时</div></div>
-        <div class="ti"><div class="tm">12:30</div><div class="tp">🏖️ <a href="https://en.wikipedia.org/wiki/Carmel-by-the-Sea,_California" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Carmel-by-the-Sea</a> 午餐 + 漫步</div><div class="td">艺术小镇，海滩散步，推荐 Carmel Bakery 或 Il Grasso</div></div>
-        <div class="ti"><div class="tm">14:30</div><div class="tp">🌊 Point Lobos（如果还有时间）</div><div class="td">海獭观察点，顺路但非必去（已有 Old Fisherman's Wharf 海獭）</div></div>
+        <div class="ti highlight"><div class="tm">07:30</div><div class="tp">🦦 Point Lobos State Reserve（需预约！）</div><div class="td">"加州皇冠宝石"，最佳海獭、鲸鱼观察点，强烈建议提前网上预约停车位</div></div>
+        <div class="ti highlight"><div class="tm">10:00</div><div class="tp">🛤️ 17-Mile Drive（Pebble Beach）</div><div class="td">私家门禁路段，Lone Cypress、Ghost Trees 必停，门票$11.25/车，约2小时</div></div>
+        <div class="ti"><div class="tm">12:30</div><div class="tp">🏖️ Carmel-by-the-Sea 午餐 + 漫步</div><div class="td">艺术小镇，海滩散步，推荐 Carmel Bakery 或 Il Grasso</div></div>
+        <div class="ti"><div class="tm">14:30</div><div class="tp">🌊 Partington Cove（时间充裕则去）</div><div class="td">隐秘海湾，徒步隧道至海滩，本地人私藏景点</div></div>
         <div class="ti"><div class="tm">16:00</div><div class="tp">🏨 返回 Monterey 或 Carmel 住宿</div><div class="td">今日不赶路，好好享受 Big Sur 最后的海岸时光</div></div>
       </div>
-      <div style="margin-top:10px"><span class="g g-h">🦦 水族馆/海獭</span><span class="g g-s">🌲 松林海岸</span><span class="g g-c">🎨 艺术小镇</span></div>
+      <div style="margin-top:10px"><span class="g g-h">🦦 海獭观察</span><span class="g g-s">🌲 松林海岸</span><span class="g g-c">🎨 艺术小镇</span></div>
     </div></div>
   </div>
 
@@ -462,8 +396,8 @@ tr:nth-child(even){background:var(--bg)}
         <div class="ti"><div class="tm">08:00</div><div class="tp">🚗 退房出发，驶入内陆</div><div class="td">今日是赶路日，穿越 Salinas Valley，横穿 Central Valley</div></div>
         <div class="ti"><div class="tm">10:00</div><div class="tp">🌾 穿越 Salinas Valley</div><div class="td">农田风光，翻越 Tehachapi Pass，进入 Sierra 山麓</div></div>
         <div class="ti"><div class="tm">14:00</div><div class="tp">🏜️ 进入 Owens Valley（东部 Sierra 山谷）</div><div class="td">地形从绿色农田变为荒漠山谷，Sierra Nevada 山脉在右侧拔地而起</div></div>
-        <div class="ti"><div class="tm">17:30</div><div class="tp">🏘️ 抵达 <a href="https://en.wikipedia.org/wiki/Bishop,_California" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Bishop</a>（东部 Sierra 最大补给小镇）</div><div class="td">采购补给（CVS、超市、餐厅齐全）</div></div>
-        <div class="ti"><div class="tm">19:00</div><div class="tp">🍽️ <a href="https://en.wikipedia.org/wiki/Bishop,_California" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Bishop</a> 晚餐</div><div class="td">推荐：Schuby's（德国菜）或 Criterium（自行车主题咖啡馆）</div></div>
+        <div class="ti"><div class="tm">17:30</div><div class="tp">🏘️ 抵达 Bishop（东部 Sierra 最大补给小镇）</div><div class="td">采购补给（CVS、超市、餐厅齐全）</div></div>
+        <div class="ti"><div class="tm">19:00</div><div class="tp">🍽️ Bishop 晚餐</div><div class="td">推荐：Schuby's（德国菜）或 Criterium（自行车主题咖啡馆）</div></div>
       </div>
       <div class="tp"><span class="ic">💡</span><div class="tx"><div class="tt">赶路日提示</div>今日景点少，主要任务是到达 Eastern Sierra。建议在 Bishop 补充水、零食、水果，为接下来两天的高原探险做准备。</div></div>
       <div style="margin-top:10px"><span class="g g-d">🚗 赶路日</span><span class="g g-c">🏔️ 山景</span></div>
@@ -480,13 +414,13 @@ tr:nth-child(even){background:var(--bg)}
     <div class="db"><div class="dc">
       <div class="wb"><span class="ic">🌅</span><div class="tx"><div class="tt">日出必去！Alabama Hills Mobius Arch</div>Mount Whitney alpenglow（ alpenglow 粉红光）仅持续10-15分钟。日出前30分钟到达停车场，天黑需手电筒。</div></div>
       <div class="tl">
-        <div class="ti highlight"><div class="tm">05:30</div><div class="tp">🌅 出发前往 <a href="https://en.wikipedia.org/wiki/Alabama_Hills" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Alabama Hills</a>（从 Bishop 开车约20分钟）</div><div class="td">天黑路暗，开大灯，导航至 "Mobius Arch Trailhead, Lone Pine, CA"</div></div>
-        <div class="ti highlight"><div class="tm">06:00</div><div class="tp">📸 <a href="https://en.wikipedia.org/wiki/Alabama_Hills#Mobius_Arch" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Mobius Arch</a> · Alpenglow 日出</div><div class="td">0.6英里环形步道，免费。从停车场步行约3分钟即到。<br>经典角度：Mobius Arch 框架中的 Mount Whitney（14,505尺）🌄<br>Mount Williamson（14,375尺）同步被照亮</div></div>
-        <div class="ti highlight"><div class="tm">08:00</div><div class="tp">🚗 继续游览 <a href="https://en.wikipedia.org/wiki/Alabama_Hills" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Alabama Hills</a> · Movie Flat Road</div><div class="td">环线约17英里驾驶，经过多部电影拍摄地。Boot Arch、Shark Fin 等岩石拱门</div></div>
-        <div class="ti"><div class="tm">10:00</div><div class="tp">🍳 <a href="https://en.wikipedia.org/wiki/Lone_Pine,_California" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Lone Pine</a> 小镇早餐</div><div class="td">回到 Lone Pine 补充能量，这里有咖啡馆和快餐店</div></div>
-        <div class="ti"><div class="tm">12:00</div><div class="tp">🚗 前往 <a href="https://en.wikipedia.org/wiki/Mammoth_Lakes,_California" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Mammoth Lakes</a>（约50英里，1小时）</div><div class="td">沿 US-395 北上，途径 Owens River Gorge 观景点</div></div>
-        <div class="ti highlight"><div class="tm">13:30</div><div class="tp">🏔️ <a href="https://en.wikipedia.org/wiki/Mammoth_Lakes,_California" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Mammoth Lakes</a> 游览</div><div class="td">Lake Mamie（湖边漫步）、Lake Mary（野餐）、或乘 Mammoth Mountain 缆车（$29/人）登顶俯瞰</div></div>
-        <div class="ti"><div class="tm">18:00</div><div class="tp">🌇 <a href="https://en.wikipedia.org/wiki/Mammoth_Lakes,_California" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Mammoth Lakes</a> 小镇晚餐 + 住宿</div><div class="td">推荐：Mammoth Rock Brasserie 或热带雨林咖啡馆</div></div>
+        <div class="ti highlight"><div class="tm">05:30</div><div class="tp">🌅 出发前往 Alabama Hills（从 Bishop 开车约20分钟）</div><div class="td">天黑路暗，开大灯，导航至 "Mobius Arch Trailhead, Lone Pine, CA"</div></div>
+        <div class="ti highlight"><div class="tm">06:00</div><div class="tp">📸 Mobius Arch · Alpenglow 日出</div><div class="td">0.6英里环形步道，免费。从停车场步行约3分钟即到。<br>经典角度：Mobius Arch 框架中的 Mount Whitney（14,505尺）🌄<br>Mount Williamson（14,375尺）同步被照亮</div></div>
+        <div class="ti highlight"><div class="tm">08:00</div><div class="tp">🚗 继续游览 Alabama Hills · Movie Flat Road</div><div class="td">环线约17英里驾驶，经过多部电影拍摄地。Boot Arch、Shark Fin 等岩石拱门</div></div>
+        <div class="ti"><div class="tm">10:00</div><div class="tp">🍳 Lone Pine 小镇早餐</div><div class="td">回到 Lone Pine 补充能量，这里有咖啡馆和快餐店</div></div>
+        <div class="ti"><div class="tm">12:00</div><div class="tp">🚗 前往 Mammoth Lakes（约50英里，1小时）</div><div class="td">沿 US-395 北上，途径 Owens River Gorge 观景点</div></div>
+        <div class="ti highlight"><div class="tm">13:30</div><div class="tp">🏔️ Mammoth Lakes 游览</div><div class="td">Lake Mamie（湖边漫步）、Lake Mary（野餐）、或乘 Mammoth Mountain 缆车（$29/人）登顶俯瞰</div></div>
+        <div class="ti"><div class="tm">18:00</div><div class="tp">🌇 Mammoth Lakes 小镇晚餐 + 住宿</div><div class="td">推荐：Mammoth Rock Brasserie 或热带雨林咖啡馆</div></div>
       </div>
       <div style="margin-top:10px">
         <span class="g g-p">📸 日出摄影</span>
@@ -506,12 +440,12 @@ tr:nth-child(even){background:var(--bg)}
     <div class="db"><div class="dc">
       <div class="wb"><span class="ic">🌅</span><div class="tx"><div class="tt">日出必去！Mono Lake South Tufa</div>"加州最上镜日出地之一"——日出时 Sierra 峰粉红，钙华塔林变金色，光影令人窒息。South Tufa $3/人。建议日出前45分钟到达。</div></div>
       <div class="tl">
-        <div class="ti highlight"><div class="tm">05:45</div><div class="tp">🌅 出发前往 <a href="https://en.wikipedia.org/wiki/Mono_Lake" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Mono Lake</a> South Tufa（约1小时车程）</div><div class="td">天黑，带手电筒。导航：South Tufa Area, Lee Vining, CA</div></div>
-        <div class="ti highlight"><div class="tm">07:00</div><div class="tp">📸 <a href="https://en.wikipedia.org/wiki/Mono_Lake" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Mono Lake</a> South Tufa 日出</div><div class="td">1英里环形步道，全程无遮阳。带水和防晒。早晨气温约35-45°F（1-7°C）🧥<br>经典角度：Tufa 塔林剪影 + Sierra 金色山峰倒影</div></div>
-        <div class="ti"><div class="tm">09:30</div><div class="tp">☕ <a href="https://en.wikipedia.org/wiki/Lee_Vining,_California" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Lee Vining</a> 小镇早餐</div><div class="td">Mono Inn 或 Nic's Deli（时间早可能还没开，备选）</div></div>
-        <div class="ti highlight"><div class="tm">10:30</div><div class="tp">🏚️ <a href="https://en.wikipedia.org/wiki/Bodie,_California" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Bodie Ghost Town</a>（鬼城）</div><div class="td">13英里土路，最后3英里较颠簸（普通轿车可行但开慢点）<br>$8/人 + $3 guidebook（强烈建议买）<br>游览时间：2-3小时，穿舒适步行鞋，带水<br>注意：Bodie 诅咒——拿走任何东西会倒霉 😄</div></div>
-        <div class="ti"><div class="tm">16:00</div><div class="tp">🚗 返回 <a href="https://en.wikipedia.org/wiki/Lee_Vining,_California" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Lee Vining</a></div><div class="td">约1小时车程，路况好</div></div>
-        <div class="ti"><div class="tm">17:30</div><div class="tp">🌇 <a href="https://en.wikipedia.org/wiki/Lee_Vining,_California" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Lee Vining</a> 看日落</div><div class="td">Mono Lake 西岸，日落视角超棒 · Tioga Pass 山口也在这里</div></div>
+        <div class="ti highlight"><div class="tm">05:45</div><div class="tp">🌅 出发前往 Mono Lake South Tufa（约1小时车程）</div><div class="td">天黑，带手电筒。导航：South Tufa Area, Lee Vining, CA</div></div>
+        <div class="ti highlight"><div class="tm">07:00</div><div class="tp">📸 Mono Lake South Tufa 日出</div><div class="td">1英里环形步道，全程无遮阳。带水和防晒。早晨气温约35-45°F（1-7°C）🧥<br>经典角度：Tufa 塔林剪影 + Sierra 金色山峰倒影</div></div>
+        <div class="ti"><div class="tm">09:30</div><div class="tp">☕ Lee Vining 小镇早餐</div><div class="td">Mono Inn 或 Nic's Deli（时间早可能还没开，备选）</div></div>
+        <div class="ti highlight"><div class="tm">10:30</div><div class="tp">🏚️ Bodie Ghost Town（鬼城）</div><div class="td">13英里土路，最后3英里较颠簸（普通轿车可行但开慢点）<br>$8/人 + $3 guidebook（强烈建议买）<br>游览时间：2-3小时，穿舒适步行鞋，带水<br>注意：Bodie 诅咒——拿走任何东西会倒霉 😄</div></div>
+        <div class="ti"><div class="tm">16:00</div><div class="tp">🚗 返回 Lee Vining</div><div class="td">约1小时车程，路况好</div></div>
+        <div class="ti"><div class="tm">17:30</div><div class="tp">🌇 Lee Vining 看日落</div><div class="td">Mono Lake 西岸，日落视角超棒 · Tioga Pass 山口也在这里</div></div>
       </div>
       <div style="margin-top:10px">
         <span class="g g-p">📸 日出摄影</span>
@@ -525,26 +459,29 @@ tr:nth-child(even){background:var(--bg)}
 <!-- DAY 10 -->
   <div class="day" onclick="toggleDay(this)">
     <div class="dh">
-      <div class="dl"><div class="dn warn">D10</div><div class="di"><div class="dt">Day 10 · 10月3日（周五）🌅 建议早起出发</div><div class="ds">Lee Vining → Joshua Tree National Park 🌵</div></div></div>
+      <div class="dl"><div class="dn warn">D10</div><div class="di"><div class="dt">Day 10 · 10月3日（周五）⚠️ Tioga Pass 出发前打电话确认</div><div class="ds">Lee Vining → Joshua Tree NP（替换 Yosemite）→ 洛杉矶</div></div></div>
       <div class="da">▼</div>
     </div>
     <div class="db"><div class="dc">
-      <div class="wb"><span class="ic">🌵</span><div class="tx"><div class="tt">Joshua Tree National Park</div>沙漠奇岩公园，红木、巨石阵、金字塔峰。日出/日落是最佳拍照时间。全天 6-8 小时阳光，建议带足够的水和防晒。</div></div>
+      <div class="wb"><span class="ic">⚠️</span><div class="tx"><div class="tt">注意：今日行程已调整</div>原计划 Yosemite 已替换为 Joshua Tree National Park。Joshua Tree 位于 LA 以东约130英里，从 Lee Vining 出发约3.5小时车程。路线：Lee Vining → US-395 → I-15 → Joshua Tree。</div></div>
+      <div class="wb" style="margin-top:8px"><span class="ic">⚠️</span><div class="tx"><div class="tt">Tioga Pass 状态确认（如走 US-395 南下）</div>Tioga Pass 通常10月底-11月初关闭，但10月初可能因天气提前关闭。<strong>出发前必做：</strong>致电 ☎️ (209) 372-0200（按1,1）确认路况。如已关闭，改走 US-395 南下经 Mojave 绕道前往 Joshua Tree。</div></div>
       <div class="tl">
-        <div class="ti"><div class="tm">07:00</div><div class="tp">🚗 出发前往 Joshua Tree（约4-5小时）</div><div class="td">Lee Vining → US-395 south → CA-178 east → I-15 south → CA-62 west → Joshua Tree</div></div>
-        <div class="ti"><div class="tm">11:30</div><div class="tp">🌵 北入口 → <a href="https://en.wikipedia.org/wiki/Joshua_Tree_National_Park#Keys_Ranch" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Keys Ranch</a>（经典游览线）</div><div class="td">$30/车（国家公园年票可用）。Keys Ranch 是早期定居者遗址，附近有 Hidden Valley、Skull Rock 等景点</div></div>
-        <div class="ti highlight"><div class="tm">12:30</div><div class="tp">☀️ 午餐 + 休息</div><div class="td">公园内无餐厅，自带野午餐或前往 Joshua Tree 镇（南门外）</div></div>
-        <div class="ti highlight"><div class="tm">14:00</div><div class="tp">🌵 <a href="https://en.wikipedia.org/wiki/Joshua_Tree_National_Park#Skull_Rock" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Skull Rock</a> & 巨人石阵区</div><div class="td">经典岩石 formations，步行道轻松，适合拍照</div></div>
-        <div class="ti highlight"><div class="tm">15:30</div><div class="tp">🌵 <a href="https://en.wikipedia.org/wiki/Joshua_Tree_National_Park#Cholla_Cactus_Garden" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Cholla Cactus Garden</a>（日落前1小时）</div><div class="td">网红仙人掌园，日落金色光线绝美。注意：cholla 刺会粘人，不要碰触！</div></div>
-        <div class="ti highlight"><div class="tm">17:30</div><div class="tp">🌅 <a href="https://en.wikipedia.org/wiki/Joshua_Tree_National_Park#Keys_View" target="_blank" style="color:#1a6b8a;text-decoration:underline;">Keys View</a>（日落）</div><div class="td">沙漠日落，俯瞰 Coachella Valley，强烈推荐！</div></div>
-        <div class="ti"><div class="tm">19:00</div><div class="tp">🚗 前往 Yucca Valley / Joshua Tree 镇住宿</div><div class="td">南门外约15分钟车程，宿 Joshua Tree 镇或 Yucca Valley</div></div>
+        <div class="ti"><div class="tm">07:00</div><div class="tp">🚗 从 Lee Vining 出发</div><div class="td">沿 US-395 南下，或经 Tioga Pass（视路况而定）</div></div>
+        <div class="ti"><div class="tm">10:00</div><div class="tp">🏜️ 抵达 Joshua Tree National Park（西入口）</div><div class="td">门票 $30/车（7日有效）· 建议提前网上购票</div></div>
+        <div class="ti highlight"><div class="tm">10:30</div><div class="tp">🏚️ Keys Ranch（历史农场）</div><div class="td">必须跟向导团的付费景点（$10/人），约1.5小时。保留1950年代原貌，强烈推荐提前预约！</div></div>
+        <div class="ti"><div class="tm">12:00</div><div class="tp">🌵 Skull Rock（骷髅岩）</div><div class="td">经典岩石造型，0.5英里环形步道，免费。公园内最知名的打卡点之一</div></div>
+        <div class="ti"><div class="tm">13:00</div><div class="tp">🌵 Jumbo Rocks 野餐午餐</div><div class="td">巨岩阵地带上野餐，典型的 Joshua Tree 沙漠景观</div></div>
+        <div class="ti highlight"><div class="tm">14:30</div><div class="tp">🌵 Cholla Cactus Garden（沙棘仙人掌园）</div><div class="td">短途步道（0.25mi），银色仙人掌漫山遍野。注意：不要触碰！</div></div>
+        <div class="ti highlight"><div class="tm">16:00</div><div class="tp">🌅 Keys View 日落（必去！）</div><div class="td">公园最佳日落观景点，俯瞰 Coachella Valley 全景，远处可见索尔顿海。强烈建议提前到达抢位</div></div>
+        <div class="ti"><div class="tm">18:00</div><div class="tp">🚗 出发前往 Yucca Valley / Joshua Tree Town</div><div class="td">约20分钟车程，入住小镇</div></div>
+        <div class="ti"><div class="tm">19:30</div><div class="tp">🍽️ Joshua Tree Town 晚餐</div><div class="td">推荐：Joshua Tree Coffee Company / Crossroads Cafe / Pie for the People（披萨）</div></div>
+        <div class="ti"><div class="tm">21:00</div><div class="tp">🏨 Joshua Tree Town 住宿</div><div class="td">推荐旅馆：Auto Camp Joshua Tree / 当地民宿（提前订！）</div></div>
       </div>
       <div style="margin-top:10px">
-        <span class="g g-s">🌵 沙漠奇岩</span>
+        <span class="g g-s">🌵 国家公园</span>
+        <span class="g g-h">🥾 徒步探索</span>
         <span class="g g-p">📸 日落摄影</span>
-        <span class="g g-h">🧥 昼夜温差大（带外套）</span>
       </div>
-      <div class="tp"><span class="ic">💡</span><div class="tx"><div class="tt">路线说明</div>从 Lee Vining 到 Joshua Tree 约 300 英里（4-5小时）。不走回头路，沿 US-395 南下后东转 CA-178，穿过 Mojave 沙漠到达。</div></div>
     </div></div>
   </div>
 
@@ -552,20 +489,18 @@ tr:nth-child(even){background:var(--bg)}
 <!-- DAY 11 -->
   <div class="day" onclick="toggleDay(this)">
     <div class="dh">
-      <div class="dl"><div class="dn resty">D11</div><div class="di"><div class="dt">Day 11 · 10月4日（周六）</div><div class="ds">Joshua Tree 地区 → 洛杉矶 → 出发回家 ✈️</div></div></div>
+      <div class="dl"><div class="dn resty">D11</div><div class="di"><div class="dt">Day 11 · 10月4日（周六）</div><div class="ds">洛杉矶自由活动 · 还车准备 · 出发回家</div></div></div>
       <div class="da">▼</div>
     </div>
     <div class="db"><div class="dc">
       <div class="tl">
-        <div class="ti"><div class="tm">上午（可选）</div><div class="tp">🌅 Joshua Tree 早晨漫步（看日出）</div><div class="td">如果昨晚没看够，清晨光线柔和，适合拍照Keys Ranch、Hidden Valley 等景点</div></div>
-        <div class="ti"><div class="tm">10:00</div><div class="tp">🚗 退房出发，返回洛杉矶</div><div class="td">约2小时车程（130mi），经 I-10 west 直接回 LA</div></div>
-        <div class="ti"><div class="tm">下午</div><div class="tp">🛍️ 洛杉矶自由活动 / 最后购物</div><div class="td">推荐 The Grove、Beverly Hills、Melrose Avenue，或 Getty Center 免费艺术博物馆</div></div>
+        <div class="ti"><div class="tm">上午</div><div class="tp">🛍️ The Grove / Beverly Hills 最后购物</div><div class="td">或 Getty Center 免费艺术博物馆（强烈推荐！俯瞰洛杉矶全景）</div></div>
         <div class="ti"><div class="tm">下午</div><div class="tp">🚗 提前还车</div><div class="td">建议航班起飞前3小时还车，留出充足时间</div></div>
         <div class="ti"><div class="tp">🎉 庆祝行程圆满结束！</div></div>
       </div>
-      <div style="margin-top:10px"><span class="g g-c">🌵 沙漠日出</span><span class="g g-f">🛍️ 购物</span><span class="g g-d">✈️ 返程</span></div>
     </div></div>
   </div>
+
 </div>
 
 <div id="weather" class="sec">
@@ -585,7 +520,7 @@ tr:nth-child(even){background:var(--bg)}
       <div class="wx-card" style="border:2px solid #9b59b6;background:#f5eff9"><div class="ct">🏜️ Mono Lake</div><div class="ic">🌅</div><div class="tp">65°F</div><div class="rn">18°C / 3°C</div><div class="nt" style="color:#c0392b;font-weight:700">★ 日出时约35°F（2°C）！</div></div>
       <div class="wx-card"><div class="ct">🏚️ Bodie（8,375ft）</div><div class="ic">🌬️</div><div class="tp">55°F</div><div class="rn">13°C / -1°C</div><div class="nt" style="color:#c0392b">★ 高海拔！需最厚外套</div></div>
       <div class="wx-card"><div class="ct">🏔️ Tioga Pass（9,945ft）</div><div class="ic">❄️</div><div class="tp">45°F</div><div class="rn">7°C / -2°C</div><div class="nt" style="color:#c0392b">★ 可能已下雪！提前确认</div></div>
-      <div class="wx-card"><div class="ct">🏞️ Yosemite Valley</div><div class="ic">🌤️</div><div class="tp">72°F</div><div class="rn">22°C / 8°C</div><div class="nt">早晚凉爽，中午温暖</div></div>
+      <div class="wx-card" style="border:2px solid #e67e22;background:#fef3e2"><div class="ct">🌵 Joshua Tree NP</div><div class="ic">☀️</div><div class="tp">85°F</div><div class="rn">29°C / 15°C</div><div class="nt" style="color:#c0392b">★ 沙漠温差大，夜间凉爽！</div></div>
     </div>
     <div class="wb" style="margin-top:14px"><span class="ic">📱</span><div class="tx"><div class="tt">实时天气查询</div>推荐：Apple Weather / Weather.com（详细）/ NOAA（最准确）。Eastern Sierra 地区天气多变，建议每日出发前确认。</div></div>
   </div>
@@ -612,12 +547,12 @@ tr:nth-child(even){background:var(--bg)}
       <div class="cc"><div class="em">🌅</div><div class="nm">日出拍摄</div><div class="ds">Alabama Hills / Mono Lake</div><div class="tp">0-5°C · 羽绒服+保暖层</div></div>
       <div class="cc"><div class="em">🏚️</div><div class="nm">Bodie 鬼城</div><div class="ds">海拔 8,375ft，高原风大</div><div class="tp">-1-13°C · 最厚装备</div></div>
       <div class="cc"><div class="em">🏔️</div><div class="nm">Tioga Pass</div><div class="ds">海拔 9,945ft，可能下雪</div><div class="tp">-2-7°C · 冲锋衣+保暖</div></div>
-      <div class="cc"><div class="em">🌲</div><div class="nm">Yosemite</div><div class="ds">山谷内，早晚凉</div><div class="tp">8-22°C · 多层灵活加减</div></div>
+      <div class="cc"><div class="em">🌵</div><div class="nm">Joshua Tree</div><div class="ds">沙漠，日晒强，夜间凉</div><div class="tp">15-29°C · 防晒+保暖层</div></div>
     </div>
   </div>
   <div class="card">
     <h2><span class="ic">🧥</span>分层穿衣原则</h2>
-    <p style="font-size:12px;color:var(--tl);margin-bottom:12px">高原地区（Eastern Sierra / Yosemite / Bodie）建议三层叠穿法：</p>
+    <p style="font-size:12px;color:var(--tl);margin-bottom:12px">高原地区（Eastern Sierra / Bodie）建议三层叠穿法：</p>
     <table>
       <tr><th>层次</th><th>推荐衣物</th><th>适用场景</th></tr>
       <tr><td><strong>内层（贴身）</strong></td><td>速干T恤、美利奴羊毛打底衫</td><td>排汗、保持干爽</td></tr>
@@ -634,7 +569,7 @@ tr:nth-child(even){background:var(--bg)}
       <div class="ii"><span class="ic">🌊</span><div><div class="lb">象海豹海滩（户外栈道）</div><div class="vl">海风大：薄抓绒 + 防风层，随时加减</div></div></div>
       <div class="ii"><span class="ic">🏚️</span><div><div class="lb">Bodie 鬼城游览（高海拔）</div><div class="vl">风大+日晒强：冲锋衣+保暖内层+防晒霜</div></div></div>
       <div class="ii"><span class="ic">🏔️</span><div><div class="lb">Tioga Pass（9,945ft）</div><div class="vl">可能下雪或接近冰点：全套冬季装备</div></div></div>
-      <div class="ii"><span class="ic">🌞</span><div><div class="lb">Yosemite Valley 白天</div><div class="vl">阳光充足：短袖 + 防晒 + 遮阳帽即可</div></div></div>
+      <div class="ii"><span class="ic">🌞</span><div><div class="lb">Joshua Tree 白天</div><div class="vl">沙漠日照强：防晒霜 + 遮阳帽 + 薄外套</div></div></div>
     </div>
   </div>
 </div>
@@ -763,20 +698,42 @@ tr:nth-child(even){background:var(--bg)}
 </div>
 
 <script>
-// Tab navigation
+// Tab navigation - explicit and direct
 function showTab(id) {
-  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.tab').forEach(t => {
-    if (t.textContent.includes('概览') && id==='overview') t.classList.add('active');
-    if (t.textContent.includes('路线') && id==='route') t.classList.add('active');
-    if (t.textContent.includes('每日') && id==='daily') t.classList.add('active');
-    if (t.textContent.includes('气温') && id==='weather') t.classList.add('active');
-    if (t.textContent.includes('穿衣') && id==='clothes') t.classList.add('active');
-    if (t.textContent.includes('App') && id==='apps') t.classList.add('active');
-    if (t.textContent.includes('边境') && id==='mexico') t.classList.add('active');
-  });
+  // 1. Hide ALL sections by setting display=none
+  var sections = document.getElementsByClassName('sec');
+  for (var i = 0; i < sections.length; i++) {
+    sections[i].style.display = 'none';
+    sections[i].classList.remove('active');
+  }
+  // 2. Show the selected section
+  var sel = document.getElementById(id);
+  if (sel) {
+    sel.style.display = 'block';
+    sel.classList.add('active');
+    // 3. Scroll to top of section
+    sel.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+  // 4. Update tab buttons
+  var tabs = document.getElementsByClassName('tab');
+  for (var j = 0; j < tabs.length; j++) {
+    tabs[j].classList.remove('active');
+  }
+  // Find and activate the clicked tab
+  var allTabs = document.querySelectorAll('.tab');
+  for (var k = 0; k < allTabs.length; k++) {
+    var t = allTabs[k];
+    var text = t.textContent || t.innerText || '';
+    var match = false;
+    if (id === 'overview' && text.indexOf('概览') > -1) match = true;
+    if (id === 'route' && text.indexOf('路线') > -1) match = true;
+    if (id === 'daily' && text.indexOf('每日') > -1) match = true;
+    if (id === 'weather' && text.indexOf('气温') > -1) match = true;
+    if (id === 'clothes' && text.indexOf('穿衣') > -1) match = true;
+    if (id === 'apps' && text.indexOf('App') > -1) match = true;
+    if (id === 'mexico' && text.indexOf('边境') > -1) match = true;
+    if (match) t.classList.add('active');
+  }
 }
 
 // Day accordion
@@ -785,16 +742,20 @@ function toggleDay(el) {
 }
 
 // Gear checkboxes - save state
-document.querySelectorAll('.gear-item input').forEach(cb => {
-  const key = 'gear_' + cb.id;
+var gearItems = document.querySelectorAll('.gear-item input');
+for (var g = 0; g < gearItems.length; g++) {
+  var cb = gearItems[g];
+  var key = 'gear_' + cb.id;
   if (localStorage.getItem(key) === '1') cb.checked = true;
   cb.addEventListener('change', function() {
     localStorage.setItem(key, this.checked ? '1' : '0');
   });
-});
+}
 
 // Open Day 1 by default
-document.querySelector('.day')?.classList.add('open');
+var firstDay = document.querySelector('.day');
+if (firstDay) firstDay.classList.add('open');
 </script>
 </body>
+
 </html>
