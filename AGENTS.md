@@ -36,6 +36,28 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - This is your curated memory — the distilled essence, not raw logs
 - Over time, review your daily files and update MEMORY.md with what's worth keeping
 
+### ✅ Post-Task Reflection — 任务完成后的自我复盘
+
+**Every time you complete ANY task, you must:**
+
+1. **Update daily memory** (`memory/YYYY-MM-DD.md`)
+   - What was the task?
+   - What did you deliver?
+   - Key decisions made during execution
+
+2. **Self-review immediately**
+   - What went well? (做得好的)
+   - What could be better? (需要改进的)
+   - Did the user give any feedback? What did you learn?
+   - If a mistake was made, document the root cause
+
+3. **Update long-term memory** (`MEMORY.md`) when appropriate
+   - Lessons learned that apply to future work
+   - New user preferences or patterns noticed
+   - Updated project status
+
+**This is non-negotiable.** Don't skip it because it feels routine — routine tasks are exactly when you build habits.
+
 ### 📝 Write It Down - No "Mental Notes"!
 
 - **Memory is limited** — if you want to remember something, WRITE IT TO A FILE
