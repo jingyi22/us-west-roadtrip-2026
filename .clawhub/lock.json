@@ -1,0 +1,301 @@
+{
+  "version": 1,
+  "skills": {
+    "customer-feedback": {
+      "version": "0.1.0",
+      "installedAt": 1776440761485
+    },
+    "market-research-agent": {
+      "version": "1.0.0",
+      "installedAt": 1776440761588
+    },
+    "ux-researcher-designer": {
+      "version": "2.1.1",
+      "installedAt": 1776440761727
+    },
+    "afrexai-ux-research-engine": {
+      "version": "1.0.0",
+      "installedAt": 1776440761771
+    },
+    "market-research": {
+      "version": "1.0.1",
+      "installedAt": 1776440762053
+    },
+    "user-research": {
+      "version": "1.0.0",
+      "installedAt": 1776440762090
+    },
+    "in-depth-research": {
+      "version": "1.0.0",
+      "installedAt": 1776440762367
+    },
+    "continuous-user-research": {
+      "version": "1.0.3",
+      "installedAt": 1776440762394
+    },
+    "product-manager-skills": {
+      "version": "0.5.4",
+      "installedAt": 1776440764688
+    },
+    "office-document-specialist-suite": {
+      "version": "1.0.2",
+      "installedAt": 1776440941910
+    },
+    "word-docx": {
+      "version": "1.0.2",
+      "installedAt": 1776440942579
+    },
+    "powerpoint-pptx": {
+      "version": "1.0.1",
+      "installedAt": 1776440942657
+    },
+    "excel-xlsx": {
+      "version": "1.0.2",
+      "installedAt": 1776440942723
+    },
+    "automate-excel": {
+      "version": "0.1.3",
+      "installedAt": 1776440943345
+    },
+    "openclaw-office-toolkit": {
+      "version": "1.0.0",
+      "installedAt": 1776441000890
+    },
+    "read-word": {
+      "version": "1.0.0",
+      "installedAt": 1776441001641
+    },
+    "document-pro": {
+      "version": "1.0.0",
+      "installedAt": 1776441061624
+    },
+    "generate-excel": {
+      "version": "1.0.0",
+      "installedAt": 1776441121513
+    },
+    "pptx-generator": {
+      "version": "1.0.2",
+      "installedAt": 1776441122043
+    },
+    "openclaw-slides": {
+      "version": "2.0.0",
+      "installedAt": 1776441122731
+    },
+    "self-improving-agent": {
+      "version": "3.0.16",
+      "installedAt": 1776441303719
+    },
+    "find-skills-skill": {
+      "version": "1.0.0",
+      "installedAt": 1776441361865
+    },
+    "openai-whisper": {
+      "version": "1.0.0",
+      "installedAt": 1776441540700
+    },
+    "humanizer": {
+      "version": "1.0.0",
+      "installedAt": 1776441540909
+    },
+    "auto-updater": {
+      "version": "1.0.0",
+      "installedAt": 1776441540945
+    },
+    "nano-pdf": {
+      "version": "1.0.0",
+      "installedAt": 1776441542573
+    },
+    "api-gateway": {
+      "version": "1.0.84",
+      "installedAt": 1776441550451
+    },
+    "summarize-pro": {
+      "version": "1.0.0",
+      "installedAt": 1776441599118
+    },
+    "youtube-transcript": {
+      "version": "1.0.1",
+      "installedAt": 1776441599292
+    },
+    "liang-tavily-search": {
+      "version": "1.0.1",
+      "installedAt": 1776441599713
+    },
+    "skill-vetter": {
+      "version": "1.0.0",
+      "installedAt": 1776441599826
+    },
+    "openclaw-agent-browser": {
+      "version": "1.0.0",
+      "installedAt": 1776441659631
+    },
+    "free-ride": {
+      "version": "1.0.9",
+      "installedAt": 1776441721422
+    },
+    "proactive-agent-skill": {
+      "version": "1.0.0",
+      "installedAt": 1776442139577
+    },
+    "multi-search-engine": {
+      "version": "2.1.3",
+      "installedAt": 1776442380738
+    },
+    "notion-skill": {
+      "version": "1.0.0",
+      "installedAt": 1776442559404
+    },
+    "video-frames": {
+      "version": "1.0.0",
+      "installedAt": 1776442559477
+    },
+    "markdown-converter": {
+      "version": "1.0.0",
+      "installedAt": 1776442618991
+    },
+    "ontology": {
+      "version": "1.0.4",
+      "installedAt": 1776442619200
+    },
+    "byterover": {
+      "version": "3.2.0",
+      "installedAt": 1776442619504
+    },
+    "openclaw-github-assistant": {
+      "version": "2.0.1",
+      "installedAt": 1776442860224
+    },
+    "superdesign": {
+      "version": "1.0.0",
+      "installedAt": 1776442979055
+    },
+    "frontend-design-pro": {
+      "version": "1.0.0",
+      "installedAt": 1776442979322
+    },
+    "frontend-design-3": {
+      "version": "0.1.0",
+      "installedAt": 1776442979649
+    },
+    "designer": {
+      "version": "1.0.0",
+      "installedAt": 1776442979812
+    },
+    "tailwind-design-system": {
+      "version": "1.0.0",
+      "installedAt": 1776442980264
+    },
+    "ui-ux-pro-max-plus": {
+      "version": "1.0.0",
+      "installedAt": 1776442980525
+    },
+    "web-design": {
+      "version": "1.0.0",
+      "installedAt": 1776443039465
+    },
+    "ui-ux-design": {
+      "version": "1.0.0",
+      "installedAt": 1776443101525
+    },
+    "web-scraping": {
+      "version": "1.0.0",
+      "installedAt": 1776443219689
+    },
+    "ozon-wildberries-analyzer": {
+      "version": "1.0.0",
+      "installedAt": 1776443219791
+    },
+    "rakuten": {
+      "version": "0.1.0",
+      "installedAt": 1776443220267
+    },
+    "ebay": {
+      "version": "1.0.1",
+      "installedAt": 1776443222133
+    },
+    "amazon-product-fetcher": {
+      "version": "1.0.0",
+      "installedAt": 1776443222512
+    },
+    "agent-stealth-scraper": {
+      "version": "1.0.0",
+      "installedAt": 1776443279677
+    },
+    "ozon-product-selection": {
+      "version": "1.0.1",
+      "installedAt": 1776443279746
+    },
+    "amazon-scraper": {
+      "version": "3.1.0",
+      "installedAt": 1776443280406
+    },
+    "ecommerce-scraper": {
+      "version": "1.0.0",
+      "installedAt": 1776443281216
+    },
+    "yandex-archive-scraper": {
+      "version": "1.0.0",
+      "installedAt": 1776443340050
+    },
+    "ecommerce-market-analyzer-skill": {
+      "version": "1.0.0",
+      "installedAt": 1776443342333
+    },
+    "spider": {
+      "version": "1.0.0",
+      "installedAt": 1776443399607
+    },
+    "tiktok-page": {
+      "version": "1.0.4",
+      "installedAt": 1776597541755
+    },
+    "reddit-scraper": {
+      "version": "1.0.0",
+      "installedAt": 1776597541836
+    },
+    "instagram-search": {
+      "version": "1.1.1",
+      "installedAt": 1776597541873
+    },
+    "reddit-readonly": {
+      "version": "1.0.0",
+      "installedAt": 1776597542577
+    },
+    "youtube-watcher": {
+      "version": "1.0.0",
+      "installedAt": 1776597543083
+    },
+    "search-reddit": {
+      "version": "1.0.0",
+      "installedAt": 1776597601669
+    },
+    "telegram-bot-builder": {
+      "version": "1.0.0",
+      "installedAt": 1776597602321
+    },
+    "reddit-search-but-free": {
+      "version": "1.0.0",
+      "installedAt": 1776597603016
+    },
+    "telegram-notify": {
+      "version": "1.0.0",
+      "installedAt": 1776597661190
+    },
+    "bilibili-youtube-watcher": {
+      "version": "1.0.0",
+      "installedAt": 1776597662222
+    },
+    "youtube-search-yutu": {
+      "version": "0.10.7-dev",
+      "installedAt": 1776597662295
+    },
+    "douyin-tiktok-trends": {
+      "version": "1.0.0",
+      "installedAt": 1776597666824
+    },
+    "youtube-video-finder": {
+      "version": "1.0.0",
+      "installedAt": 1776597723457
+    }
+  }
+}

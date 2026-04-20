@@ -1,0 +1,300 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-20T23:43:07.007Z",
+  "entries": {
+    "memory:memory/2026-04-18.md:1:22": {
+      "key": "memory:memory/2026-04-18.md:1:22",
+      "path": "memory/2026-04-18.md",
+      "startLine": 1,
+      "endLine": 22,
+      "source": "memory",
+      "snippet": "# 2026-04-18 Daily Memory ## Session: Road Trip Planning — US West Coast (Sept 24–Oct 5, 2026) ### What happened - User requested a comprehensive US West Coast road trip plan with very specific requirements: - Dates: Arrive LAX 5:30 PM Sept 24 → Depart LAX 9:30 AM Oct 5 - Route must include: CA-1 (Highway 1) scenic spots, especially beaches with seals - US-395 Eastern Sierra: snow-capped mountains and lakes - Southern California / Mexican border region - Avoid crowded/expensive areas during Jewish holidays (specifically mentioned Santa Barbara during Yom Kippur) - Referenced an HTML guide: https://icbcsdc.icu/us-west-roadtrip-2026.html (returned empty) - I initially wrote a tex",
+      "recallCount": 5,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.6419611540061209,
+      "maxScore": 0.6419541519582677,
+      "firstRecalledAt": "2026-04-18T02:04:50.335Z",
+      "lastRecalledAt": "2026-04-20T14:37:59.505Z",
+      "queryHashes": [
+        "b86da6eb3cf9",
+        "f4d88550ef34",
+        "7dcab51c781c",
+        "7ee62dedbdd4",
+        "a42232b5104e"
+      ],
+      "recallDays": [
+        "2026-04-18",
+        "2026-04-19",
+        "2026-04-20"
+      ],
+      "conceptTags": [
+        "ca-1",
+        "us-395",
+        "snow-capped",
+        "crowded/expensive",
+        "road",
+        "trip",
+        "planning",
+        "west"
+      ]
+    },
+    "memory:memory/2026-04-18.md:18:39": {
+      "key": "memory:memory/2026-04-18.md:18:39",
+      "path": "memory/2026-04-18.md",
+      "startLine": 18,
+      "endLine": 39,
+      "source": "memory",
+      "snippet": "- Contains: Overview tab, Route tab (with Google Maps links), Day-by-day itinerary (accordion), Weather reference (16 cities), Gear checklist (checkable), Clothing guide, App recommendations - Key features: Google Maps route links, expandable day cards, checkable packing list with localStorage persistence, Yom Kippur/Tioga Pass warnings, sunrise spots highlighted (Alabama Hills, Mono Lake) ### Key Trip Decisions Made - Yom Kippur (Sept 27) → avoid Santa Barbara, stay in Carpinteria/Cambria instead - \"La Paz\" mentioned by user → likely confused (La Paz is in Baja California Sur, Mexico — not reachable by this route); noted in plan - Big Sur closure risk → Caltrans QuickMap + (800) 427-7623 r",
+      "recallCount": 4,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.000006099153249971619,
+      "maxScore": 0.000001573806646172001,
+      "firstRecalledAt": "2026-04-18T02:04:50.335Z",
+      "lastRecalledAt": "2026-04-19T23:46:00.456Z",
+      "queryHashes": [
+        "b86da6eb3cf9",
+        "f4d88550ef34",
+        "7dcab51c781c",
+        "7ee62dedbdd4"
+      ],
+      "recallDays": [
+        "2026-04-18",
+        "2026-04-19",
+        "2026-04-20"
+      ],
+      "conceptTags": [
+        "day-by-day",
+        "kippur/tioga",
+        "carpinteria/cambria",
+        "427-7623",
+        "contains",
+        "overview",
+        "tab",
+        "route"
+      ]
+    },
+    "memory:memory/2026-04-18.md:37:58": {
+      "key": "memory:memory/2026-04-18.md:37:58",
+      "path": "memory/2026-04-18.md",
+      "startLine": 37,
+      "endLine": 58,
+      "source": "memory",
+      "snippet": "- User may want adjustments to the HTML itinerary (more restaurant recs, specific hotel names, etc.) - The HTML file is complete but could be enhanced with actual embedded Google Maps iframe or more detailed restaurant suggestions # 2026-04-18 Daily Memory ## Session: Road Trip Planning — US West Coast (Sept 24–Oct 5, 2026) ### What happened - User requested a comprehensive US West Coast road trip plan with very specific requirements: - Dates: Arrive LAX 5:30 PM Sept 24 → Depart LAX 9:30 AM Oct 5 - Route must include: CA-1 (Highway 1) scenic spots, especially beaches with seals - US-395 Eastern Sierra: snow-capped mountains and lakes - Southern California / Mexican border region",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.6315581018248236,
+      "maxScore": 0.6315581018248236,
+      "firstRecalledAt": "2026-04-20T14:37:59.505Z",
+      "lastRecalledAt": "2026-04-20T14:37:59.505Z",
+      "queryHashes": [
+        "a42232b5104e"
+      ],
+      "recallDays": [
+        "2026-04-20"
+      ],
+      "conceptTags": [
+        "ca-1",
+        "us-395",
+        "snow-capped",
+        "user",
+        "may",
+        "want",
+        "adjustments",
+        "the"
+      ]
+    },
+    "memory:memory/2026-04-19.md:1:38": {
+      "key": "memory:memory/2026-04-19.md:1:38",
+      "path": "memory/2026-04-19.md",
+      "startLine": 1,
+      "endLine": 38,
+      "source": "memory",
+      "snippet": "# 2026-04-19 Memory ## 美西自驾环线 HTML 项目 ### 项目信息 - **文件**: `/Users/jingyilu/.openclaw/workspace/roadtrip-usa-2026.html` - **GitHub**: `https://github.com/jingyi22/us-west-roadtrip-2026` - **发布URL**: `https://jingyi22.github.io/us-west-roadtrip-2026/` - **状态**: 仍有问题待验证 ### 最新修复 (2026-04-18 深夜) **问题**: 标签页切换时，其他标签内容会闪现/混乱 **根本原因**: `<script>` 标签之前被放在了 `</body>` 之后，这是无效HTML结构 **修复**: 将 `<script>` 标签移到了 `</body>` 内部 **待验证**: 用户需要硬刷新页面(Cmd+Shift+R)测试标签切换是否正常 ### 项目背景 - 11天美西自驾环线行程 (2026年9月24日-10月5日) - 路线: LAX → Tijuana → Santa Barbara → Morro Bay → Big Sur → Monterey → Bishop → Alabama Hills → Mono Lake → Joshua Tree → LAX - 使用 Leaflet + CartoDB 底图显示真实GPS路线 ### 用户信息 - 使用飞书进行沟通 - 对重复修复问题有些不耐",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.1894134349615348,
+      "maxScore": 0.6767243303574266,
+      "firstRecalledAt": "2026-04-20T23:39:09.501Z",
+      "lastRecalledAt": "2026-04-20T23:43:07.007Z",
+      "queryHashes": [
+        "5863958d4c74",
+        "5d431fa67840"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "users/jingyilu",
+        "其他标签内容会闪现/混乱",
+        "2026年9月24日-10月5日",
+        "html",
+        "项目",
+        "信息",
+        "文件",
+        "users"
+      ]
+    },
+    "memory:memory/2026-04-19.md:175:211": {
+      "key": "memory:memory/2026-04-19.md:175:211",
+      "path": "memory/2026-04-19.md",
+      "startLine": 175,
+      "endLine": 211,
+      "source": "memory",
+      "snippet": "- \"样品完美，大货一塌糊涂，你遇到过吗？\" - \"选表厂看这3个指标就够了，别被销售忽悠\" - \"便宜的手表反而更耐用，听我解释\" **输出文件**: `/Users/jingyilu/.openclaw/workspace/TikTok_B端手表代工_前置钩子文案设计手册.docx` # 2026-04-19 Memory ## 美西自驾环线 HTML 项目 ### 项目信息 - **文件**: `/Users/jingyilu/.openclaw/workspace/roadtrip-usa-2026.html` - **GitHub**: `https://github.com/jingyi22/us-west-roadtrip-2026` - **发布URL**: `https://jingyi22.github.io/us-west-roadtrip-2026/` - **状态**: 仍有问题待验证 ### 最新修复 (2026-04-18 深夜) **问题**: 标签页切换时，其他标签内容会闪现/混乱 **根本原因**: `<script>` 标签之前被放在了 `</body>` 之后，这是无效HTML结构 **修复**: 将 `<script>` 标签移到了 `</body>` 内部 **待验证**: 用户需要硬刷新页面(Cmd+Shift+R)测试标签切换是否正常 ### 项目背景 - 11天美西自驾环线行程 (2026年9月24日-10月5日) - 路线: LAX → Tijuana → Santa Barbara → Morro Ba",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.1497307067457943,
+      "maxScore": 0.6201060957144011,
+      "firstRecalledAt": "2026-04-20T23:39:09.501Z",
+      "lastRecalledAt": "2026-04-20T23:43:07.007Z",
+      "queryHashes": [
+        "5863958d4c74",
+        "5d431fa67840"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "users/jingyilu",
+        "其他标签内容会闪现/混乱",
+        "2026年9月24日-10月5日",
+        "样品",
+        "完美",
+        "糊涂",
+        "遇到",
+        "指标"
+      ]
+    },
+    "memory:memory/2026-04-19.md:32:66": {
+      "key": "memory:memory/2026-04-19.md:32:66",
+      "path": "memory/2026-04-19.md",
+      "startLine": 32,
+      "endLine": 66,
+      "source": "memory",
+      "snippet": "### 项目信息 - **文件**: `/Users/jingyilu/.openclaw/workspace/roadtrip-usa-2026.html` - **GitHub**: `https://github.com/jingyi22/us-west-roadtrip-2026` - **发布URL**: `https://jingyi22.github.io/us-west-roadtrip-2026/` - **状态**: 仍有问题待验证 ### 最新修复 (2026-04-18 深夜) **问题**: 标签页切换时，其他标签内容会闪现/混乱 **根本原因**: `<script>` 标签之前被放在了 `</body>` 之后，这是无效HTML结构 **修复**: 将 `<script>` 标签移到了 `</body>` 内部 **待验证**: 用户需要硬刷新页面(Cmd+Shift+R)测试标签切换是否正常 ### 项目背景 - 11天美西自驾环线行程 (2026年9月24日-10月5日) - 路线: LAX → Tijuana → Santa Barbara → Morro Bay → Big Sur → Monterey → Bishop → Alabama Hills → Mono Lake → Joshua Tree → LAX - 使用 Leaflet + CartoDB 底图显示真实GPS路线 ### 用户信息 - 使用飞书进行沟通 - 对重复修复问题有些不耐烦，需要一次性解决 --- ## 2026-04-19 新增内容 ###",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.2157322695675605,
+      "maxScore": 0.6163688655020477,
+      "firstRecalledAt": "2026-04-20T23:39:09.501Z",
+      "lastRecalledAt": "2026-04-20T23:43:07.007Z",
+      "queryHashes": [
+        "5863958d4c74",
+        "5d431fa67840"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "users/jingyilu",
+        "其他标签内容会闪现/混乱",
+        "2026年9月24日-10月5日",
+        "项目",
+        "信息",
+        "文件",
+        "users",
+        "jingyilu"
+      ]
+    },
+    "memory:memory/2026-04-19.md:204:241": {
+      "key": "memory:memory/2026-04-19.md:204:241",
+      "path": "memory/2026-04-19.md",
+      "startLine": 204,
+      "endLine": 241,
+      "source": "memory",
+      "snippet": "- 路线: LAX → Tijuana → Santa Barbara → Morro Bay → Big Sur → Monterey → Bishop → Alabama Hills → Mono Lake → Joshua Tree → LAX - 使用 Leaflet + CartoDB 底图显示真实GPS路线 ### 用户信息 - 使用飞书进行沟通 - 对重复修复问题有些不耐烦，需要一次性解决 # 2026-04-19 Memory ## 美西自驾环线 HTML 项目 ### 项目信息 - **文件**: `/Users/jingyilu/.openclaw/workspace/roadtrip-usa-2026.html` - **GitHub**: `https://github.com/jingyi22/us-west-roadtrip-2026` - **发布URL**: `https://jingyi22.github.io/us-west-roadtrip-2026/` - **状态**: 仍有问题待验证 ### 最新修复 (2026-04-18 深夜) **问题**: 标签页切换时，其他标签内容会闪现/混乱 **根本原因**: `<script>` 标签之前被放在了 `</body>` 之后，这是无效HTML结构 **修复**: 将 `<script>` 标签移到了 `</body>` 内部 **待验证**: 用户需要硬刷新页面(Cmd+Shift+R)测试标签切换是否正常 ### 项目背景 - 11天美西自驾环线行程 (2026年9月2",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.1344664169851986,
+      "maxScore": 0.6126764122042807,
+      "firstRecalledAt": "2026-04-20T23:39:09.501Z",
+      "lastRecalledAt": "2026-04-20T23:43:07.007Z",
+      "queryHashes": [
+        "5863958d4c74",
+        "5d431fa67840"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "users/jingyilu",
+        "其他标签内容会闪现/混乱",
+        "路线",
+        "lax",
+        "tijuana",
+        "santa",
+        "barbara",
+        "morro"
+      ]
+    },
+    "memory:memory/2026-04-19.md:60:94": {
+      "key": "memory:memory/2026-04-19.md:60:94",
+      "path": "memory/2026-04-19.md",
+      "startLine": 60,
+      "endLine": 94,
+      "source": "memory",
+      "snippet": "### 🚗 GitHub Pages 重大发现：index.html 才是实际服务的文件 **问题**: 所有修复都针对 `roadtrip-usa-2026.html`，但 GitHub Pages 实际服务的是根目录的 `index.html` **证据**: - 仓库中存在两个不同的文件: - `index.html` (75,442 字节) - GitHub Pages 实际服务这个 - `roadtrip-usa-2026.html` (67,950 字节) - 我们一直在修改的这个 - 两个文件内容不同，`index.html` 包含了所有原始问题代码 **最新修复**: - SHA: `45780da4f24cf8acbf28a868884453e4a0403c33` - 修复内容: 重写 showTab JS，使用内联 style.display 切换 - 修复目标: `index.html` **待验证**: 用户需要访问 https://jingyi22.github.io/us-west-roadtrip-2026/ 强制刷新验证 --- ### ⌚ Sokolov 手表俄罗斯社交媒体评论收集 **任务**: 用户要求在俄罗斯社交媒体平台上收集尽可能多的 Sokolov 品牌手表评论 **收集到的评论来源**: 1. **irecommend.ru** - 俄罗斯最大评论网站 - 正面: 外观时尚、性价比高、两年正常使用 - 负面: 保修期后机芯故障、掉漆问题、保修被拒 2. **otzyvru.com** - 独",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5401683316728664,
+      "maxScore": 0.5401683316728664,
+      "firstRecalledAt": "2026-04-20T23:43:07.007Z",
+      "lastRecalledAt": "2026-04-20T23:43:07.007Z",
+      "queryHashes": [
+        "5d431fa67840"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "index.html",
+        "roadtrip-usa-2026.html",
+        "style.display",
+        "irecommend.ru",
+        "otzyvru.com",
+        "github",
+        "pages",
+        "重大"
+      ]
+    },
+    "memory:memory/2026-04-19.md:231:267": {
+      "key": "memory:memory/2026-04-19.md:231:267",
+      "path": "memory/2026-04-19.md",
+      "startLine": 231,
+      "endLine": 267,
+      "source": "memory",
+      "snippet": "- 路线: LAX → Tijuana → Santa Barbara → Morro Bay → Big Sur → Monterey → Bishop → Alabama Hills → Mono Lake → Joshua Tree → LAX - 使用 Leaflet + CartoDB 底图显示真实GPS路线 ### 用户信息 - 使用飞书进行沟通 - 对重复修复问题有些不耐烦，需要一次性解决 --- ## 2026-04-19 新增内容 ### 🚗 GitHub Pages 重大发现：index.html 才是实际服务的文件 **问题**: 所有修复都针对 `roadtrip-usa-2026.html`，但 GitHub Pages 实际服务的是根目录的 `index.html` **证据**: - 仓库中存在两个不同的文件: - `index.html` (75,442 字节) - GitHub Pages 实际服务这个 - `roadtrip-usa-2026.html` (67,950 字节) - 我们一直在修改的这个 - 两个文件内容不同，`index.html` 包含了所有原始问题代码 **最新修复**: - SHA: `45780da4f24cf8acbf28a868884453e4a0403c33` - 修复内容: 重写 showTab JS，使用内联 style.display 切换 - 修复目标: `index.html` **待验证**: 用户需要访问 https://jingyi22.github.io/us-wes",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5360637507214202,
+      "maxScore": 0.5360637507214202,
+      "firstRecalledAt": "2026-04-20T23:43:07.007Z",
+      "lastRecalledAt": "2026-04-20T23:43:07.007Z",
+      "queryHashes": [
+        "5d431fa67840"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "index.html",
+        "roadtrip-usa-2026.html",
+        "style.display",
+        "jingyi22.github.io/us-wes",
+        "路线",
+        "lax",
+        "tijuana",
+        "santa"
+      ]
+    }
+  }
+}

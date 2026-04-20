@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美西自驾环线 · 9月24日-10月5日</title>
+<style>
+:root{--p:#1a6b8a;--pd:#0d4f6b;--a:#f39c12;--bg:#f5f7fa;--c:#fff;--t:#2c3e50;--tl:#7f8c8d;--bd:#dde3ea;--sh:0 4px 16px rgba(0,0,0,0.08);--r:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+.hero{background:linear-gradient(135deg,#0d4f6b,#1a6b8a 40%,#2980b9 80%,#6dd5fa);color:#fff;padding:56px 20px 36px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;opacity:0.05;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23fff'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.badge{display:inline-block;background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.3);border-radius:50px;padding:5px 18px;font-size:12px;margin-bottom:14px;letter-spacing:2px;text-transform:uppercase}
+.hero h1{font-size:clamp(24px,5vw,42px);font-weight:800;margin-bottom:6px}
+.hero .sub{font-size:15px;opacity:0.9;margin-bottom:18px}
+.stats{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:18px}
+.stat{text-align:center}
+.stat .n{font-size:26px;font-weight:800}
+.stat .l{font-size:11px;opacity:0.8;text-transform:uppercase;letter-spacing:1px}
+.tabs{display:flex;gap:3px;padding:12px 12px 0;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:100}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:8px 14px;border:none;background:transparent;border-radius:10px 10px 0 0;cursor:pointer;font-size:13px;font-weight:600;color:var(--tl);transition:all .2s}
+.tab:hover{color:var(--p);background:rgba(26,107,138,0.06)}
+.tab.active{background:var(--p);color:#fff}
+.sec{display:none;padding:20px 14px 60px;max-width:940px;margin:0 auto}
+.sec.active{display:block}
+.card{background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:20px;margin-bottom:14px;border:1px solid var(--bd)}
+.card h2{font-size:17px;font-weight:700;color:var(--pd);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card h2 .ic{width:32px;height:32px;background:linear-gradient(135deg,var(--p),#2980b9);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;flex-shrink:0}
+.card h3{font-size:14px;font-weight:700;color:var(--pd);margin:12px 0 7px}
+.card h3:first-child{margin-top:0}
+.day{border:1px solid var(--bd);border-radius:13px;margin-bottom:10px;overflow:hidden;background:#fff;transition:box-shadow .2s}
+.day:hover{box-shadow:0 4px 20px rgba(26,107,138,0.12)}
+.dh{padding:15px 17px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none}
+.dl{display:flex;align-items:center;gap:11px}
+.dn{width:38px;height:38px;background:linear-gradient(135deg,var(--p),#5dade2);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;flex-shrink:0}
+.dn.r{background:linear-gradient(135deg,#27ae60,#2ecc71)}
+.dn.w{background:linear-gradient(135deg,#e67e22,#e74c3c)}
+.di .dt{font-weight:700;font-size:13px;color:var(--t)}
+.di .ds{font-size:11px;color:var(--tl);margin-top:1px}
+.da{width:22px;height:22px;border:none;background:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .3s;color:var(--tl);font-size:12px;flex-shrink:0}
+.day.open .da{transform:rotate(180deg)}
+.db{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.day.open .db{max-height:5000px}
+.dc{padding:0 17px 17px;border-top:1px solid var(--bd);padding-top:13px}
+.tl{position:relative;padding-left:20px}
+.tl::before{content:'';position:absolute;left:6px;top:4px;bottom:4px;width:2px;background:linear-gradient(to bottom,var(--p),#5dade2);border-radius:2px}
+.ti{position:relative;margin-bottom:13px}
+.ti::before{content:'';position:absolute;left:-18px;top:5px;width:10px;height:10px;background:#fff;border:3px solid var(--p);border-radius:50%;z-index:1}
+.ti.h::before{border-color:var(--a);background:var(--a)}
+.ti .tm{font-size:11px;color:var(--tl);font-weight:600;margin-bottom:1px}
+.ti .tp{font-weight:700;font-size:13px;color:var(--t)}
+.ti .td{font-size:11px;color:var(--tl);margin-top:1px}
+.g{display:inline-flex;align-items:center;gap:2px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:600;margin:2px}
+.g-s{background:#e8f4f8;color:#1a6b8a}
+.g-c{background:#fef3e2;color:#d68910}
+.g-f{background:#eafaf1;color:#1e8449}
+.g-d{background:#fdedec;color:#c0392b}
+.g-h{background:#f5eff9;color:#7d3c98}
+.g-p{background:#fef9e7;color:#b7950b}
+.g-w{background:#fdedec;color:#c0392b}
+.g-o{background:#eafaf1;color:#1e8449}
+.wx{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:8px}
+.wx-card{background:var(--bg);border-radius:11px;padding:11px;text-align:center;border:1px solid var(--bd)}
+.wx-card .ct{font-weight:700;font-size:12px;margin-bottom:3px;color:var(--pd)}
+.wx-card .ic{font-size:24px;margin-bottom:3px}
+.wx-card .tp{font-size:22px;font-weight:800;color:var(--a);margin-bottom:1px}
+.wx-card .rn{font-size:10px;color:var(--tl)}
+.wx-card .nt{font-size:10px;color:var(--tl);margin-top:2px}
+.gr{margin-bottom:14px}
+.gr h4{font-size:12px;font-weight:700;color:var(--pd);margin-bottom:7px;padding-bottom:4px;border-bottom:2px solid var(--p);display:inline-block}
+.gl{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.gi{display:flex;align-items:center;gap:6px;font-size:11px;padding:5px 8px;background:var(--bg);border-radius:6px}
+.gi input{width:13px;height:13px;accent-color:var(--p);flex-shrink:0}
+.gi .q{font-size:10px;color:var(--tl);margin-left:auto}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.ac{display:flex;align-items:center;gap:9px;padding:11px;background:var(--bg);border-radius:11px;border:1px solid var(--bd);text-decoration:none;color:var(--t);transition:all .2s}
+.ac:hover{background:#e8f4f8;border-color:var(--p);transform:translateY(-1px)}
+.ai{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.an{font-weight:700;font-size:12px}
+.ad{font-size:10px;color:var(--tl);margin-top:1px}
+.map{border-radius:var(--r);overflow:hidden;margin:12px 0;border:1px solid var(--bd)}
+.map iframe{width:100%;height:340px;border:none;display:block}
+.mc{padding:9px 13px;background:#fff;font-size:11px;color:var(--tl);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.mb{display:inline-flex;align-items:center;gap:5px;background:var(--p);color:#fff;padding:6px 14px;border-radius:50px;font-size:11px;font-weight:700;text-decoration:none;transition:all .2s}
+.mb:hover{background:var(--pd)}
+.cl{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.cl::-webkit-scrollbar{display:none}
+.cc{flex-shrink:0;width:115px;background:var(--bg);border-radius:11px;padding:13px 9px;text-align:center;border:1px solid var(--bd)}
+.cc .em{font-size:26px;margin-bottom:5px}
+.cc .nm{font-weight:700;font-size:11px;margin-bottom:2px}
+.cc .ds{font-size:9px;color:var(--tl)}
+.cc .tp{font-size:10px;color:var(--p);font-weight:700;margin-top:4px}
+.rb{display:flex;align-items:center;overflow-x:auto;padding:6px 0 12px;scrollbar-width:none;gap:0}
+.rb::-webkit-scrollbar{display:none}
+.rn{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.rn .dt{width:28px;height:28px;border-radius:50%;background:#dde3ea;border:3px solid #fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
+.rn .dt.a{background:var(--p)}
+.rn .dt.s{background:var(--a)}
+.rn .lb{font-size:8px;color:var(--tl);text-align:center;margin-top:3px;max-width:54px;line-height:1.3}
+.rs{flex:1;min-width:10px;height:3px;background:#dde3ea;margin-bottom:18px}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.ii{display:flex;align-items:center;gap:8px;padding:9px;background:var(--bg);border-radius:9px}
+.ii .ic{font-size:16px;flex-shrink:0}
+.ii .lb{font-size:9px;color:var(--tl)}
+.ii .vl{font-size:11px;font-weight:700;color:var(--t)}
+.wb{background:#fef3e2;border:1px solid #f39c12;border-radius:11px;padding:11px 13px;display:flex;gap:9px;align-items:flex-start;margin:9px 0}
+.wb .ic{font-size:16px;flex-shrink:0}
+.wb .tx{font-size:11px;color:#7d6608}
+.wb .tt{font-weight:700;margin-bottom:2px}
+.tp{background:#e8f4f8;border-radius:11px;padding:11px 13px;display:flex;gap:9px;align-items:flex-start;margin:9px 0}
+.tp .ic{font-size:16px;flex-shrink:0}
+.tp .tx{font-size:11px;color:var(--pd)}
+.tp .tt{font-weight:700;margin-bottom:2px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:var(--p);color:#fff;padding:7px 9px;text-align:left;font-weight:700}
+th:first-child{border-radius:8px 0 0 0}
+th:last-child{border-radius:0 8px 0 0}
+td{padding:7px 9px;border-bottom:1px solid var(--bd)}
+tr:nth-child(even){background:var(--bg)}
+.cli{display:flex;align-items:center;gap:8px;font-size:12px;padding:6px 0;border-bottom:1px solid var(--bd)}
+.cli input{width:15px;height:15px;accent-color:var(--p)}
+.ft{text-align:center;padding:28px 20px;background:var(--pd);color:rgba(255,255,255,0.5);font-size:11px}
+.ft span{display:block;margin-top:4px}
+.seg{display:flex;align-items:center;gap:6px;padding:10px 0}
+.seg .nm{flex-shrink:0;font-weight:700;font-size:12px;color:var(--pd);width:60px}
+.seg .br{flex:1;height:4px;background:linear-gradient(to right,var(--p),#5dade2);border-radius:2px;position:relative}
+.seg .mi{font-size:10px;color:var(--tl);margin-left:8px;flex-shrink:0}
+.sect-title{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:700;color:var(--pd);margin:18px 0 10px}
+.sect-title .nu{width:26px;height:26px;background:var(--p);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+.sub-route{display:flex;flex-direction:column;gap:6px;margin:8px 0}
+.sr{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg);border-radius:9px;border-left:3px solid var(--p)}
+.sr .srl{font-weight:700;font-size:12px;color:var(--p)}
+.sr .srd{font-size:11px;color:var(--tl)}
+.sr .srm{font-size:10px;color:var(--tl);margin-left:auto}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="badge">✈ 行程规划 2026</div>
+  <h1>🇺🇸 美西自驾环线</h1>
+  <p class="sub">9月24日 - 10月5日 · 11天10夜 · 约2,800英里</p>
+  <div class="stats">
+    <div class="stat"><div class="n">11</div><div class="l">天</div></div>
+    <div class="stat"><div class="n">2,800</div><div class="l">英里</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">条景观公路</div></div>
+    <div class="stat"><div class="n">12+</div><div class="l">海滩/景点</div></div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('overview')">📋 概览</button>
+  <button class="tab" onclick="showTab('route')">🗺️ 路线</button>
+  <button class="tab" onclick="showTab('daily')">📅 每日</button>
+  <button class="tab" onclick="showTab('weather')">🌡️ 气温</button>
+  <button class="tab" onclick="showTab('clothes')">👕 穿衣</button>
+  <button class="tab" onclick="showTab('mexico')">🇲🇽 边境</button>
+  <button class="tab" onclick="showTab('apps')">📱 App</button>
+</div>
+
+<!-- OVERVIEW -->
+<div id="overview" class="sec active">
+  <div class="card">
+    <h2><span class="ic">📌</span>基本信息</h2>
+    <div class="ig">
+      <div class="ii"><span class="ic">✈</span><div><div class="lb">抵达</div><div class="vl">9/24 17:30 LAX</div></div></div>
+      <div class="ii"><span class="ic">🛫</span><div><div class="lb">离开</div><div class="vl">10/5 09:30 LAX</div></div></div>
+      <div class="ii"><span class="ic">🚗</span><div><div class="lb">自驾里程</div><div class="vl">约2,800英里</div></div></div>
+      <div class="ii"><span class="ic">🏨</span><div><div class="lb">住宿</div><div class="vl">10晚（每天换住处）</div></div></div>
+      <div class="ii"><span class="ic">🛣️</span><div><div class="lb">路线</div><div class="vl">LAX→边境→CA-1→US-395→LAX</div></div></div>
+      <div class="ii"><span class="ic">🚙</span><div><div class="lb">建议租车</div><div class="vl">4WD SUV（洛杉矶机场提车）</div></div></div>
+    </div>
+    <div class="wb"><span class="ic">⚠️</span><div class="tx"><div class="tt">特别注意</div>9月27日 Yom Kippur（犹太新年），Santa Barbara 周边人流高峰，本行程已用 Carpinteria/Cambria 替代住宿，避开当天及次日高峰。</div></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="ic">🗺️</span>整体路线（迷你路线图）</h2>
+    <div class="rb">
+      <div class="rn"><div class="dt a">1</div><div class="lb">LAX<br>洛杉矶</div></div>
+      <div class="rs"></div>
+      <div class="rn"><div class="dt a">2</div><div class="lb">Tijuana<br>蒂华纳</div></div>
+      <div class="rs"></div>
+      <div class="rn"><div class="dt a">3</div><div class="lb">Laguna B<br>橙县海岸</div></div>
+      <div class="rs"></div>
+      <div class="rn"><div class="dt a">4</div><div class="lb">Big Sur<br>大苏尔</div></div>
+      <div class="rs"></div>
+      <div class="rn"><div class="dt a">5</div><div class="lb">Monterey<br>蒙特雷</div></div>
+      <div class="rs"></div>
+      <div class="rn"><div class="dt a">6</div><div class="lb">17-Mile<br>卡梅尔</div></div>
+      <div class="rs"></div>
+      <div class="rn"><div class="dt a">7</div><div class="lb">Bishop<br>东Sierra</div></div>
+      <div class="rs"></div>
+      <div class="rn"><div class="dt a s">8</div><div class="lb">Alabama<br>Hills</div></div>
+      <div class="rs"></div>
+      <div class="rn"><div class="dt a s">9</div><div class="lb">Mono L<br>Bodie</div></div>
+      <div class="rs"></div>
+      <div class="rn"><div class="dt a">10</div><div class="lb">Yosemite<br>优山美地</div></div>
+      <div class="rs"></div>
+      <div class="rn"><div class="dt">11</div><div class="lb">LAX<br>洛杉矶</div></div>
+    </div>
+    <div class="sub-route">
+      <div class="sr"><div><div class="srl">① 南加州 / 墨西哥边境</div><div class="srd">Day 2 · 蒂华纳边境一日游</div></div><div class="srm">🚗 120mi</div></div>
+      <div class="sr"><div><div class="srl">② CA-1 太平洋海岸</div><div class="srd">Day 3-6 · 橙县→大苏尔→蒙特雷</div></div><div class="srm">🚗 350mi</div></div>
+      <div class="sr"><div><div class="srl">③ US-395 东 Sierra</div><div class="srd">Day 7-9 · Bishop→Alabama Hills→Mono Lake</div></div><div class="srm">🚗 280mi</div></div>
+      <div class="sr"><div><div class="srl">④ 返回洛杉矶</div><div class="srd">Day 10-11 · Yosemite→LAX</div></div><div class="srm">🚗 380mi</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="ic">🦭</span>象海豹海滩清单（必去！）</h2>
+    <div class="ig">
+      <div class="ii"><span class="ic">� seal</span><div><div class="lb">Dana Point Harbor</div><div class="vl">Day 3 · 橙县</div></div></div>
+      <div class="ii"><span class="ic">� seal</span><div><div class="lb">Carpinteria State Beach</div><div class="vl">Day 4 · Santa Barbara以南</div></div></div>
+      <div class="ii"><span class="ic">� seal</span><div><div class="lb">Piedras Blancas Rookery</div><div class="vl">Day 4 · Cambria以北</div></div></div>
+      <div class="ii"><span class="ic">� seal</span><div><div class="lb">Garrapata State Park</div><div class="vl">Day 5 · Big Sur</div></div></div>
+      <div class="ii"><span class="ic">�🌊</span><div><div class="lb">Old Fisherman's Wharf</div><div class="vl">Day 5 · Monterey（海狮海獭）</div></div></div>
+      <div class="ii"><span class="ic">🦦</span><div><div class="lb">Point Lobos</div><div class="vl">Day 6 · 最佳海獭观察点</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ROUTE TAB -->
+<div id="route" class="sec">
+  <div class="card">
+    <h2><span class="ic">🗺️</span>整体路线地图</h2>
+    <div class="map">
+      <iframe src="https://www.google.com/maps/d/embed?mid=1a6b8a&amp;ll=35.5,-119.5&amp;z=6&amp;maptype=terrain" loading="lazy"></iframe>
+    </div>
+    <div class="mc">
+      <span>🗺️ 红色：CA-1 太平洋海岸 · 蓝色：US-395 内陆 · 绿色：Yosemite 返回路线</span>
+      <a class="mb" href="https://www.google.com/maps/dir/Los+Angeles+International+Airport,+1+World+Way,+Los+Angeles,+CA/Tijuana,+Mexico/Santa+Barbara,+CA/Morro+Bay,+CA/Big+Sur,+CA/Monterey,+CA/Bishop,+CA/Alabama+Hills,+CA/Mono+Lake,+CA/Yosemite+Valley,+CA/Los+Angeles+International+Airport/@35.2,-119.5,8z/data=!3m1!4b1!4m56!4m55!1m5!1m1!1s0x80c2b8e2b0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.4085!2d33.9416!1m5!1m1!1s0x80dcd9999b0b0b0b:0x0!2m2!1d-117.0837!2d32.5149!1m5!1m1!1s0x80c2d0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-119.6982!2d34.4208!1m5!1m1!1s0x80c3d0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-120.7482!2d35.3651!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-121.8951!2d36.6002!1m5!1m1!1s0x80c4c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-121.7875!2d36.6002!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.3876!2d37.3556!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.0629!2d36.6006!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.8977!2d37.8651!1m5!1m1!1s0x80c3c0e0c0c0c0c0:0x8c0c0c0c0c0c0c0c!2m2!1d-118.4085!2d33.9416!3e0" target="_blank">📍 Google Maps 全程导航</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="ic">🚗</span>各路段详情</h2>
+    <div class="sect-title"><div class="nu">①</div>Day 2 · 洛杉矶 → 蒂华纳边境</div>
+    <div class="seg"><div class="nm">LAX → TJ</div><div class="br" style="background:linear-gradient(to right,#e74c3c,#c0392b)"></div><div class="mi">~120mi / 2h</div></div>
+    <div class="tp"><span class="ic">💡</span><div class="tx"><div class="tt">提示</div>跨境后注意护照和签证。推荐周日到周三过境，人少。周五周六 Tijuana 主街很堵。</div></div>
+
+    <div class="sect-title"><div class="nu">②</div>Day 3 · CA-1 太平洋海岸（南段）</div>
+    <div class="seg"><div class="nm">LA → Dana Pt</div><div class="br" style="background:linear-gradient(to right,#1a6b8a,#5dade2)"></div><div class="mi">~90mi / 2h</div></div>
+    <div class="seg"><div class="nm">→ Malibu</div><div class="br" style="background:linear-gradient(to right,#5dade2,#85c1e9)"></div><div class="mi">~40mi / 1h</div></div>
+    <div class="seg"><div class="nm">→ Carpinteria</div><div class="br" style="background:linear-gradient(to right,#85c1e9,#aed6f1)"></div><div class="mi">~80mi / 2h</div></div>
+
+    <div class="sect-title"><div class="nu">③</div>Day 4-6 · CA-1 太平洋海岸（北段 + Big Sur）</div>
+    <div class="seg"><div class="nm">Carp → Hearst</div><div class="br" style="background:linear-gradient(to right,#1a6b8a,#2980b9)"></div><div class="mi">~120mi / 2.5h</div></div>
+    <div class="seg"><div class="nm">→ Big Sur</div><div class="br" style="background:linear-gradient(to right,#2980b9,#5dade2)"></div><div class="mi">~60mi / 1.5h</div></div>
+    <div class="seg"><div class="nm">→ Monterey</div><div class="br" style="background:linear-gradient(to right,#5dade2,#85c1e9)"></div><div class="mi">~50mi / 1.5h</div></div>
+
+    <div class="wb"><span class="ic">⚠️</span><div class="tx"><div class="tt">Big Sur 封路注意</div>路段偶有滑坡封闭。出发前查看 Caltrans QuickMap 或致电 (800) 427-7623 查实时路况。</div></div>
+
+    <div class="sect-title"><div class="nu">④</div>Day 7 · 蒙特雷 → 东 Sierra（US-395）</div>
+    <div class="seg"><div class="nm">Monterey → Bishop</div><div class="br" style="background:linear-gradient(to right,#27ae60,#2ecc71)"></div><div class="mi">~220mi / 4.5h</div></div>
+    <div class="tp"><span class="ic">💡</span><div class="tx"><div class="tt">提示</div>Day 7 是纯赶路日，穿越 Central Valley 和 Sierra 山麓，沿途补给点少，建议在 Salinas/Carrizo Plain 吃午饭。</div></div>
+
+    <div class="sect-title"><div class="nu">⑤</div>Day 8-9 · US-395 精华段</div>
+    <div class="seg"><div class="nm">Bishop → Alabama</div><div class="br" style="background:linear-gradient(to right,#8e44ad,#9b59b6)"></div><div class="mi">~50mi / 1h</div></div>
+    <div class="seg"><div class="nm">→ Mammoth Lk</div><div class="br" style="background:linear-gradient(to right,#9b59b6,#a569bd)"></div><div class="mi">~50mi / 1h</div></div>
+    <div class="seg"><div class="nm">→ Mono Lake</div><div class="br" style="background:linear-gradient(to right,#a569bd,#d7bde2)"></div><div class="mi">~30mi / 40min</div></div>
+    <div class="seg"><div class="nm">→ Bodie</div><div class="br" style="background:linear-gradient(to right,#f39c12,#f1c40f)"></div><div class="mi">~30mi / 1h（含土路）</div></div>
+
+    <div class="sect-title"><div class="nu">⑥</div>Day 10 · Lee Vining → Yosemite → LA</div>
+    <div class="seg"><div class="nm">Lee Vining → Tioga</div><div class="br" style="background:linear-gradient(to right,#e67e22,#f39c12)"></div><div class="mi">~50mi / 1h</div></div>
+    <div class="seg"><div class="nm">→ Yosemite V.</div><div class="br" style="background:linear-gradient(to right,#f39c12,#f1c40f)"></div><div class="mi">~60mi / 1.5h</div></div>
+    <div class="seg"><div class="nm">→ LAX</div><div class="br" style="background:linear-gradient(to right,#f1c40f,#b7950b)"></div><div class="mi">~280mi / 4.5h</div></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="ic">🚙</span>自驾注意事项</h2>
+    <div class="ig">
+      <div class="ii"><span class="ic">⛽</span><div><div class="lb">油价参考</div><div class="vl">LA ~.5/加仑 · Eastern Sierra ~.5</div></div></div>
+      <div class="ii"><span class="ic">💳</span><div><div class="lb">缴费方式</div><div class="vl">全程接受信用卡</div></div></div>
+      <div class="ii"><span class="ic">📶</span><div><div class="lb">信号覆盖</div><div class="vl">Big Sur/部分 US-395 无信号，提前离线</div></div></div>
+      <div class="ii"><span class="ic">🅿</span><div><div class="lb">停车费</div><div class="vl">17-Mile 1.25 · Hearst Castle 预约制</div></div></div>
+    </div>
+  </div>
+</div>
+  
+<!-- DAILY TAB -->
+<div id="daily" class="sec">
+  <div class="card">
+    <h2><span class="ic">📅</span>每日行程（点击标题展开详情）</h2>
+    <p style="font-size:12px;color:var(--tl);margin-bottom:4px">📍 点击每一天即可展开查看详细时间线和景点信息</p>
+  </div>
+
+<!-- DAY 7 -->
+  <div class="day" onclick="toggleDay(this)">
+    <div class="dh">
+      <div class="dl"><div class="dn">D7</div><div class="di"><div class="dt">Day 7 · 9月30日（周二）</div><div class="ds">蒙特雷 → 东 Sierra · US-395 内陆回程</div></div></div>
+      <div class="da">▼</div>
+    </div>
+    <div class="db"><div class="dc">
+      <div class="tl">
+        <div class="ti"><div class="tm">08:00</div><div class="tp">🚗 退房出发，驶入内陆</div><div class="td">今日是赶路日，穿越 Salinas Valley，横穿 Central Valley</div></div>
+        <div class="ti"><div class="tm">10:00</div><div class="tp">🌾 穿越 Salinas Valley</div><div class="td">农田风光，翻越 Tehachapi Pass，进入 Sierra 山麓</div></div>
+        <div class="ti"><div class="tm">14:00</div><div class="tp">🏜️ 进入 Owens Valley（东部 Sierra 山谷）</div><div class="td">地形从绿色农田变为荒漠山谷，Sierra Nevada 山脉在右侧拔地而起</div></div>
+        <div class="ti"><div class="tm">17:30</div><div class="tp">🏘️ 抵达 Bishop（东部 Sierra 最大补给小镇）</div><div class="td">采购补给（CVS、超市、餐厅齐全）</div></div>
+        <div class="ti"><div class="tm">19:00</div><div class="tp">🍽️ Bishop 晚餐</div><div class="td">推荐：Schuby's（德国菜）或 Criterium（自行车主题咖啡馆）</div></div>
+      </div>
+      <div class="tp"><span class="ic">💡</span><div class="tx"><div class="tt">赶路日提示</div>今日景点少，主要任务是到达 Eastern Sierra。建议在 Bishop 补充水、零食、水果，为接下来两天的高原探险做准备。</div></div>
+      <div style="margin-top:10px"><span class="g g-d">🚗 赶路日</span><span class="g g-c">🏔️ 山景</span></div>
+    </div></div>
+  </div>
+
+  <!-- DAY 8 -->
+  <div class="day" onclick="toggleDay(this)">
+    <div class="dh">
+      <div class="dl"><div class="dn warn">D8</div><div class="di"><div class="dt">Day 8 · 10月1日（周三）🌅 必早起！</div><div class="ds">Alabama Hills 日出 · Mobius Arch · Mammoth Lakes</div></div></div>
+      <div class="da">▼</div>
+    </div>
+    <div class="db"><div class="dc">
+      <div class="wb"><span class="ic">🌅</span><div class="tx"><div class="tt">日出必去！Alabama Hills Mobius Arch</div>Mount Whitney alpenglow（ alpenglow 粉红光）仅持续10-15分钟。日出前30分钟到达停车场，天黑需手电筒。</div></div>
+      <div class="tl">
+        <div class="ti highlight"><div class="tm">05:30</div><div class="tp">🌅 出发前往 Alabama Hills（从 Bishop 开车约20分钟）</div><div class="td">天黑路暗，开大灯，导航至 "Mobius Arch Trailhead, Lone Pine, CA"</div></div>
+        <div class="ti highlight"><div class="tm">06:00</div><div class="tp">📸 Mobius Arch · Alpenglow 日出</div><div class="td">0.6英里环形步道，免费。从停车场步行约3分钟即到。<br>经典角度：Mobius Arch 框架中的 Mount Whitney（14,505尺）🌄<br>Mount Williamson（14,375尺）同步被照亮</div></div>
+        <div class="ti highlight"><div class="tm">08:00</div><div class="tp">🚗 继续游览 Alabama Hills · Movie Flat Road</div><div class="td">环线约17英里驾驶，经过多部电影拍摄地。Boot Arch、Shark Fin 等岩石拱门</div></div>
+        <div class="ti"><div class="tm">10:00</div><div class="tp">🍳 Lone Pine 小镇早餐</div><div class="td">回到 Lone Pine 补充能量，这里有咖啡馆和快餐店</div></div>
+        <div class="ti"><div class="tm">12:00</div><div class="tp">🚗 前往 Mammoth Lakes（约50英里，1小时）</div><div class="td">沿 US-395 北上，途径 Owens River Gorge 观景点</div></div>
+        <div class="ti highlight"><div class="tm">13:30</div><div class="tp">🏔️ Mammoth Lakes 游览</div><div class="td">Lake Mamie（湖边漫步）、Lake Mary（野餐）、或乘 Mammoth Mountain 缆车（$29/人）登顶俯瞰</div></div>
+        <div class="ti"><div class="tm">18:00</div><div class="tp">🌇 Mammoth Lakes 小镇晚餐 + 住宿</div><div class="td">推荐：Mammoth Rock Brasserie 或热带雨林咖啡馆</div></div>
+      </div>
+      <div style="margin-top:10px">
+        <span class="g g-p">📸 日出摄影</span>
+        <span class="g g-h">🥾 轻松徒步</span>
+        <span class="g g-s">🏔️ 雪山湖泊</span>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- DAY 9 -->
+  <div class="day" onclick="toggleDay(this)">
+    <div class="dh">
+      <div class="dl"><div class="dn warn">D9</div><div class="di"><div class="dt">Day 9 · 10月2日（周四）🌅 必早起！</div><div class="ds">Mono Lake 日出 · Bodie 鬼城 · Lee Vining</div></div></div>
+      <div class="da">▼</div>
+    </div>
+    <div class="db"><div class="dc">
+      <div class="wb"><span class="ic">🌅</span><div class="tx"><div class="tt">日出必去！Mono Lake South Tufa</div>"加州最上镜日出地之一"——日出时 Sierra 峰粉红，钙华塔林变金色，光影令人窒息。South Tufa $3/人。建议日出前45分钟到达。</div></div>
+      <div class="tl">
+        <div class="ti highlight"><div class="tm">05:45</div><div class="tp">🌅 出发前往 Mono Lake South Tufa（约1小时车程）</div><div class="td">天黑，带手电筒。导航：South Tufa Area, Lee Vining, CA</div></div>
+        <div class="ti highlight"><div class="tm">07:00</div><div class="tp">📸 Mono Lake South Tufa 日出</div><div class="td">1英里环形步道，全程无遮阳。带水和防晒。早晨气温约35-45°F（1-7°C）🧥<br>经典角度：Tufa 塔林剪影 + Sierra 金色山峰倒影</div></div>
+        <div class="ti"><div class="tm">09:30</div><div class="tp">☕ Lee Vining 小镇早餐</div><div class="td">Mono Inn 或 Nic's Deli（时间早可能还没开，备选）</div></div>
+        <div class="ti highlight"><div class="tm">10:30</div><div class="tp">🏚️ Bodie Ghost Town（鬼城）</div><div class="td">13英里土路，最后3英里较颠簸（普通轿车可行但开慢点）<br>$8/人 + $3 guidebook（强烈建议买）<br>游览时间：2-3小时，穿舒适步行鞋，带水<br>注意：Bodie 诅咒——拿走任何东西会倒霉 😄</div></div>
+        <div class="ti"><div class="tm">16:00</div><div class="tp">🚗 返回 Lee Vining</div><div class="td">约1小时车程，路况好</div></div>
+        <div class="ti"><div class="tm">17:30</div><div class="tp">🌇 Lee Vining 看日落</div><div class="td">Mono Lake 西岸，日落视角超棒 · Tioga Pass 山口也在这里</div></div>
+      </div>
+      <div style="margin-top:10px">
+        <span class="g g-p">📸 日出摄影</span>
+        <span class="g g-s">🏚️ 鬼城探秘</span>
+        <span class="g g-h">🧥 需带外套（高原冷）</span>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- DAY 10 -->
+  <div class="day" onclick="toggleDay(this)">
+    <div class="dh">
+      <div class="dl"><div class="dn warn">D10</div><div class="di"><div class="dt">Day 10 · 10月3日（周五）⚠️ 出发前打电话确认</div><div class="ds">Lee Vining → Tioga Pass → Yosemite → 洛杉矶</div></div></div>
+      <div class="da">▼</div>
+    </div>
+    <div class="db"><div class="dc">
+      <div class="wb"><span class="ic">⚠️</span><div class="tx"><div class="tt">Tioga Pass 状态确认</div>Tioga Pass 通常10月底-11月初关闭，但10月初可能因天气提前关闭。<strong>出发前必做：</strong>致电 ☎️ (209) 372-0200（按1,1）确认路况，或查看 NPS 官网。如已关闭，改走 CA-49 / CA-140 绕道入 Yosemite。</div></div>
+      <div class="tl">
+        <div class="ti"><div class="tm">07:00</div><div class="tp">🚗 出发，经 Tioga Pass 进入 Yosemite</div><div class="td">约1小时穿越 Yosemite 东门（从 Lee Vining 出发）</div></div>
+        <div class="ti highlight"><div class="tm">08:30</div><div class="tp">🏔️ Tunnel View（隧道景观）</div><div class="td">经典 Yosemite 明信片角度：El Capitan + Bridalveil Fall + Half Dome 🌄</div></div>
+        <div class="ti"><div class="tm">09:30</div><div class="tp">💧 Bridalveil Fall（新娘面纱瀑布）</div><div class="td">0.5英里步道，瀑布水雾扑面，停车观景点</div></div>
+        <div class="ti"><div class="tm">11:00</div><div class="tp">🧗 El Capitan Picnic Area</div><div class="td">攀岩圣地，野餐观巨岩</div></div>
+        <div class="ti"><div class="tm">12:30</div><div class="tp">🍽️ Yosemite Valley 午餐</div><div class="td">The Village Grill 或 Degnan's Deli（快餐式，简餐为主）</div></div>
+        <div class="ti"><div class="tm">14:00</div><div class="tp">🌲 Glacier Point（提前确认开放）</div><div class="td">如开放，全景制高点俯瞰 Yosemite Valley（4,000尺高差）。门票含在 $35/车入园费内</div></div>
+        <div class="ti"><div class="tm">15:30</div><div class="tp">🚗 出发返回洛杉矶</div><div class="td">沿 CA-41（Fresno方向）→ I-5，约4-5小时</div></div>
+        <div class="ti"><div class="tm">20:00</div><div class="tp">🏨 LAX 附近住宿</div><div class="td">还车准备次日航班</div></div>
+      </div>
+      <div style="margin-top:10px">
+        <span class="g g-s">🏔️ 国家公园</span>
+        <span class="g g-h">🥾 轻松徒步</span>
+        <span class="g g-w">⚠️ 提前打电话确认路况</span>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- DAY 11 -->
+  <div class="day" onclick="toggleDay(this)">
+    <div class="dh">
+      <div class="dl"><div class="dn resty">D11</div><div class="di"><div class="dt">Day 11 · 10月4日（周六）</div><div class="ds">洛杉矶自由活动 · 还车准备 · 出发回家</div></div></div>
+      <div class="da">▼</div>
+    </div>
+    <div class="db"><div class="dc">
+      <div class="tl">
+        <div class="ti"><div class="tm">上午</div><div class="tp">🛍️ The Grove / Beverly Hills 最后购物</div><div class="td">或 Getty Center 免费艺术博物馆（强烈推荐！俯瞰洛杉矶全景）</div></div>
+        <div class="ti"><div class="tm">下午</div><div class="tp">🚗 提前还车</div><div class="td">建议航班起飞前3小时还车，留出充足时间</div></div>
+        <div class="ti"><div class="tp">🎉 庆祝行程圆满结束！</div></div>
+      </div>
+    </div></div>
+  </div>
+
+
+  <!-- DAY 1 -->
+  <div class="day" onclick="toggleDay(this)">
+    <div class="dh"><div class="dl"><div class="dn">D1</div><div class="di"><div class="dt">Day 1 · 9月24日（周三）</div><div class="ds">抵达洛杉矶 · Venice Beach 适应性游览</div></div></div><div class="da">▼</div></div>
+    <div class="db"><div class="dc">
+      <div class="tl">
+        <div class="ti"><div class="tm">17:30</div><div class="tp">✈️ 抵达洛杉矶机场 (LAX)</div><div class="td">办理租车手续（建议提前预约 SUV，机场提车约1-1.5小时）</div></div>
+        <div class="ti"><div class="tm">19:00</div><div class="tp">🍽️ Venice Beach 晚餐</div><div class="td">推荐 The Cheesecake Factory 或本地海鲜餐厅</div></div>
+        <div class="ti highlight"><div class="tm">19:30</div><div class="tp">🌅 Venice Beach / Santa Monica Pier</div><div class="td">海滨步行道看日落，时差友好，轻松第一天</div></div>
+        <div class="ti"><div class="tm">21:00</div><div class="tp">🏨 住宿 LAX 附近</div><div class="td">推荐 Hilton LAX 或类似（方便次日南下）</div></div>
+      </div>
+      <div style="margin-top:10px"><span class="g g-d">🚗 长途飞行后休息为主</span><span class="g g-f">🍽️ Venice 海滨餐厅</span></div>
+    </div></div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day" onclick="toggleDay(this)">
+    <div class="dh"><div class="dl"><div class="dn">D2</div><div class="di"><div class="dt">Day 2 · 9月25日（周四）</div><div class="ds">洛杉矶 → 蒂华纳边境一日游 🇲🇽</div></div></div><div class="da">▼</div></div>
+    <div class="db"><div class="dc">
+      <div class="tl">
+        <div class="ti"><div class="tm">07:00</div><div class="tp">🚗 退房出发</div><div class="td">沿 I-5 南下，约2小时（120英里）</div></div>
+        <div class="ti highlight"><div class="tm">09:00</div><div class="tp">🇲🇽 抵达 San Ysidro 边境，步行过境</div><div class="td">最繁忙陆路过境口岸，人多需排队约30-60分钟</div></div>
+        <div class="ti"><div class="tm">09:30</div><div class="tp">🏙️ 蒂华纳市中心 · Revolución 大道</div><div class="td">步行街游览，兑换比索，购买纪念品</div></div>
+        <div class="ti"><div class="tm">12:00</div><div class="tp">🌮 午餐：墨西哥街头美食</div><div class="td">推荐 fish tacos、ceviche、elote（玉米）</div></div>
+        <div class="ti"><div class="tm">14:00</div><div class="tp">🌊 Playas de Tijuana 海滩</div><div class="td">美墨边境线就在海里，向北看加州，向南看墨西哥</div></div>
+        <div class="ti"><div class="tm">16:30</div><div class="tp">🇺🇸 返回美国</div><div class="td">步行+驾车，约30分钟返回 San Ysidro</div></div>
+        <div class="ti"><div class="tm">19:30</div><div class="tp">🚗 驾车返回洛杉矶（2.5-3小时）</div><div class="td">走 I-5 北上，晚高峰稍堵</div></div>
+      </div>
+      <div style="margin-top:10px"><span class="g g-w">⚠️ 护照 + B1/B2 签证</span><span class="g g-f">🌮 墨西哥美食</span><span class="g g-s">🏖️ 海滩观景</span></div>
+      <div class="tp" style="margin-top:10px"><span class="ic">💡</span><div class="tx"><div class="tt">关于 La Paz</div>La Paz 在 Baja California Sur（墨西哥下加利福尼亚半岛南部），需从蒂华纳飞往或开车8小时+乘渡轮。如需前往，建议单独安排2-3天，本次11天行程未包含。</div></div>
+    </div></div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day" onclick="toggleDay(this)">
+    <div class="dh"><div class="dl"><div class="dn">D3</div><div class="di"><div class="dt">Day 3 · 9月26日（周五）</div><div class="ds">橙县海岸 · CA-1 太平洋海岸启程 · 海豹海滩</div></div></div><div class="da">▼</div></div>
+    <div class="db"><div class="dc">
+      <div class="tl">
+        <div class="ti"><div class="tm">07:30</div><div class="tp">🚗 退房出发，沿 CA-1 北上</div><div class="td">不走 I-5，走 Pacific Coast Highway（PCH），风景更好</div></div>
+        <div class="ti highlight"><div class="tm">09:30</div><div class="tp">🌊 Laguna Beach · Heisler Park</div><div class="td">艺术小镇，涨潮海滩悬崖漫步，经典南加海岸线</div></div>
+        <div class="ti highlight"><div class="tm">11:30</div><div class="tp">🦭 Dana Point Harbor</div><div class="td">栈道常年在海豹/海狮栖息地 🦭</div></div>
+        <div class="ti"><div class="tm">13:00</div><div class="tp">🍽️ Newport Beach 午餐</div><div class="td">推荐 The Crab Shack（海鲜浓汤）或 The Cannery</div></div>
+        <div class="ti"><div class="tm">15:00</div><div class="tp">🌅 Malibu · Zuma Beach</div><div class="td">冲浪圣地，Pepperdine 大学观景点（免费）</div></div>
+        <div class="ti highlight"><div class="tm">17:30</div><div class="tp">🌇 Santa Monica Pier</div><div class="td">看日落，摩天轮，街头艺人表演</div></div>
+        <div class="ti"><div class="tm">20:00</div><div class="tp">🚗 前往 Carpinteria（不住 Santa Barbara）</div><div class="td">约1.5小时车程，海豹栖息小镇</div></div>
+      </div>
+      <div style="margin-top:10px"><span class="g g-s">🦭 象海豹海滩</span><span class="g g-c">🎨 艺术小镇</span><span class="g g-f">🍽️ 海鲜午餐</span></div>
+    </div></div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="day" onclick="toggleDay(this)">
+    <div class="dh"><div class="dl"><div class="dn warn">D4</div><div class="di"><div class="dt">Day 4 · 9月27日（周六）⚠️ Yom Kippur</div><div class="ds">Santa Barbara · Hearst Castle · Cambria · 象海豹海滩</div></div></div><div class="da">▼</div></div>
+    <div class="db"><div class="dc">
+      <div class="wb"><span class="ic">⚠️</span><div class="tx"><div class="tt">Yom Kippur 注意</div>9月27日是犹太新年 Santa Barbara 周边非常繁忙，本日已用 Carpinteria/Cambria 替代住宿，避开人流高峰。</div></div>
+      <div class="tl">
+        <div class="ti"><div class="tm">08:00</div><div class="tp">🦭 Carpinteria State Beach 早观</div><div class="td">象海豹清晨活动高峰期（7-9点最佳），免费，距住宿5分钟</div></div>
+        <div class="ti"><div class="tm">09:00</div><div class="tp">🏛️ Mission Santa Barbara（快速游览）</div><div class="td">"加州最美教堂"，外观拍照，30分钟</div></div>
+        <div class="ti highlight"><div class="tm">11:00</div><div class="tp">🌊 Morro Bay · Morro Rock</div><div class="td">火山岩岬，海边栈道，海鲜午餐（Giovanni's Fresh Fish Market）</div></div>
+        <div class="ti highlight"><div class="tm">13:30</div><div class="tp">🦭 Piedras Blancas Elephant Seal Rookery</div><div class="td">数百只象豹常年栖息 🦭，免费观景点，就在 CA-1 旁</div></div>
+        <div class="ti highlight"><div class="tm">15:00</div><div class="tp">🏰 Hearst Castle（需预约）</div><div class="td">建议提前网上购票（$25-30/人），约2.5小时游览</div></div>
+        <div class="ti"><div class="tm">18:00</div><div class="tp">🏨 Cambria 住宿</div><div class="td">海景小镇，避开 Santa Barbara Yom Kippur 人流</div></div>
+      </div>
+      <div style="margin-top:10px"><span class="g g-s">🦭 象海豹</span><span class="g g-c">🏰 历史城堡</span></div>
+    </div></div>
+  </div>
+
+  <!-- DAY 5 -->
+  <div class="day" onclick="toggleDay(this)">
+    <div class="dh"><div class="dl"><div class="dn warn">D5</div><div class="di"><div class="dt">Day 5 · 9月28日（周日）⚠️ 秋假开始</div><div class="ds">Big Sur 核心段 · Bixby 大桥 · 紫沙海滩</div></div></div><div class="da">▼</div></div>
+    <div class="db"><div class="dc">
+      <div class="wb"><span class="ic">⚠️</span><div class="tx"><div class="tt">周日秋假开始</div>建议早出发（7:00前），Big Sur 方向会较堵，高速公路北上蒙特雷方向提前出发。</div></div>
+      <div class="tl">
+        <div class="ti"><div class="tm">07:30</div><div class="tp">🚗 早出发进入 Big Sur</div><div class="td">建议走 CA-1 南下至 Big Sur 最南端，然后北上一路玩回来</div></div>
+        <div class="ti highlight"><div class="tm">09:00</div><div class="tp">🦭 Garrapata State Park · Soberanes Point</div><div class="td">悬崖海景徒步（2.3mi），可能看到象海豹</div></div>
+        <div class="ti highlight"><div class="tm">10:30</div><div class="tp">🌉 Bixby Creek Bridge</div><div class="td">美国最上镜大桥之一 🏗️，停车拍照（北向观景点最佳）</div></div>
+        <div class="ti"><div class="tm">11:00</div><div class="tp">🌊 Hurricane Point</div><div class="td">俯视大海峡的最佳观景点，风大，海浪声震撼</div></div>
+        <div class="ti highlight"><div class="tm">12:00</div><div class="tp">🟣 Pfeiffer Beach 紫沙海滩</div><div class="td">Keyhole Arch 岩洞，停车$10，下午光线最好</div></div>
+        <div class="ti highlight"><div class="tm">14:00</div><div class="tp">💧 Julia Pfeiffer Burns State Park</div><div class="td">徒步至 McWay Falls（80尺瀑布直落入海）🌊</div></div>
+        <div class="ti"><div class="tm">17:00</div><div class="tp">🦭 Monterey · Old Fisherman's Wharf</div><div class="td">海狮、海獭常驻栈道，海鲜浓汤必吃</div></div>
+      </div>
+      <div style="margin-top:10px"><span class="g g-h">🥾 徒步</span><span class="g g-p">📸 大桥摄影</span><span class="g g-s">🟣 紫沙海滩</span></div>
+    </div></div>
+  </div>
+
+  <!-- DAY 6 -->
+  <div class="day" onclick="toggleDay(this)">
+    <div class="dh"><div class="dl"><div class="dn">D6</div><div class="di"><div class="dt">Day 6 · 9月29日（周一）</div><div class="ds">17英里Drive · Point Lobos · Carmel-by-the-Sea</div></div></div><div class="da">▼</div></div>
+    <div class="db"><div class="dc">
+      <div class="tl">
+        <div class="ti highlight"><div class="tm">07:30</div><div class="tp">🦦 Point Lobos State Reserve（需预约！）</div><div class="td">"加州皇冠宝石"，最佳海獭、鲸鱼观察点，强烈建议提前网上预约停车位</div></div>
+        <div class="ti highlight"><div class="tm">10:00</div><div class="tp">🛤️ 17-Mile Drive（Pebble Beach）</div><div class="td">私家门禁路段，Lone Cypress、Ghost Trees 必停，门票$11.25/车，约2小时</div></div>
+        <div class="ti"><div class="tm">12:30</div><div class="tp">🏖️ Carmel-by-the-Sea 午餐 + 漫步</div><div class="td">艺术小镇，海滩散步，推荐 Carmel Bakery 或 Il Grasso</div></div>
+        <div class="ti"><div class="tm">14:30</div><div class="tp">🌊 Partington Cove（时间充裕则去）</div><div class="td">隐秘海湾，徒步隧道至海滩，本地人私藏景点</div></div>
+        <div class="ti"><div class="tm">16:00</div><div class="tp">🏨 返回 Monterey 或 Carmel 住宿</div><div class="td">今日不赶路，好好享受 Big Sur 最后的海岸时光</div></div>
+      </div>
+      <div style="margin-top:10px"><span class="g g-h">🦦 海獭观察</span><span class="g g-s">🌲 松林海岸</span><span class="g g-c">🎨 艺术小镇</span></div>
+    </div></div>
+  </div>
+
+
+<!-- WEATHER TAB -->
+<div id="weather" class="sec">
+  <div class="card">
+    <h2><span class="ic">🌡️</span>各地气温参考（9月底-10月初）</h2>
+    <p style="font-size:12px;color:var(--tl);margin-bottom:14px">注：历史平均数据，出发前请查看实时天气预报。★标记为需特别注意保暖的地区。</p>
+    <div class="wx">
+      <div class="wx-card"><div class="ct">🌊 洛杉矶</div><div class="ic">☀️</div><div class="tp">75°F</div><div class="rn">24°C / 16°C</div><div class="nt">白天温暖，夜晚凉爽</div></div>
+      <div class="wx-card"><div class="ct">🌊 橙县海岸</div><div class="ic">🌤️</div><div class="tp">72°F</div><div class="rn">22°C / 15°C</div><div class="nt">海风大，防晒必备</div></div>
+      <div class="wx-card"><div class="ct">🏖️ Santa Barbara</div><div class="ic">🌤️</div><div class="tp">74°F</div><div class="rn">23°C / 14°C</div><div class="nt">地中海气候，舒适</div></div>
+      <div class="wx-card"><div class="ct">🌊 Morro Bay</div><div class="ic">🌫️</div><div class="tp">68°F</div><div class="rn">20°C / 12°C</div><div class="nt">太平洋海风，凉爽多雾</div></div>
+      <div class="wx-card"><div class="ct">🏔️ Big Sur</div><div class="ic">🌫️</div><div class="tp">65°F</div><div class="rn">18°C / 10°C</div><div class="nt">多雾，温差大</div></div>
+      <div class="wx-card"><div class="ct">🦭 Monterey</div><div class="ic">🌫️</div><div class="tp">66°F</div><div class="rn">19°C / 11°C</div><div class="nt">凉爽，晨雾常见</div></div>
+      <div class="wx-card"><div class="ct">🏔️ Bishop</div><div class="ic">☀️</div><div class="tp">78°F</div><div class="rn">26°C / 8°C</div><div class="nt">★ 昼夜温差极大（25°C+）</div></div>
+      <div class="wx-card" style="border:2px solid #5dade2;background:#e8f4f8"><div class="ct">⛰️ Alabama Hills</div><div class="ic">🌅</div><div class="tp">70°F</div><div class="rn">21°C / 6°C</div><div class="nt" style="color:#c0392b;font-weight:700">★ 日出时约35°F（2°C）！</div></div>
+      <div class="wx-card"><div class="ct">🏔️ Mammoth Lakes</div><div class="ic">⛰️</div><div class="tp">60°F</div><div class="rn">16°C / 0°C</div><div class="nt" style="color:#c0392b">★ 夜间可能接近冰点！</div></div>
+      <div class="wx-card" style="border:2px solid #9b59b6;background:#f5eff9"><div class="ct">🏜️ Mono Lake</div><div class="ic">🌅</div><div class="tp">65°F</div><div class="rn">18°C / 3°C</div><div class="nt" style="color:#c0392b;font-weight:700">★ 日出时约35°F（2°C）！</div></div>
+      <div class="wx-card"><div class="ct">🏚️ Bodie（8,375ft）</div><div class="ic">🌬️</div><div class="tp">55°F</div><div class="rn">13°C / -1°C</div><div class="nt" style="color:#c0392b">★ 高海拔！需最厚外套</div></div>
+      <div class="wx-card"><div class="ct">🏔️ Tioga Pass（9,945ft）</div><div class="ic">❄️</div><div class="tp">45°F</div><div class="rn">7°C / -2°C</div><div class="nt" style="color:#c0392b">★ 可能已下雪！提前确认</div></div>
+      <div class="wx-card"><div class="ct">🏞️ Yosemite Valley</div><div class="ic">🌤️</div><div class="tp">72°F</div><div class="rn">22°C / 8°C</div><div class="nt">早晚凉爽，中午温暖</div></div>
+    </div>
+    <div class="wb" style="margin-top:14px"><span class="ic">📱</span><div class="tx"><div class="tt">实时天气查询</div>推荐：Apple Weather / Weather.com（详细）/ NOAA（最准确）。Eastern Sierra 地区天气多变，建议每日出发前确认。</div></div>
+  </div>
+  <div class="card">
+    <h2><span class="ic">⛰️</span>高海拔地区提醒</h2>
+    <div class="ig">
+      <div class="ii"><span class="ic">⛰️</span><div><div class="lb">Alabama Hills</div><div class="vl">4,000ft（安全）</div></div></div>
+      <div class="ii"><span class="ic">⛰️</span><div><div class="lb">Mammoth Lakes</div><div class="vl">7,880ft（轻微）</div></div></div>
+      <div class="ii"><span class="ic">⛰️</span><div><div class="lb">Bodie</div><div class="vl">8,375ft（注意）</div></div></div>
+      <div class="ii"><span class="ic">⛰️</span><div><div class="lb">Tioga Pass</div><div class="vl">9,945ft（明显）</div></div></div>
+    </div>
+    <div class="tp" style="margin-top:10px"><span class="ic">💡</span><div class="tx"><div class="tt">高海拔建议</div>多喝水（比平时多50%），避免剧烈运动，头痛时吃布洛芬，减少咖啡因和酒精摄入。如有严重症状，考虑下撤到低海拔地区。</div></div>
+  </div>
+</div>
+<!-- CLOTHES TAB -->
+<div id="clothes" class="sec">
+  <div class="card">
+    <h2><span class="ic">👕</span>穿衣指南（按场景推荐）</h2>
+    <p style="font-size:12px;color:var(--tl);margin-bottom:14px">9月底-10月初美西跨度大，从南加海岸（25°C）到高原（-2°C），需多层叠穿。</p>
+    <div class="cl">
+      <div class="cc"><div class="em">☀️</div><div class="nm">南加海岸</div><div class="ds">洛杉矶 / 橙县 / 圣地亚哥</div><div class="tp">20-26°C · 短袖+薄外套</div></div>
+      <div class="cc"><div class="em">🌫️</div><div class="nm">太平洋海岸</div><div class="ds">Big Sur / Monterey / Morro Bay</div><div class="tp">10-20°C · 防风外套必备</div></div>
+      <div class="cc"><div class="em">🌄</div><div class="nm">东部 Sierra</div><div class="ds">Bishop / Mammoth Lakes</div><div class="tp">0-26°C · 昼夜温差大！</div></div>
+      <div class="cc"><div class="em">🌅</div><div class="nm">日出拍摄</div><div class="ds">Alabama Hills / Mono Lake</div><div class="tp">0-5°C · 羽绒服+保暖层</div></div>
+      <div class="cc"><div class="em">🏚️</div><div class="nm">Bodie 鬼城</div><div class="ds">海拔 8,375ft，高原风大</div><div class="tp">-1-13°C · 最厚装备</div></div>
+      <div class="cc"><div class="em">🏔️</div><div class="nm">Tioga Pass</div><div class="ds">海拔 9,945ft，可能下雪</div><div class="tp">-2-7°C · 冲锋衣+保暖</div></div>
+      <div class="cc"><div class="em">🌲</div><div class="nm">Yosemite</div><div class="ds">山谷内，早晚凉</div><div class="tp">8-22°C · 多层灵活加减</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2><span class="ic">🧥</span>分层穿衣原则</h2>
+    <p style="font-size:12px;color:var(--tl);margin-bottom:12px">高原地区（Eastern Sierra / Yosemite / Bodie）建议三层叠穿法：</p>
+    <table>
+      <tr><th>层次</th><th>推荐衣物</th><th>适用场景</th></tr>
+      <tr><td><strong>内层（贴身）</strong></td><td>速干T恤、美利奴羊毛打底衫</td><td>排汗、保持干爽</td></tr>
+      <tr><td><strong>中层（保暖）</strong></td><td>抓绒 / 轻薄羽绒 / 卫衣</td><td>保温，静止时加穿</td></tr>
+      <tr><td><strong>外层（防护）</strong></td><td>Gore-Tex 冲锋衣 / 软壳防风衣</td><td>防风、防雨、阻隔冷空气</td></tr>
+    </table>
+    <div class="tp" style="margin-top:12px"><span class="ic">💡</span><div class="tx"><div class="tt">关键技巧</div>高原日照强烈时温暖甚至热（15-25°C），但阴天或风大时体感骤降。遵循"冷了加，热了脱"原则，带一件可随时穿脱的防风层是最实用的策略。</div></div>
+  </div>
+  <div class="card">
+    <h2><span class="ic">🎒</span>特殊场景穿衣建议</h2>
+    <div class="ig">
+      <div class="ii"><span class="ic">🌅</span><div><div class="lb">日出拍摄（Alabama Hills / Mono Lake）</div><div class="vl">凌晨2-5°C：羽绒服 + 保暖帽 + 手套</div></div></div>
+      <div class="ii"><span class="ic">🏖️</span><div><div class="lb">Big Sur 悬崖徒步</div><div class="vl">海风强劲：防风外套 + 速干层 + 遮阳帽</div></div></div>
+      <div class="ii"><span class="ic">🌊</span><div><div class="lb">象海豹海滩（户外栈道）</div><div class="vl">海风大：薄抓绒 + 防风层，随时加减</div></div></div>
+      <div class="ii"><span class="ic">🏚️</span><div><div class="lb">Bodie 鬼城游览（高海拔）</div><div class="vl">风大+日晒强：冲锋衣+保暖内层+防晒霜</div></div></div>
+      <div class="ii"><span class="ic">🏔️</span><div><div class="lb">Tioga Pass（9,945ft）</div><div class="vl">可能下雪或接近冰点：全套冬季装备</div></div></div>
+      <div class="ii"><span class="ic">🌞</span><div><div class="lb">Yosemite Valley 白天</div><div class="vl">阳光充足：短袖 + 防晒 + 遮阳帽即可</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MEXICO TAB -->
+<div id="mexico" class="sec">
+  <div class="card">
+    <h2><span class="ic">🇲🇽</span>墨西哥边境攻略（蒂华纳）</h2>
+    <p style="font-size:12px;color:var(--tl);margin-bottom:14px">从加州圣迭戈 San Ysidro 口岸步行过境，车停在美方边境停车场，一日游完整体验下加利福尼亚风情 🇲🇽</p>
+    <div class="wb"><span class="ic">📋</span><div class="tx"><div class="tt">基本信息</div>签证：B1/B2 美签即可 · 护照必需 | 过境：步行约5-10分钟，无需预约 | 时差：无（蒂华纳与加州同区）| 货币：比索（部分地方也收美元）</div></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="ic">📍</span>蒂华纳必去景点</h2>
+    <div class="ig">
+      <div class="ii"><span class="ic">🏙️</span><div><div class="lb">Revolución 大道</div><div class="vl">步行街 · 2小时</div></div></div>
+      <div class="ii"><span class="ic">🌊</span><div><div class="lb">Playas de Tijuana</div><div class="vl">海滩 · 看边境线</div></div></div>
+      <div class="ii"><span class="ic">🎭</span><div><div class="lb">Juguetería El Centro</div><div class="vl">大型玩具店 · 可逛30分钟</div></div></div>
+      <div class="ii"><span class="ic">🍦</span><div><div class="lb">Helados正常</div><div class="vl">网红冰淇淋 · $2-3</div></div></div>
+      <div class="ii"><span class="ic">🛍️</span><div><div class="lb">Mercado Hildago</div><div class="vl">本地市场 · 工艺品/手信</div></div></div>
+      <div class="ii"><span class="ic">🎨</span><div><div class="lb">Paseo de los Heroes</div><div class="vl">英雄大道 · 纪念碑广场</div></div></div>
+      <div class="ii"><span class="ic">🍺</span><div><div class="lb">Cervecería Tijuana</div><div class="vl">精酿啤酒 · 本地品牌</div></div></div>
+      <div class="ii"><span class="ic">⛪</span><div><div class="lb">Catedral Metropolitana</div><div class="vl">大教堂 · 地标建筑</div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="ic">🌮</span>美食推荐（必吃清单！）</h2>
+    <table>
+      <tr><th>美食</th><th>推荐</th><th>价格</th><th>备注</th></tr>
+      <tr><td>🌮 Fish Tacos</td><td>Taquería El Poblano</td><td>$3-5</td><td>鳕鱼炸 tacos，经典</td></tr>
+      <tr><td>🥙 Carnitas</td><td>Tacos Los Gil</td><td>$2-3/taco</td><td>慢烤猪肉，本地人推荐</td></tr>
+      <tr><td>🫕 Ceviche</td><td>La Casa de la Tía Reyna</td><td>$8-12</td><td>酸橘汁腌鱼，海鲜必吃</td></tr>
+      <tr><td>🌽 Elote / Esquites</td><td>街边摊</td><td>$1-2</td><td>墨西哥烤玉米/玉米沙拉</td></tr>
+      <tr><td>🍦 Helado（冰淇淋）</td><td>Helados正常 / La Casa de los Helados</td><td>$2-4</td><td>用新鲜水果和奶油制成</td></tr>
+      <tr><td>🥤 Aguachile</td><td>Mariscos El chilasco</td><td>$10-15</td><td>酸橘汁腌虾，超辣超爽</td></tr>
+      <tr><td>🍫 Chocolate（巧克力）</td><td>K cacao Market</td><td>$5-10</td><td>墨西哥本土巧克力，手信</td></tr>
+      <tr><td>🥃 Tequila 龙舌兰</td><td>Laroth 的礼品店</td><td>$15-30</td><td>可现场品尝</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2><span class="ic">💡</span>实用提示</h2>
+    <div class="ig">
+      <div class="ii"><span class="ic">💰</span><div><div class="lb">汇率参考</div><div class="vl">1美元 ≈ 17-18比索（2026年），美元在旅游区也普遍接受</div></div></div>
+      <div class="ii"><span class="ic">🅿</span><div><div class="lb">停车</div><div class="vl">San Ysidro 美方边境有大型停车场，约 $15-20/天</div></div></div>
+      <div class="ii"><span class="ic">📱</span><div><div class="lb">上网</div><div class="vl">美国手机在边境自动切换，流量较贵；蒂华纳有免费 WiFi</div></div></div>
+      <div class="ii"><span class="ic">🗣️</span><div><div class="lb">语言</div><div class="vl">西班牙语为主，英语在旅游区可用，简单的西班牙语很受欢迎</div></div></div>
+      <div class="ii"><span class="ic">🛡️</span><div><div class="lb">安全</div><div class="vl">旅游区（ Revolución 大道、Playas）白天很安全；晚上不宜去偏远地区</div></div></div>
+      <div class="ii"><span class="ic">⏰</span><div><div class="lb">过境时间</div><div class="vl">周二-周四上午最短（9-11点）；周五下午和周末较长（1-2小时）</div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="ic">🇲🇽</span>要不要在蒂华纳住一晚？</h2>
+    <div class="tp"><span class="ic">💡</span><div class="tx"><div class="tt">过夜选项（适合时间充裕的旅行者）</div>如果想让墨西哥行程更深入，可以考虑在蒂华纳住1晚，体验不同的夜生活，第二天一早返回。以下是推荐区域：<br><br>
+      • <strong>Zona Rio</strong>：现代商业区，有很多好的餐厅和酒吧<br>
+      • <strong>Rumbo</strong>：步行街附近，经济型酒店集中<br>
+      • <strong>Playa de Tijuana</strong>：海滩区，可以看到加州海岸线<br><br>
+      推荐酒店：Hotel delnable / Hyatt Centric（较好）/ La Villa de Guia（性价比高）<br>
+      注意：如果过夜，需带护照原件，过境时告知 CBP 官员</div></div>
+    <div class="wb" style="margin-top:10px"><span class="ic">⚠️</span><div class="tx"><div class="tt">签证提醒</div>如果是中国护照持有者（没有美国绿卡/B1/B2签证），不能在墨西哥免签旅游，需要有效的美国签证才能从陆路进入墨西哥。请确认你的签证类型。</div></div>
+  </div>
+</div>
+
+<!-- APPS TAB -->
+<div id="apps" class="sec">
+  <div class="card">
+    <h2><span class="ic">📱</span>推荐 App（可直接点击下载）</h2>
+  </div>
+
+  <div class="card">
+    <h3>🗺️ 导航 & 地图</h3>
+    <div class="ag">
+      <a class="ac" href="https://www.google.com/maps" target="_blank"><div class="ai" style="background:#4285f4">🗺️</div><div><div class="an">Google Maps</div><div class="ad">必备地图导航 · 离线缓存关键路段</div></div></a>
+      <a class="ac" href="https://www.alltrails.com" target="_blank"><div class="ai" style="background:#2d8c46">🥾</div><div><div class="an">AllTrails</div><div class="ad">徒步路线详情 · 下载离线轨迹</div></div></a>
+      <a class="ac" href="https://www.caltrans.gov/quickmap" target="_blank"><div class="ai" style="background:#ff6b35">🚧</div><div><div class="an">Caltrans QuickMap</div><div class="ad">实时路况 · 封路/施工实时更新</div></div></a>
+      <a class="ac" href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank"><div class="ai" style="background:#009b3a">🏞️</div><div><div class="an">NPS Yosemite路况</div><div class="ad">国家公园官网路况页面（最权威）</div></div></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🌤️ 天气 & 空气</h3>
+    <div class="ag">
+      <a class="ac" href="https://weather.com" target="_blank"><div class="ai" style="background:#1a6b8a">🌤️</div><div><div class="an">Weather.com</div><div class="ad">详细天气预报，含风速/能见度</div></div></a>
+      <a class="ac" href="https://www.noaa.gov" target="_blank"><div class="ai" style="background:#1a3a5c">🌊</div><div><div class="an">NOAA Weather</div><div class="ad">最权威官方天气数据 · 山地预报准</div></div></a>
+      <a class="ac" href="https://www.windy.com" target="_blank"><div class="ai" style="background:#7b2d8b">💨</div><div><div class="an">Windy.com</div><div class="ad">风场/云层可视化 · 山区必备</div></div></a>
+      <a class="ac" href="https://www.airnow.gov" target="_blank"><div class="ai" style="background:#d4a017">🌫️</div><div><div class="an">AirNow</div><div class="ad">空气质量 · 火灾季参考</div></div></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🚗 行车 & 停车</h3>
+    <div class="ag">
+      <a class="ac" href="https://www.upsight.io" target="_blank"><div class="ai" style="background:#333">🚗</div><div><div class="an">GasBuddy</div><div class="ad">找附近最便宜的加油站 · 必装</div></div></a>
+      <a class="ac" href="https://www.spotangels.com" target="_blank"><div class="ai" style="background:#e74c3c">🅿</div><div><div class="an">SpotAngels</div><div class="ad">城市停车位提醒 · 大城市必备</div></div></a>
+      <a class="ac" href="https://www.way.com" target="_blank"><div class="ai" style="background:#6c5ce7">💳</div><div><div class="an">Way.com</div><div class="ad">停车费提前支付 · 洛杉矶地区有用</div></div></a>
+      <a class="ac" href="https://www.chp.ca.gov" target="_blank"><div class="ai" style="background:#003366">🚔</div><div><div class="an">CHP California</div><div class="ad">加州高速巡警 · 实时事故路况</div></div></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📸 摄影 & 日出/日落</h3>
+    <div class="ag">
+      <a class="ac" href="https://www.solunar.com" target="_blank"><div class="ai" style="background:#f39c12">🌅</div><div><div class="an">Solunar</div><div class="ad">精确日出/日落/月升时间</div></div></a>
+      <a class="ac" href="https://www.photoPills.com" target="_blank"><div class="ai" style="background:#c0392b">📸</div><div><div class="an">PhotoPills</div><div class="ad">天文摄影规划 · 日出角度计算</div></div></a>
+      <a class="ac" href="https://www.windy.com" target="_blank"><div class="ai" style="background:#7b2d8b">☁️</div><div><div class="an">Windy（云层预测）</div><div class="ad">判断日出云层，避开阴天</div></div></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🛂 边境 & 实用</h3>
+    <div class="ag">
+      <a class="ac" href="https://www.cbp.gov/travel" target="_blank"><div class="ai" style="background:#006994">🛂</div><div><div class="an">CBP Border Wait</div><div class="ad">美墨边境等候时间实时查询</div></div></a>
+      <a class="ac" href="https://www.airbnb.com" target="_blank"><div class="ai" style="background:#ff5a5f">🏡</div><div><div class="an">Airbnb</div><div class="ad">备用住宿（旺季随时可订）</div></div></a>
+      <a class="ac" href="https://www.nps.gov/visn/conditions.htm" target="_blank"><div class="ai" style="background:#009b3a">📞</div><div><div class="an">Yosemite路况热线</div><div class="ad">☎️ (209) 372-0200（按1,1）</div></div></a>
+      <a class="ac" href="https://www.redwoodcu.org" target="_blank"><div class="ai" style="background:#27ae60">☎️</div><div><div class="an">Caltrans路况电话</div><div class="ad">☎️ 1-800-427-7623（24h）</div></div></a>
+    </div>
+  </div>
+</div>
+<!-- FOOTER -->
+<div class="ft">
+  <div>🇺🇸 美西自驾环线 · 9月24日 - 10月5日</div>
+  <div>生成于 2026年4月18日 · 祝你旅途愉快！</div>
+  <span>⚠️ 行程内容仅供参考，出发前请查看实时天气和路况</span>
+</div>
+
+</body>
+<script>
+// Tab navigation
+function showTab(id) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t => {
+    if (t.textContent.includes('概览') && id==='overview') t.classList.add('active');
+    if (t.textContent.includes('路线') && id==='route') t.classList.add('active');
+    if (t.textContent.includes('每日') && id==='daily') t.classList.add('active');
+    if (t.textContent.includes('气温') && id==='weather') t.classList.add('active');
+    if (t.textContent.includes('穿衣') && id==='clothes') t.classList.add('active');
+    if (t.textContent.includes('App') && id==='apps') t.classList.add('active');
+    if (t.textContent.includes('边境') && id==='mexico') t.classList.add('active');
+  });
+}
+
+// Day accordion
+function toggleDay(el) {
+  el.classList.toggle('open');
+}
+
+// Gear checkboxes - save state
+document.querySelectorAll('.gear-item input').forEach(cb => {
+  const key = 'gear_' + cb.id;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function() {
+    localStorage.setItem(key, this.checked ? '1' : '0');
+  });
+});
+
+// Open Day 1 by default
+document.querySelector('.day')?.classList.add('open');
+</script>
+</html>

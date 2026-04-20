@@ -1,0 +1,290 @@
+#!/usr/bin/env python3
+css = """:root{--p:#FF6B35;--p-l:#FF8F66;--p-d:#E55A28;--s:#1A1A2E;--suc:#00C897;--bg:#F8F9FA;--tx:#1A1A2E;--tx2:#6B7280;--tx3:#9CA3AF;--bd:#E5E7EB}*{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;background:linear-gradient(135deg,#0F0F1A,#1A1A2E 50%,#16213E);color:var(--tx);min-height:100vh}.bg{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none}.bg>div{position:absolute;border-radius:50%;filter:blur(100px);opacity:.35;animation:f 25s ease-in-out infinite}.bg>div:nth-child(1){width:700px;height:700px;background:radial-gradient(circle,#FF6B35,transparent 70%);top:-250px;right:-150px}.bg>div:nth-child(2){width:500px;height:500px;background:radial-gradient(circle,#00C897,transparent 70%);bottom:-150px;left:-150px;animation-delay:-8s}.bg>div:nth-child(3){width:400px;height:400px;background:radial-gradient(circle,#667eea,transparent 70%);top:40%;left:25%;animation-delay:-15s}@keyframes f{0%,100%{transform:translate(0) scale(1)}33%{transform:translate(40px,-40px) scale(1.08)}66%{transform:translate(-30px,30px) scale(.95)}}.hd{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 40px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);background:rgba(26,26,46,.85)}.logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700}.logo-ic{width:34px;height:34px;background:linear-gradient(135deg,var(--p),var(--p-l));border-radius:9px;display:flex;align-items:center;justify-content:center}.tag{background:linear-gradient(135deg,var(--p),var(--p-d));padding:5px 12px;border-radius:18px;font-size:11px;font-weight:600;color:#fff}.mc{position:relative;z-index:1;max-width:1500px;margin:0 auto;padding:100px 40px 60px}.hero{text-align:center;margin-bottom:50px;animation:fa .8s ease}@keyframes fa{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}.hb{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,53,.18);border:1px solid rgba(255,107,53,.35);padding:7px 14px;border-radius:25px;color:var(--p-l);font-size:12px;font-weight:500;margin-bottom:20px}.hb::before{content:'';width:7px;height:7px;background:var(--p);border-radius:50%;animation:pl 2s infinite}@keyframes pl{0%,100%{opacity:1}50%{opacity:.4;transform:scale(1.3)}}.ht{font-size:52px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:18px;letter-spacing:-1.5px}.ht span{background:linear-gradient(135deg,var(--p),var(--p-l));-webkit-background-clip:text;-webkit-text-fill-color:transparent}.hs{font-size:18px;color:rgba(255,255,255,.65);max-width:580px;margin:0 auto;line-height:1.65}.fn{display:flex;justify-content:center;gap:14px;margin-bottom:45px;flex-wrap:wrap}.fs{display:flex;align-items:center;gap:10px;padding:10px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;cursor:pointer;transition:all .3s;color:rgba(255,255,255,.55)}.fs:hover,.fs.active{background:rgba(255,255,255,.09);border-color:var(--p);color:#fff}.fs.active{background:linear-gradient(135deg,rgba(255,107,53,.22),rgba(255,143,102,.12))}.fsn{width:26px;height:26px;background:rgba(255,255,255,.08);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}.fs.active .fsn{background:var(--p);color:#fff}.fst{font-size:13px;font-weight:500}.fa{color:rgba(255,255,255,.25);font-size:16px}.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:50px;justify-items:center}.pf{width:390px;background:linear-gradient(145deg,#2a2a2c,#1d1d1f);border-radius:52px;padding:14px;box-shadow:0 25px 80px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.1);position:relative;flex-shrink:0}.pf::before{content:'';position:absolute;top:20px;left:50%;transform:translateX(-50%);width:110px;height:30px;background:#1d1d1f;border-radius:22px;z-index:10}.ps{background:var(--bg);border-radius:42px;overflow:hidden;height:820px;display:flex;flex-direction:column}.ntch{height:46px;background:#1d1d1f}.ssb{height:46px;background:#fff;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:15px;font-weight:600}.sh{background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bd)}.hl{display:flex;align-items:center;gap:14px}.bb{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:var(--p);font-size:22px}.htitle{font-size:18px;font-weight:600}.ha{display:flex;gap:18px}.hi{width:30px;height:30px;display:flex;align-items:center;justify-content:center;color:var(--tx2);cursor:pointer}.hi:hover{color:var(--p)}.ca{flex:1;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,var(--bg),#f0f1f3)}.cm{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px}.cm::-webkit-scrollbar{width:0}.msg{display:flex;gap:11px;animation:mi .45s cubic-bezier(.16,1,.3,1)}@keyframes mi{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}.msg.user{flex-direction:row-reverse}.ma{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0}.msg.ai .ma{background:linear-gradient(135deg,var(--p),var(--p-l));color:#fff}.msg.user .ma{background:var(--s);color:#fff}.mcnt{max-width:80%}.mb{padding:13px 17px;border-radius:20px;font-size:15px;line-height:1.55}.msg.ai .mb{background:#fff;color:var(--tx);border-bottom-left-radius:7px;box-shadow:0 2px 8px rgba(0,0,0,.06)}.msg.user .mb{background:linear-gradient(135deg,var(--p),var(--p-d));color:#fff;border-bottom-right-radius:7px}.ti{display:flex;align-items:center;gap:11px;padding:15px 19px;background:#fff;border-radius:20px;border-bottom-left-radius:7px;box-shadow:0 2px 8px rgba(0,0,0,.06);width:fit-content}.td{display:flex;gap:5px}.td span{width:8px;height:8px;background:var(--p);border-radius:50%;animation:tb 1.4s infinite ease-in-out}.td span:nth-child(1){animation-delay:0s}.td span:nth-child(2){animation-delay:.2s}.td span:nth-child(3){animation-delay:.4s}@keyframes tb{0%,80%,100%{transform:scale(.65);opacity:.35}40%{transform:scale(1);opacity:1}}.tt{font-size:13px;color:var(--tx2);font-weight:500}.ts{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.tsi{font-size:11px;color:var(--tx3);background:#f5f5f7;padding:5px 10px;border-radius:12px}.tsi.act{background:rgba(255,107,53,.12);color:var(--p)}.tcd{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.1);margin-top:10px}.tch{background:linear-gradient(135deg,#667eea,#764ba2);padding:22px;color:#fff}.tcdays{font-size:11px;opacity:.8;margin-bottom:5px}.tctitle{font-size:19px;font-weight:600}.tcr{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;opacity:.9}.tcb{padding:16px}.tdi{display:flex;gap:13px;padding:14px 0;border-bottom:1px solid var(--bd);cursor:pointer;transition:all .2s}.tdi:last-child{border-bottom:none}.tdi:hover{background:rgba(255,107,53,.06);margin:0 -16px;padding:14px 16px;border-radius:8px}.tdn{width:38px;height:38px;background:linear-gradient(135deg,var(--p),var(--p-l));border-radius:11px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:14px;flex-shrink:0}.tdiinfo{flex:1}.tdt{font-size:14px;font-weight:600;margin-bottom:3px}.tdd{font-size:12px;color:var(--tx2)}.tdm{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}.tdtag{font-size:10px;background:#f0f0f5;color:var(--tx2);padding:3px 9px;border-radius:6px}.tdtag.hi{background:rgba(0,200,151,.12);color:#00a87d}.tda{color:var(--tx3);display:flex;align-items:center;font-size:16px}.gs{padding:0 16px 18px}.gl{font-size:10px;color:var(--tx3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}.gc{display:flex;flex-direction:column;gap:10px}.gcc{background:#fff;border-radius:12px;padding:15px 17px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .25s ease;border:1px solid var(--bd)}.gcc:hover{border-color:var(--p);transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,107,53,.15)}.gcic{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.gcic.p{background:linear-gradient(135deg,var(--p),var(--p-l))}.gcic.s{background:linear-gradient(135deg,var(--suc),#00e0ab)}.gcic.b{background:linear-gradient(135deg,#667eea,#764ba2)}.gcic.w{background:linear-gradient(135deg,#f59e0b,#fbbf24)}.gcit{font-size:14px;font-weight:600;margin-bottom:2px}.gcd{font-size:12px;color:var(--tx2)}.ia{padding:16px 20px;background:#fff;border-top:1px solid var(--bd)}.ic{display:flex;align-items:center;gap:12px;background:#f5f5f7;border-radius:24px;padding:8px 8px 8px 20px}.ief{flex:1;border:none;background:transparent;font-size:15px;outline:none}.ief::placeholder{color:var(--tx3)}.isend{width:40px;height:40px;background:linear-gradient(135deg,var(--p),var(--p-d));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;transition:transform .2s}.isend:hover{transform:scale(1.05)}.sug{display:flex;gap:8px;padding:0 16px 12px;flex-wrap:wrap}.sugi{padding:8px 14px;background:#fff;border:1px solid var(--bd);border-radius:20px;font-size:12px;color:var(--tx2);cursor:pointer;transition:all .2s}.sugi:hover{border-color:var(--p);color:var(--p);background:rgba(255,107,53,.05)}.nt{display:flex;gap:6px;background:rgba(255,255,255,.08);padding:4px;border-radius:10px}.nt button{padding:7px 18px;border-radius:7px;color:rgba(255,255,255,.65);font-size:13px;font-weight:500;cursor:pointer;transition:all .25s;border:none;background:transparent}.nt button.active{background:rgba(255,255,255,.95);color:var(--tx)}.ft{text-align:center;padding:50px;color:rgba(255,255,255,.4);font-size:13px}.screen{display:none}.screen.active{display:block}@media(max-width:768px){.pg{grid-template-columns:1fr}.ht{font-size:36px}}"""
+
+html = """<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TripGenie AI - Premium Redesign</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>""" + css + """</style>
+</head>
+<body>
+<div class="bg"><div></div><div></div><div></div></div>
+<header class="hd">
+<div class="logo"><div class="logo-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>TripGenie AI</div>
+<div class="nt"><button class="active" onclick="showScreen(0)">行程规划</button><button onclick="showScreen(1)">语音交互</button><button onclick="showScreen(2)">酒店筛选</button><button onclick="showScreen(3)">客服支持</button></div>
+<span class="tag">Premium Prototype</span>
+</header>
+<main class="mc">
+<section class="hero">
+<div class="hb">Based on Competitor Research Report</div>
+<h1 class="ht"><span>TripGenie AI</span> 多步交互原型</h1>
+<p class="hs">基于竞品分析（Expedia Romie、Priceline Penny）设计的多场景AI旅行助手交互原型</p>
+</section>
+<nav class="fn">
+<div class="fs active" onclick="showScreen(0)"><div class="fsn">1</div><span class="fst">行程规划</span></div>
+<span class="fa">→</span>
+<div class="fs" onclick="showScreen(1)"><div class="fsn">2</div><span class="fst">语音交互</span></div>
+<span class="fa">→</span>
+<div class="fs" onclick="showScreen(2)"><div class="fsn">3</div><span class="fst">酒店筛选</span></div>
+<span class="fa">
+<div class="fs" onclick="showScreen(3)"><div class="fsn">4</div><span class="fst">客服支持</span></div>
+</nav>
+<div class="pg">
+<!-- Screen 0: Trip Planning -->
+<div class="screen active" id="screen0">
+<div class="pf">
+<div class="ps">
+<div class="ntch"></div>
+<div class="ssb"><span class="status-time">9:41</span><div class="status-icons">📶 📡 🔋</div></div>
+<div class="sh"><div class="hl"><div class="bb">←</div><div class="htitle">AI Trip Planner</div></div><div class="ha"><div class="hi">♡</div><div class="hi">⋯</div></div></div>
+<div class="ca">
+<div class="cm">
+<div class="msg user"><div class="ma">用</div><div class="mcnt"><div class="mb">帮我规划7天日本行程，东京进大阪出</div></div></div>
+<div class="msg ai"><div class="ma">AI</div><div class="mcnt">
+<div class="ti">
+<div class="td"><span></span><span></span><span></span></div>
+<div class="tt">正在分析您的行程偏好...</div>
+</div>
+<div class="ts">
+<div class="tsi act">✓ 分析目的地</div>
+<div class="tsi">○ 计算最优路线</div>
+<div class="tsi">○ 预订衔接</div>
+</div>
+</div></div>
+<div class="msg ai" style="display:none" id="tripResponse">
+<div class="ma">AI</div>
+<div class="mcnt">
+<div class="mb">根据您的需求，我为您规划了以下行程：</div>
+<div class="tcd">
+<div class="tch">
+<div class="tcdays">7天 · 东京 → 大阪</div>
+<div class="tctitle">日本关西精华之旅</div>
+<div class="tcr">🗾 东京 → 富士山 → 京都 → 大阪</div>
+</div>
+<div class="tcb">
+<div class="tdi"><div class="tdn">D1</div><div class="tdiinfo"><div class="tdt">东京抵达</div><div class="tdd">成田机场 → 酒店 → 浅草寺</div><div class="tdm"><span class="tdtag">✈️ 抵达</span><span class="tdtag hi">📍 首选</span></div></div><div class="tda">›</div></div>
+<div class="tdi"><div class="tdn">D2</div><div class="tdiinfo"><div class="tdt">东京深度游</div><div class="tdd">涩谷 → 新宿 → 明治神宫</div><div class="tdm"><span class="tdtag">🛍️ 购物</span><span class="tdtag">🍜 美食</span></div></div><div class="tda">›</div></div>
+<div class="tdi"><div class="tdn">D3</div><div class="tdiinfo"><div class="tdt">富士山区域</div><div class="tdd">河口湖 → 忍野八海 → 日归温泉</div><div class="tdm"><span class="tdtag hi">🌸 必去</span><span class="tdtag">♨️ 温泉</span></div></div><div class="tda">›</div></div>
+<div class="tdi"><div class="tdn">D4</div><div class="tdiinfo"><div class="tdt">京都初见</div><div class="tdd">伏见稻荷大社 → 清水寺 → 花见小路</div><div class="tdm"><span class="tdtag">🏯 世界遗产</span></div></div><div class="tda">›</div></div>
+<div class="tdi"><div class="tdn">D5</div><div class="tdiinfo"><div class="tdt">京都漫步</div><div class="tdd">岚山竹林 → 金阁寺 → 茶道体验</div><div class="tdm"><span class="tdtag">🎋 体验</span><span class="tdtag">📸 拍照</span></div></div><div class="tda">›</div></div>
+</div>
+</div>
+<div class="mb" style="margin-top:12px">需要我帮您查看机票和酒店价格吗？</div>
+</div></div>
+</div>
+<div class="gs" style="display:none" id="guidance0">
+<div class="gl">我还可以帮您</div>
+<div class="gc">
+<div class="gcc"><div class="gcic p">✈️</div><div><div class="gcit">查看机票价格</div><div class="gcd">东京-大阪 新干线 & 航班比价</div></div></div>
+<div class="gcc"><div class="gcic s">🏨</div><div><div class="gcit">预订酒店</div><div class="gcd">根据行程推荐高评分酒店</div></div></div>
+<div class="gcc"><div class="gcic b">📄</div><div><div class="gcit">生成行程PDF</div><div class="gcd">导出带地图的完整行程单</div></div></div>
+</div>
+</div>
+</div>
+<div class="sug">
+<div class="sugi">查看酒店</div>
+<div class="sugi">机票比价</div>
+<div class="sugi">添加景点</div>
+</div>
+</div>
+<div class="ia">
+<div class="ic"><input type="text" class="ief" placeholder="继续对话..."><div class="isend">→</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Screen 1: Voice Interaction -->
+<div class="screen" id="screen1">
+<div class="pf">
+<div class="ps">
+<div class="ntch"></div>
+<div class="ssb"><span class="status-time">9:41</span><div class="status-icons">📶 📡 🔋</div></div>
+<div class="sh"><div class="hl"><div class="bb">←</div><div class="htitle">Voice Mode</div></div><div class="ha"><div class="hi">♡</div><div class="hi">⋯</div></div></div>
+<div class="ca">
+<div class="cm">
+<div class="msg ai"><div class="ma">AI</div><div class="mcnt"><div class="mb">🎤 语音模式已开启<br><br>请说出您的旅行需求，我会实时理解并回复</div></div></div>
+<div class="msg ai" style="margin-top:30px">
+<div class="ma">AI</div>
+<div class="mcnt">
+<div style="display:flex;flex-direction:column;align-items:center;padding:30px">
+<div style="width:80px;height:80px;background:linear-gradient(135deg,#FF6B35,#FF8F66);border-radius:50%;display:flex;align-items:center;justify-content:center;animation:pulse 2s infinite;margin-bottom:20px">
+<svg width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+</div>
+<div style="font-size:15px;color:#6B7280;text-align:center">正在聆听...</div>
+<div style="font-size:13px;color:#9CA3AF;margin-top:8px">请开始说话</div>
+</div>
+</div>
+</div>
+<div class="msg ai" style="display:none" id="voiceResponse">
+<div class="ma">AI</div>
+<div class="mcnt"><div class="mb">好的！我为您找到了以下航班：<br><br>🛫 <strong>CA123 上海→东京</strong><br>14:00 - 17:30 · ¥2,180<br>经济舱 · 3小时30分<br><br>🛫 <strong>NH123 上海→东京</strong><br>10:00 - 13:30 · ¥2,680<br>商务舱 · 3小时30分<br><br>需要我帮您预订吗？</div></div>
+</div>
+</div>
+<div class="ia">
+<div class="ic"><input type="text" class="ief" placeholder="或输入文字..."><div class="isend">→</div></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Screen 2: Hotel Filtering -->
+<div class="screen" id="screen2">
+<div class="pf">
+<div class="ps">
+<div class="ntch"></div>
+<div class="ssb"><span class="status-time">9:41</span><div class="status-icons">📶 📡 🔋</div></div>
+<div class="sh"><div class="hl"><div class="bb">←</div><div class="htitle">Hotel Search</div></div><div class="ha"><div class="hi">♡</div><div class="hi">⋯</div></div></div>
+<div class="ca">
+<div class="cm">
+<div class="msg user"><div class="ma">用</div><div class="mcnt"><div class="mb">我想找一个海景酒店</div></div></div>
+<div class="msg ai"><div class="ma">AI</div><div class="mcnt"><div class="mb">好的，为您找到以下海景酒店：</div></div></div>
+<div class="msg ai">
+<div class="ma">AI</div>
+<div class="mcnt">
+<div style="background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);margin-top:12px">
+<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160'%3E%3Crect fill='%23667eea' width='320' height='160'/%3E%3Ctext x='160' y='80' fill='white' text-anchor='middle' font-family='sans-serif' font-size='14'%3E🏖️ Hotel Image%3C/text%3E%3C/svg%3E" style="width:100%;height:140px;object-fit:cover">
+<div style="padding:16px">
+<div style="display:flex;justify-content:space-between;align-items:start">
+<div>
+<div style="font-size:16px;font-weight:600;margin-bottom:4px">东京湾希尔顿酒店</div>
+<div style="font-size:12px;color:#6B7280">东京 · 湾区 · 距机场30分钟</div>
+<div style="display:flex;gap:6px;margin-top:8px">
+<span style="font-size:10px;background:rgba(0,200,151,.12);color:#00a87d;padding:3px 8px;border-radius:6px">✓ 海景房</span>
+<span style="font-size:10px;background:#f0f0f5;color:#6B7280;padding:3px 8px;border-radius:6px">4.8分</span>
+</div>
+</div>
+<div style="text-align:right">
+<div style="font-size:20px;font-weight:700;color:#FF6B35">¥2,680</div>
+<div style="font-size:11px;color:#9CA3AF">/晚</div>
+</div>
+</div>
+<div style="display:flex;gap:8px;margin-top:12px">
+<button style="flex:1;padding:10px;background:linear-gradient(135deg,#FF6B35,#E55A28);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer">立即预订</button>
+<button style="padding:10px 14px;background:#f5f5f5;border:none;border-radius:10px;font-size:13px;color:#6B7280;cursor:pointer">详情</button>
+</div>
+</div>
+</div>
+<div style="background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);margin-top:12px">
+<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160'%3E%3Crect fill='%23764ba2' width='320' height='160'/%3E%3Ctext x='160' y='80' fill='white' text-anchor='middle' font-family='sans-serif' font-size='14'%3E🏨 Hotel Image%3C/text%3E%3C/svg%3E" style="width:100%;height:140px;object-fit:cover">
+<div style="padding:16px">
+<div style="display:flex;justify-content:space-between;align-items:start">
+<div>
+<div style="font-size:16px;font-weight:600;margin-bottom:4px">横滨皇家花园酒店</div>
+<div style="font-size:12px;color:#6B7280">横滨 · 海港 · 距东京30分钟</div>
+<div style="display:flex;gap:6px;margin-top:8px">
+<span style="font-size:10px;background:rgba(0,200,151,.12);color:#00a87d;padding:3px 8px;border-radius:6px">✓ 港景</span>
+<span style="font-size:10px;background:#f0f0f5;color:#6B7280;padding:3px 8px;border-radius:6px">4.6分</span>
+</div>
+</div>
+<div style="text-align:right">
+<div style="font-size:20px;font-weight:700;color:#FF6B35">¥1,980</div>
+<div style="font-size:11px;color:#9CA3AF">/晚</div>
+</div>
+</div>
+<div style="display:flex;gap:8px;margin-top:12px">
+<button style="flex:1;padding:10px;background:linear-gradient(135deg,#FF6B35,#E55A28);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer">立即预订</button>
+<button style="padding:10px 14px;background:#f5f5f5;border:none;border-radius:10px;font-size:13px;color:#6B7280;cursor:pointer">详情</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sug">
+<div class="sugi">¥1000以下</div>
+<div class="sugi">含早餐</div>
+<div class="sugi">免费取消</div>
+<div class="sugi">4分以上</div>
+</div>
+</div>
+<div class="ia">
+<div class="ic"><input type="text" class="ief" placeholder="添加筛选条件..."><div class="isend">→</div></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Screen 3: Customer Support -->
+<div class="screen" id="screen3">
+<div class="pf">
+<div class="ps">
+<div class="ntch"></div>
+<div class="ssb"><span class="status-time">9:41</span><div class="status-icons">📶 📡 🔋</div></div>
+<div class="sh" style="background:#fff5f5"><div class="hl"><div class="bb" style="color:#c00">←</div><div class="htitle" style="color:#c00">紧急客服</div></div><div class="ha"><div class="hi" style="color:#c00">📞</div></div></div>
+<div class="ca" style="background:linear-gradient(180deg,#fff5f5,#fff)">
+<div class="cm">
+<div class="msg user"><div class="ma">用</div><div class="mcnt"><div class="mb">我在机场，但机场人员说找不到我的预订！</div></div></div>
+<div class="msg ai">
+<div class="ma">AI</div>
+<div class="mcnt">
+<div class="mb" style="background:linear-gradient(135deg,#fff5f5,#fff);border:1px solid #fee">
+<span style="font-size:12px;color:#c00;font-weight:600">⚠️ 检测到紧急场景</span><br><br>
+别担心，我来帮您处理！<br><br>
+<span style="color:#666">您的预订信息：</span><br>
+📋 订单号：CT20250322001<br>
+✈️ 航班：CA123 上海→东京<br>
+🕐 起飞：今天 14:00<br><br>
+正在为您联系航司确认...
+</div>
+</div>
+</div>
+<div class="msg ai" style="display:none" id="supportResponse">
+<div class="ma">AI</div>
+<div class="mcnt">
+<div class="mb" style="background:#e8f5e9;border:1px solid #a5d6a7">
+<span style="font-size:12px;color
+:600">✓ 已找到解决方案</span><br><br>
+航司记录显示您的预订已确认，booking ref: <strong>ABC123</strong><br><br>
+请向机场工作人员提供此编号，或点击下方按钮直接拨打航司热线。<br><br>
+<button style="background:linear-gradient(135deg,#FF6B35,#E55A28);color:#fff;border:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;width:100%">📞 拨打航司热线</button>
+</div>
+</div>
+</div>
+<div class="gs" style="margin-top:20px">
+<div class="gl">您可能需要</div>
+<div class="gc">
+<div class="gcc"><div class="gcic w">📋</div><div><div class="gcit">查看订单详情</div><div class="gcd">确认预订信息</div></div></div>
+<div class="gcc"><div class="gcic p">🔄</div><div><div class="gcit">改签航班</div><div class="gcd">航班变更自助服务</div></div></div>
+<div class="gcc"><div class="gcic s">💰</div><div><div class="gcit">申请退款</div><div class="gcd">退款进度查询</div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="ft">TripGenie AI Premium Prototype · Based on Competitor Research</footer>
+</main>
+<style>
+@keyframes pulse {
+0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,107,53,0.4); }
+50% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(255,107,53,0); }
+}
+</style>
+<script>
+function showScreen(n) {
+document.querySelectorAll('.screen').forEach((s,i) => s.classList.toggle('active', i===n));
+document.querySelectorAll('.fs').forEach((s,i) => s.classList.toggle('active', i===n));
+document.querySelectorAll('.nt button').forEach((s,i) => s.classList.toggle('active', i===n));
+}
+document.addEventListener('DOMContentLoaded', () => {
+setTimeout(() => {
+const tr = document.getElementById('tripResponse');
+if(tr) tr.style.display = 'flex';
+const g0 = document.getElementById('guidance0');
+if(g0) g0.style.display = 'block';
+}, 2500);
+});
+</script>
+</body>
+</html>
+
+"""
+
+with open('TripGenie_AI_Prototype.html', 'w', encoding='utf-8') as f:
+    f.write(html)
+print("Generated: TripGenie_AI_Prototype.html")
+

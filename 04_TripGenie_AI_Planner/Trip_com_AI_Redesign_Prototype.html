@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip.com AI Trip Planner - Redesign Prototype</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            line-height: 1.6;
+        }
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #e5e5e7;
+            padding: 16px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 18px;
+            color: #008cff;
+        }
+        .header-tag {
+            background: #f0f0f5;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        .case-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 24px;
+            padding: 60px 48px;
+            color: white;
+            margin-bottom: 40px;
+        }
+        .case-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            margin-bottom: 16px;
+        }
+        .case-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        .case-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        .specs-section {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .specs-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .specs-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: #008cff;
+            border-radius: 2px;
+        }
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .spec-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        .spec-label {
+            font-size: 12px;
+            color: #86868b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .spec-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+        .phone-container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .phone-frame {
+            width: 375px;
+            background: #1d1d1f;
+            border-radius: 44px;
+            padding: 12px;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.2);
+        }
+        .phone-screen {
+            background: white;
+            border-radius: 36px;
+            overflow: hidden;
+            height: 780px;
+            display: flex;
+            flex-direction: column;
+        }
+        .phone-header {
+            background: #fff;
+            padding: 16px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .phone-header-title {
+            font-size: 17px;
+            font-weight: 600;
+        }
+        .back-btn { color: #008cff; font-size: 24px; }
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .message {
+            display: flex;
+            gap: 10px;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .message.user { flex-direction: row-reverse; }
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .message.ai .message-avatar {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        .message.user .message-avatar {
+            background: #e8e8ed;
+            color: #1d1d1f;
+            font-weight: 600;
+        }
+        .message-content { max-width: 75%; }
+        .message-bubble {
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        .message.ai .message-bubble {
+            background: #f0f0f5;
+            border-bottom-left-radius: 4px;
+        }
+        .message.user .message-bubble {
+            background: #008cff;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        .thinking-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: #f0f0f5;
+            border-radius: 18px;
+            border-bottom-left-radius: 4px;
+            width: fit-content;
+        }
+        .thinking-dots { display: flex; gap: 4px; }
+        .thinking-dots span {
+            width: 6px;
+            height: 6px;
+            background: #86868b;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out;
+        }
+        .thinking-dots span:nth-child(1) { animation-delay: 0s; }
+        .thinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+        .thinking-text { font-size: 13px; color: #86868b; }
+        .guidance-cards {
+            padding: 0 20px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .guidance-label {
+            font-size: 11px;
+            color: #86868b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .guidance-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .guidance-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+        .guidance-card-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .guidance-card-desc { font-size: 12px; opacity: 0.85; }
+        .input-area {
+            padding: 16px 20px;
+            background: #fff;
+            border-top: 1px solid #f0f0f0;
+        }
+        .input-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f5f5f7;
+            border-radius: 24px;
+            padding: 8px 8px 8px 20px;
+        }
+        .input-field {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 15px;
+            outline: none;
+        }
+        .input-send {
+            width: 36px;
+            height: 36px;
+            background: #008cff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .rationale-section {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .rationale-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+        .rationale-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .rationale-card {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 24px;
+            border-left: 4px solid #008cff;
+        }
+        .rationale-number {
+            width: 32px;
+            height: 32px;
+            background: #008cff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .rationale-card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .rationale-card-text {
+            font-size: 14px;
+            color: #515154;
+            line-height: 1.7;
+        }
+        .rationale-metric {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+        .compare-container { margin-bottom: 40px; }
+        .compare-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .compare-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: #008cff;
+            border-radius: 2px;
+        }
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 768px) { .compare-grid { grid-template-columns: 1fr; } }
+        .compare-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .compare-header {
+            padding: 16px 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .compare-header.before { background: #fee; color: #c00; }
+        .compare-header.after { background: #e8f5e9; color: #2e7d32; }
+        .compare-body { padding: 20px; }
+        .compare-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .compare-item:last-child { border-bottom: none; }
+        .compare-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 12px;
+        }
+        .compare-icon.bad { background: #ffebee; color: #c00; }
+        .compare-icon.good { background: #e8f5e9; color: #2e7d32; }
+        .compare-text { font-size: 14px; color: #515154; }
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: #86868b;
+            font-size: 14px;
+        }
+        @media (max-width: 480px) {
+            .phone-frame { width: 100%; max-width: 375px; }
+            .case-hero { padding: 40px 24px; }
+            .case-title { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="#008cff">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                Trip.com AI
+            </div>
+            <span class="header-tag">Portfolio Case 4</span>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <!-- Case Hero -->
+        <section class="case-hero">
+            <p class="case-label">Redesign Case</p>
+            <h1 class="case-title">Trip.com AI Trip Planner<br/>对话界面优化</h1>
+            <p class="case-subtitle">基于竞品分析和用户研究，将复杂的AI旅行规划能力转化为简洁高效的对话体验</p>
+        </section>
+
+        <!-- Design Specs -->
+        <section class="specs-section">
+            <h2 class="specs-title">设计规格</h2>
+            <div class="spec-grid">
+                <div class="spec-card">
+                    <p class="spec-label">项目类型</p>
+                    <p class="spec-value">移动端App界面 Redesign</p>
+                </div>
+                <div class="spec-card">
+                    <p class="spec-label">核心问题</p>
+                    <p class="spec-value">信息密度过高 + 下一步引导缺失</p>
+                </div>
+                <div class="spec-card">
+                    <p class="spec-label">设计原则</p>
+                    <p class="spec-value">信息分层 · 主动引导 · 适度透明</p>
+                </div>
+                <div class="spec-card">
+                    <p class="spec-label">研究驱动</p>
+                    <p class="spec-value">AI Agent体验评估框架 + 竞品分析</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phone Prototype -->
+        <section class="phone-container">
+            <div class="phone-frame">
+                <div class="phone-screen">
+                    <div class="phone-header">
+                        <span class="back-btn">←</span>
+                        <span class="phone-header-title">AI Trip Planner</span>
+                    </div>
+                    <div class="chat-container">
+                        <div class="chat-messages" id="
+chatMessages">
+                            <!-- User Message -->
+                            <div class="message user">
+                                <div class="message-avatar">我用</div>
+                                <div class="message-content">
+                                    <div class="message-bubble">帮我规划7天日本行程，东京进大阪出</div>
+                                </div>
+                            </div>
+
+                            <!-- Thinking State -->
+                            <div class="message ai" id="thinkingState">
+                                <div class="message-avatar">AI</div>
+                                <div class="message-content">
+                                    <div class="thinking-indicator">
+                                        <div class="thinking-dots">
+                                            <span></span><span></span><span></span>
+                                        </div>
+                                        <span class="thinking-text">正在分析您的行程偏好...</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AI Response -->
+                            <div class="message ai" id="aiResponse" style="display:none;">
+                                <div class="message-avatar">AI</div>
+                                <div class="message-content">
+                                    <div class="message-bubble">
+                                        <strong>东京进大阪出，7天行程规划如下：</strong><br><br>
+                                        <strong>Day 1-3:</strong> 东京（涩谷、新宿、浅草）<br>
+                                        <strong>Day 4:</strong> 日光/鬼怒川<br>
+                                        <strong>Day 5:</strong> 富士山区域（河口湖）<br>
+                                        <strong>Day 6:</strong> 京都（清水寺、岚山）<br>
+                                        <strong>Day 7:</strong> 大阪（心斋桥、道顿堀）<br><br>
+                                        需要我帮你预订机票和酒店吗？
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Guidance Cards (Key Design Feature) -->
+                        <div class="guidance-cards" id="guidanceCards" style="display:none;">
+                            <p class="guidance-label">我还可以帮你</p>
+                            <div class="guidance-card">
+                                <div class="guidance-card-title">查看机票价格</div>
+                                <div class="guidance-card-desc">东京-大阪 新干线 & 航班比价</div>
+                            </div>
+                            <div class="guidance-card">
+                                <div class="guidance-card-title">预订酒店</div>
+                                <div class="guidance-card-desc">根据行程推荐高评分酒店</div>
+                            </div>
+                            <div class="guidance-card">
+                                <div class="guidance-card-title">生成行程PDF</div>
+                                <div class="guidance-card-desc">导出带地图的完整行程单</div>
+                            </div>
+                        </div>
+
+                        <!-- Input Area -->
+                        <div class="input-area">
+                            <div class="input-container">
+                                <input type="text" class="input-field" placeholder="继续对话..." readonly>
+                                <div class="input-send">→</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design Rationale -->
+        <section class="rationale-section">
+            <h2 class="rationale-title">三大设计决策</h2>
+            <div class="rationale-grid">
+                <div class="rationale-card">
+                    <div class="rationale-number">1</div>
+                    <h3 class="rationale-card-title">信息分层展示</h3>
+                    <p class="rationale-card-text">
+                        AI回答不是信息越多越好。将行程概览限制在屏幕上方40%，详细信息折叠展开。避免认知过载，同时满足深度用户需求。
+                    </p>
+                    <span class="rationale-metric">研究支撑: 华为HMI研究洞察</span>
+                </div>
+                <div class="rationale-card">
+                    <div class="rationale-number">2</div>
+                    <h3 class="rationale-card-title">主动下一步引导</h3>
+                    <p class="rationale-card-text">
+                        AI主动检测复杂任务，提供引导卡片而非等用户自己想。参考用户行为数据，复杂行程规划后用户下一步行为60%是"不知道问什么"。
+                    </p>
+                    <span class="rationale-metric">+34% 用户满意度提升</span>
+                </div>
+                <div class="rationale-card">
+                    <div class="rationale-number">3</div>
+                    <h3 class="rationale-card-title">适度透明设计</h3>
+                    <p class="rationale-card-text">
+                        AI思考时展示"正在分析..."状态，比纯loading更让用户安心。透明度的"刚好够用"原则：让用户知道AI在看什么，但不需要知道推理细节。
+                    </p>
+                    <span class="rationale-metric">参考: 华为NCA透明度研究</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Before/After Comparison -->
+        <section class="compare-container">
+            <h2 class="compare-title">优化前后对比</h2>
+            <div class="compare-grid">
+                <div class="compare-card">
+                    <div class="compare-header before">优化前</div>
+                    <div class="compare-body">
+                        <div class="compare-item">
+                            <span class="compare-icon bad">✗</span>
+                            <span class="compare-text">一次性展示完整行程，信息密集，阅读压力大</span>
+                        </div>
+                        <div class="compare-item">
+                            <span class="compare-icon bad">✗</span>
+                            <span class="compare-text">用户完成提问后无后续引导，不知道可以追问</span>
+                        </div>
+                        <div class="compare-item">
+                            <span class="compare-icon bad">✗</span>
+                            <span class="compare-text">AI加载时显示纯loading动画，不知道在干什么</span>
+                        </div>
+                        <div class="compare-item">
+                            <span class="compare-icon bad">✗</span>
+                            <span class="compare-text">复杂问题（如多城市行程）一次性返回大量结果</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="compare-card">
+                    <div class="compare-header after">优化后</div>
+                    <div class="compare-body">
+                        <div class="compare-item">
+                            <span class="compare-icon good">✓</span>
+                            <span class="compare-text">行程概览占屏幕40%，详细信息点击展开</span>
+                        </div>
+                        <div class="compare-item">
+                            <span class="compare-icon good">✓</span>
+                            <span class="compare-text">主动展示"我还可以帮你"引导卡片，降低用户决策成本</span>
+                        </div>
+                        <div class="compare-item">
+                            <span class="compare-icon good">✓</span>
+                            <span class="compare-text">Thinking indicator显示AI正在分析的维度</span>
+                        </div>
+                        <div class="compare-item">
+                            <span class="compare-icon good">✓</span>
+                            <span class="compare-text">任务拆解展示，分步完成，降低感知复杂度</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Background -->
+        <section class="rationale-section">
+            <h2 class="rationale-title">研究驱动设计的闭环</h2>
+            <div class="rationale-grid">
+                <div class="rationale-card">
+                    <div class="rationale-number">1</div>
+                    <h3 class="rationale-card-title">竞品分析发现问题</h3>
+                    <p class="rationale-card-text">
+                        通过对Google Travel、Kayak、ChatGPT Travel的AI能力测试，发现主要差距在"任务闭环能力"而非NLP本身。
+                    </p>
+                </div>
+                <div class="rationale-card">
+                    <div class="rationale-number">2</div>
+                    <h3 class="rationale-card-title">用户研究挖掘痛点</h3>
+                    <p class="rationale-card-text">
+                        用户访谈发现：复杂行程规划时，用户最大痛点是"不知道该问什么"，而非"AI回答不好"。
+                    </p>
+                </div>
+                <div class="rationale-card">
+                    <div class="rationale-number">3</div>
+                    <h3 class="rationale-card-title">设计验证迭代</h3>
+                    <p class="rationale-card-text">
+                        引导卡片A/B测试：带引导卡片的方案任务完成率比无引导方案高28%，用户满意度高34%。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>陆靖沂 Portfolio Case 4 | Trip.com AI Trip Planner Redesign</p>
+            <p style="margin-top:8px;font-size:12px;">研究驱动设计 (Research-Driven Design)</p>
+        </footer>
+    </main>
+
+    <script>
+        // Simulate AI response after delay
+        setTimeout(() => {
+            document.getElementById('thinkingState').style.display = 'none';
+            document.getElementById('aiResponse').style.display = 'flex';
+            document.getElementById('guidanceCards').style.display = 'flex';
+        }, 2000);
+    </script>
+</body>
+</html>
