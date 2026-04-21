@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MY Name Entry Optimization · UX Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<template id="__bundler_thumbnail" data-bg-color="#0C0D12">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0C0D12"/>
+    <defs><pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/></pattern></defs>
+    <rect width="1200" height="800" fill="url(#grid)" opacity=".4"/>
+    <radialGradient id="glow" cx="50%" cy="45%" r="40%"><stop offset="0%" stop-color="#1B6EFD" stop-opacity=".18"/><stop offset="100%" stop-color="#1B6EFD" stop-opacity="0"/></radialGradient>
+    <rect width="1200" height="800" fill="url(#glow)"/>
+    <rect x="484" y="180" width="110" height="34" rx="8" fill="white"/>
+    <text x="539" y="203" font-family="Arial,sans-serif" font-size="16" font-weight="800" fill="#1B6EFD" text-anchor="middle">trip.com</text>
+    <text x="600" y="290" font-family="Arial,sans-serif" font-size="52" font-weight="800" fill="white" text-anchor="middle" opacity=".95">Passenger Name Entry</text>
+    <text x="600" y="355" font-family="Arial,sans-serif" font-size="52" font-weight="800" fill="#1B6EFD" text-anchor="middle">Optimization</text>
+    <rect x="240" y="400" width="720" height="70" rx="16" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+    <text x="340" y="441" font-family="Arial,sans-serif" font-size="22" font-weight="800" fill="white" text-anchor="middle">7,079</text>
+    <text x="340" y="460" font-family="Arial,sans-serif" font-size="10" fill="rgba(255,255,255,.4)" text-anchor="middle">Tickets</text>
+    <text x="600" y="441" font-family="Arial,sans-serif" font-size="22" font-weight="800" fill="white" text-anchor="middle">#3</text>
+    <text x="600" y="460" font-family="Arial,sans-serif" font-size="10" fill="rgba(255,255,255,.4)" text-anchor="middle">Global Rate</text>
+    <rect x="476" y="530" width="248" height="52" rx="14" fill="#1B6EFD"/>
+    <text x="600" y="562" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="white" text-anchor="middle">Experience the Redesign →</text>
+  </svg>
+</template>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Inter',sans-serif;overflow:hidden}
+body{background:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px) 0 0/48px 48px,radial-gradient(ellipse at 50% 40%,#161825 0%,#0C0D12 100%)}
+#root{height:100vh;display:flex;align-items:center;justify-content:center}
+@keyframes fadeSlideIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shake{0%,100%{transform:translateX(0)}15%{transform:translateX(-7px)}30%{transform:translateX(6px)}45%{transform:translateX(-5px)}60%{transform:translateX(4px)}75%{transform:translateX(-3px)}}
+@keyframes popIn{0%{transform:scale(0) rotate(-10deg);opacity:0}60%{transform:scale(1.3) rotate(3deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes confirmPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.016)}}
+@keyframes scanLine{0%{top:8%;opacity:1}90%{opacity:1}100%{top:88%;opacity:0}}
+@keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bounceIn{0%{transform:scale(.2);opacity:0}55%{transform:scale(1.1)}75%{transform:scale(.95)}100%{transform:scale(1);opacity:1}}
+@keyframes floatIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.a-fsi{animation:fadeSlideIn .45s ease-out both}
+.a-shake{animation:shake .5s ease-in-out}
+.a-pop{animation:popIn .6s cubic-bezier(.175,.885,.32,1.275) both}
+.a-slide-up{animation:slideUp .35s cubic-bezier(.4,0,.2,1) both}
+.a-fade{animation:fadeIn .3s ease both}
+.a-bounce{animation:bounceIn .65s cubic-bezier(.175,.885,.32,1.275) both}
+.scroll{overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.scroll::-webkit-scrollbar{display:none}
+.ann{background:rgba(27,110,253,.07);border:1px solid rgba(27,110,253,.18);border-radius:12px;padding:12px 14px;max-width:200px;animation:floatIn .5s ease both}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+
+
+
+const { useState, useEffect, useRef, useCallback } = React;
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accentColor": "#1B6EFD",
+  "showAnnotations": true,
+  "language": "en"
+} /*EDITMODE-END*/;
+
+const ETHNIC = {
+  malay: { label: 'Malay', passport: 'AHMAD BIN ABU BAKAR', given: 'AHMAD', family: 'BIN ABU BAKAR', note: '"bin" = son of · "binti" = daughter of' },
+  chinese: { label: 'Chinese', passport: 'VINCENT TAN MING BAN', given: 'MING BAN VINCENT', family: 'TAN', note: 'Single-syllable surname (TAN) always first' },
+  indian: { label: 'Indian', passport: 'KUMAR A/L MUTHU', given: 'KUMAR', family: 'A/L MUTHU', note: '"a/l" = son of · "a/p" = daughter of' }
+};
+const SCREENS = ['cover', 'name-entry', 'verification', 'success'];
+
+function useLS(key, init) {
+  const [v, setV] = useState(() => {try {const s = localStorage.getItem(key);return s ? JSON.parse(s) : init;} catch {return init;}});
+  const set = useCallback((x) => {setV(x);try {localStorage.setItem(key, JSON.stringify(x));} catch {}}, [key]);
+  return [v, set];
+}
+
+// ─── StatusBar ─────────────────────────────────────────────────────────────
+function StatusBar({ dark }) {
+  const c = dark ? '#fff' : '#111827';
+  return (
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 20px 0', height: 44, position: 'relative', zIndex: 10, flexShrink: 0 }}>
+      <span style={{ fontSize: 15, fontWeight: 600, color: c, letterSpacing: -.3 }}>9:41</span>
+      <div style={{ position: 'absolute', left: '50%', top: 6, transform: 'translateX(-50%)', background: dark ? 'rgba(0,0,0,.6)' : '#111', borderRadius: 20, width: 118, height: 30, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+        <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#222' }} /><div style={{ width: 5, height: 5, borderRadius: '50%', background: '#333' }} />
+      </div>
+      <div style={{ display: 'flex', gap: 5, alignItems: 'center' }}>
+        <svg width="16" height="12" viewBox="0 0 16 12"><rect x="0" y="8" width="3" height="4" rx="1" fill={c} /><rect x="4.5" y="5" width="3" height="7" rx="1" fill={c} /><rect x="9" y="2" width="3" height="10" rx="1" fill={c} /><rect x="13.5" y="0" width="2.5" height="12" rx="1" fill={c} opacity=".3" /></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0" y="1" width="21" height="10" rx="2.5" stroke={c} strokeWidth="1.2" fill="none" /><rect x="22.5" y="4" width="2" height="4" rx="1" fill={c} opacity=".4" /><rect x="1.5" y="2.5" width="15" height="7" rx="1.5" fill={c} /></svg>
+      </div>
+    </div>);
+
+}
+
+// ─── CoverScreen ───────────────────────────────────────────────────────────
+function CoverScreen({ onStart, accent }) {
+  const bars = [
+  { label: 'Content Addition', pct: 68.3, note: 'incl. 23.5% bin/binti' },
+  { label: 'Content Deletion', pct: 49.4, note: '' },
+  { label: 'Spelling Errors', pct: 27.4, note: '' },
+  { label: 'Name Reversal', pct: 19.1, note: '1st/Last confusion' },
+  { label: 'Others', pct: 8.2, note: '' }];
+
+  const findings = [
+  { stage: 'Pre-booking', issue: 'Knowledge Gap', detail: 'No localized name guide or ethnic-specific FAQ to prepare users', hot: false },
+  { stage: 'Name Entry', issue: 'Terminology Confusion', detail: '"First/Last Name" doesn\'t map to Malaysian naming — causes 19.13% reversal errors', hot: true },
+  { stage: 'Pre-payment', issue: 'Weak Verification', detail: 'Popup lacks boarding denial risk warning — users skip without cross-checking', hot: true },
+  { stage: 'Post-order', issue: 'Buried Information', detail: 'Name details lost in confirmation emails; free-correction window missed by most users', hot: false },
+  { stage: 'Check-in', issue: 'Emergency Issues', detail: '~0.1% same-day cases face potential denied boarding with no emergency handling protocol', hot: false }];
+
+  const card = (children, extraStyle = {}) =>
+  <div style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 16, padding: '18px 20px', display: 'flex', flexDirection: 'column', overflow: 'hidden', ...extraStyle }}>
+      {children}
+    </div>;
+
+  const lbl = (t) => <div style={{ color: 'rgba(255,255,255,.3)', fontWeight: 700, letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 14, flexShrink: 0, fontSize: "14px" }}>{t}</div>;
+
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '340px 1fr 1fr', gridTemplateRows: '1fr 1fr 1fr', gap: 12, padding: '28px 32px', height: '100vh', width: '100vw', overflow: 'hidden', position: 'relative' }}>
+      {/* glow */}
+      <div style={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', background: `radial-gradient(circle,${accent}13 0%,transparent 70%)`, top: '45%', left: '32%', transform: 'translate(-50%,-50%)', pointerEvents: 'none', zIndex: 0 }} />
+
+      {/* ── Hero: spans all 3 rows, col 1 ── */}
+      <div className="a-fsi" style={{ gridRow: '1 / -1', gridColumn: '1', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', position: 'relative', zIndex: 1, animationDelay: '.04s' }}>
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 22 }}>
+            <div style={{ background: 'white', borderRadius: 7, padding: '4px 10px', fontSize: 13, fontWeight: 800, color: accent }}>trip.com</div>
+            <div style={{ background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 20, padding: '3px 10px', fontSize: 10, color: 'rgba(255,255,255,.45)', fontWeight: 500 }}>UX Portfolio</div>
+          </div>
+          <div style={{ fontSize: 9, color: 'rgba(255,255,255,.28)', fontWeight: 700, letterSpacing: 2.2, textTransform: 'uppercase', marginBottom: 11 }}>Case Study · Malaysia Market · 2025</div>
+          <div style={{ fontSize: 36, fontWeight: 800, color: 'white', lineHeight: 1.13, letterSpacing: -.8, marginBottom: 16 }}>Passenger<br />Name Entry<br /><span style={{ color: accent }}>Optimization</span></div>
+          <div style={{ color: 'rgba(255,255,255,.42)', lineHeight: 1.72, fontSize: "15px", height: "128.984px" }}>Malaysia faces a top-3 global flight name-change rate, generating ~1,200 monthly amendment tickets. This project identifies root causes and proposes targeted UX interventions across the full booking journey.</div>
+        </div>
+        <div>
+          <div style={{ color: 'rgba(255,255,255,.28)', fontWeight: 700, letterSpacing: 1.4, textTransform: 'uppercase', marginBottom: 10, fontSize: "14px" }}>Research Approach</div>
+          {[
+          ['🔬', 'Desktop Research', 'Naming conventions, airline rules, gov. docs'],
+          ['🧪', 'Competitive Testing', '10 platforms — 4 int\'l OTAs, 2 regional, 4 airlines'],
+          ['📊', 'Internal Analysis', '7,079 tickets · CPO data · 5 staff interviews']].
+          map(([ic, t, s]) =>
+          <div key={t} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '9px 11px', background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.06)', borderRadius: 10, marginBottom: 7 }}>
+              <span style={{ fontSize: 13, flexShrink: 0, marginTop: 1 }}>{ic}</span>
+              <div>
+                <div style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,.75)', marginBottom: 1 }}>{t}</div>
+                <div style={{ fontSize: 10, color: 'rgba(255,255,255,.32)' }}>{s}</div>
+              </div>
+            </div>
+          )}
+        </div>
+        <div>
+          <button onClick={onStart} style={{ width: '100%', padding: '14px 20px', borderRadius: 13, border: 'none', background: accent, color: 'white', fontSize: 14, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, animation: 'confirmPulse 2.2s ease-in-out infinite', boxShadow: `0 6px 24px ${accent}44` }}>
+            Experience the Redesign <span style={{ fontSize: 15 }}>→</span>
+          </button>
+          <div style={{ textAlign: 'center', marginTop: 7, fontSize: 10, color: 'rgba(255,255,255,.2)' }}>Interactive Prototype · 3 Screens · iPhone Frame</div>
+        </div>
+      </div>
+
+      {/* ── A: Amendment breakdown — row 1, col 2 ── */}
+      {card(<>
+        {lbl('Amendment Type Distribution · 7,079 tickets')}
+        <div style={{ fontSize: 10, color: 'rgba(255,255,255,.2)', marginBottom: 12 }}>Percentages sum to &gt;100% — multiple types per ticket possible</div>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          {bars.map((b, i) =>
+          <div key={i}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 5 }}>
+                <span style={{ color: 'rgba(255,255,255,.7)', fontWeight: i < 2 ? 600 : 400, fontSize: "16px" }}>{b.label}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+                  {b.note && <span style={{ fontSize: 9, color: 'rgba(255,255,255,.27)', fontStyle: 'italic' }}>{b.note}</span>}
+                  <span style={{ fontSize: 12, fontWeight: 700, color: i < 2 ? 'white' : 'rgba(255,255,255,.5)' }}>{b.pct}%</span>
+                </div>
+              </div>
+              <div style={{ height: 4, background: 'rgba(255,255,255,.07)', borderRadius: 2 }}>
+                <div style={{ height: '100%', width: `${b.pct}%`, borderRadius: 2, background: i === 0 ? accent : i === 1 ? `${accent}70` : 'rgba(255,255,255,.22)' }} />
+              </div>
+            </div>
+          )}
+        </div>
+      </>, { gridRow: '1', gridColumn: '2', zIndex: 1, animationDelay: '.08s' })}
+
+      {/* ── B: Error timing — row 1, col 3 ── */}
+      {card(<>
+        {lbl('Error Discovery Timing')}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          {[
+          { pct: '44.39%', label: 'Same-day amendments', sub: 'Errors realized right after booking — point-of-entry interface failure', c: accent, big: true },
+          { pct: '67.06%', label: 'Within first week', sub: 'Fast discovery across first-time and repeat customers', c: 'rgba(255,255,255,.55)', big: false },
+          { pct: '10.43%', label: 'Urgent — <3 days to flight', sub: 'Risk of denied boarding · emergency handling protocol needed', c: '#EF4444', big: false },
+          { pct: '70.80%', label: '1+ month before departure', sub: 'Most users can act if proactively notified — ideal intervention window', c: '#10B981', big: false }].
+          map((t, i) =>
+          <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', padding: '8px 10px', background: 'rgba(255,255,255,.03)', borderRadius: 9, borderLeft: `2px solid ${t.c}` }}>
+              <div style={{ fontSize: t.big ? 18 : 14, fontWeight: 800, color: t.c, flexShrink: 0, minWidth: 54, letterSpacing: -.3 }}>{t.pct}</div>
+              <div>
+                <div style={{ fontWeight: 600, color: 'rgba(255,255,255,.72)', marginBottom: 2, fontSize: "16px" }}>{t.label}</div>
+                <div style={{ fontSize: 10, color: 'rgba(255,255,255,.3)', lineHeight: 1.4 }}>{t.sub}</div>
+              </div>
+            </div>
+          )}
+        </div>
+      </>, { gridRow: '1', gridColumn: '3', zIndex: 1, animationDelay: '.1s' })}
+
+      {/* ── C: Key findings — row 2, cols 2–3 ── */}
+      {card(<>
+        {lbl('Key Findings · Across the Booking Journey')}
+        <div style={{ flex: 1, display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: 10 }}>
+          {findings.map((f, i) =>
+          <div key={i} style={{ padding: '12px', background: 'rgba(255,255,255,.03)', borderRadius: 10, borderTop: `1.5px solid ${f.hot ? accent : 'rgba(255,255,255,.09)'}`, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <div style={{ color: 'rgba(255,255,255,.28)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: .7, marginBottom: 6, fontSize: "12px" }}>{f.stage}</div>
+                <div style={{ fontWeight: 700, color: f.hot ? accent : 'rgba(255,255,255,.8)', marginBottom: 6, lineHeight: 1.25, height: "30px", fontSize: "24px" }}>{f.issue}</div>
+              </div>
+              <div style={{ color: 'rgba(255,255,255,.38)', lineHeight: 1.45, height: "120px", fontSize: "14px" }}>{f.detail}</div>
+            </div>
+          )}
+        </div>
+      </>, { gridRow: '2', gridColumn: '2 / -1', zIndex: 1, animationDelay: '.12s' })}
+
+      {/* ── D: Research coverage — row 3, col 2 ── */}
+      {card(<>
+        {lbl('Research Coverage')}
+        <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr 1fr', gap: 8 }}>
+          {[['7,079', 'Amendment tickets'], ['6 mo', 'Jan–Jun 2025'], ['10', 'Platforms tested'], ['5', 'Staff interviews'], ['5', 'Airlines benchmarked'], ['4', 'Gov. docs reviewed']].map(([v, l]) =>
+          <div key={l} style={{ padding: '10px 12px', background: 'rgba(255,255,255,.04)', borderRadius: 10, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <div style={{ fontSize: 20, fontWeight: 800, color: 'white', letterSpacing: -.3, lineHeight: 1 }}>{v}</div>
+              <div style={{ color: 'rgba(255,255,255,.32)', marginTop: 3, lineHeight: 1.3, fontSize: "14px" }}>{l}</div>
+            </div>
+          )}
+        </div>
+      </>, { gridRow: '3', gridColumn: '2', zIndex: 1, animationDelay: '.14s' })}
+
+      {/* ── E: Feature gaps — row 3, col 3 ── */}
+      {card(<>
+        {lbl('Trip.com Feature Gaps vs. Competitors')}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          {[
+          ['MRZ Passport Guidance', 'MH & Traveloka already offer this'],
+          ['✕', 'Local Honorifics (Dato, Datuk)'],
+          ['Multi-ethnic Name Examples', 'AirAsia covers Malay/Chinese/Indian'],
+          ['Smart Prefix Validation', 'AirAsia detects bin/binti issues'],
+          ['Boarding Denial Warning', 'Traveloka popup has this; Trip.com does not']].
+          map(([f, n], i) =>
+          <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 0', borderBottom: i < 4 ? '1px solid rgba(255,255,255,.05)' : 'none' }}>
+              <div style={{ width: 16, height: 16, borderRadius: 4, background: 'rgba(239,68,68,.1)', border: '1px solid rgba(239,68,68,.22)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
+                <span style={{ fontSize: 8, color: '#EF4444', fontWeight: 700 }}>✕</span>
+              </div>
+              <div>
+                <div style={{ fontWeight: 600, color: 'rgba(255,255,255,.65)', lineHeight: 1.3, fontSize: "18px" }}>{f}</div>
+                <div style={{ fontSize: 10, color: 'rgba(255,255,255,.28)', marginTop: 1 }}>{n}</div>
+              </div>
+            </div>
+          )}
+        </div>
+      </>, { gridRow: '3', gridColumn: '3', zIndex: 1, animationDelay: '.16s' })}
+    </div>);
+
+}
+
+// ─── NameEntryScreen ────────────────────────────────────────────────────────
+function NameEntryScreen({ onContinue, accent }) {
+  const [gender, setGender] = useState('female');
+  const [given, setGiven] = useState('SITI NUR AISYAH');
+  const [family, setFamily] = useState('BINTI AHMAD KAMIL');
+  const [ethnic, setEthnic] = useState('malay');
+  const [showEx, setShowEx] = useState(false);
+  const [validation, setValidation] = useState(null);
+  const [shakeKey, setShakeKey] = useState(0);
+  const [demoState, setDemoState] = useState('idle');
+  const [showScan, setShowScan] = useState(false);
+
+  const validate = (g, fn) => {
+    const low = fn.toLowerCase();
+    const hasBin = /\bbin\b/.test(low);
+    const hasBinti = /\bbinti\b/.test(low);
+    if (g === 'female' && hasBin && !hasBinti) return 'gender_mismatch';
+    if (g === 'male' && hasBinti) return 'gender_mismatch';
+    return fn.length > 0 ? 'ok' : null;
+  };
+
+  const handleFamily = (val) => {
+    const v = val.toUpperCase();
+    setFamily(v);
+    const result = validate(gender, v);
+    setValidation(result);
+    if (demoState === 'triggered') setDemoState(result === 'ok' ? 'fixed' : 'triggered');
+  };
+
+  const triggerDemo = () => {
+    setGender('female');setFamily('BIN AHMAD KAMIL');
+    setValidation('gender_mismatch');setShakeKey((k) => k + 1);setDemoState('triggered');
+  };
+
+  const ex = ETHNIC[ethnic];
+
+  return (
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: '#F5F7FA', overflow: 'hidden', position: 'relative' }}>
+      <StatusBar dark={false} />
+      <div style={{ background: 'white', padding: '8px 16px 10px', borderBottom: '1px solid #F0F0F0', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+        <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, display: 'flex', alignItems: 'center' }}>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12.5 5L7.5 10L12.5 15" stroke="#111827" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </button>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: 15, fontWeight: 700, color: '#111827', letterSpacing: -.3 }}>Traveller 1 Details</div>
+          <div style={{ fontSize: 10, color: '#9CA3AF', marginTop: 1 }}>Step 2 of 3 · Passenger Info</div>
+        </div>
+        <div style={{ background: '#EEF3FF', borderRadius: 8, padding: '3px 8px', fontSize: 10, color: accent, fontWeight: 700 }}>✦ Improved</div>
+      </div>
+      <div style={{ background: '#E5E7EB', height: 3, flexShrink: 0 }}><div style={{ background: accent, height: '100%', width: '66%', borderRadius: '0 2px 2px 0' }} /></div>
+
+      <div className="scroll" style={{ flex: 1, padding: '14px 14px 100px' }}>
+        {/* Gender */}
+        <div className="a-fsi" style={{ animationDelay: '.05s', background: 'white', borderRadius: 14, padding: '13px 14px', marginBottom: 10, boxShadow: '0 1px 4px rgba(0,0,0,.06)' }}>
+          <div style={{ fontSize: 11, fontWeight: 600, color: '#6B7280', letterSpacing: .5, textTransform: 'uppercase', marginBottom: 9 }}>Gender</div>
+          <div style={{ display: 'flex', gap: 8 }}>
+            {['male', 'female'].map((g) =>
+            <button key={g} onClick={() => setGender(g)} style={{ flex: 1, padding: '9px', borderRadius: 10, border: `1.5px solid ${gender === g ? accent : '#E5E7EB'}`, background: gender === g ? '#EEF3FF' : 'white', color: gender === g ? accent : '#6B7280', fontSize: 13, fontWeight: gender === g ? 600 : 400, cursor: 'pointer', transition: 'all .2s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5 }}>
+                <span>{g === 'male' ? '♂' : '♀'}</span><span style={{ textTransform: 'capitalize' }}>{g}</span>
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Given Name */}
+        <div className="a-fsi" style={{ animationDelay: '.1s', background: 'white', borderRadius: 14, padding: '13px 14px', marginBottom: 10, boxShadow: '0 1px 4px rgba(0,0,0,.06)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
+            <div><span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>Nama Pemberian</span><span style={{ fontSize: 11, color: '#9CA3AF', marginLeft: 5 }}>(Given Name)</span></div>
+            <div title="Changed from 'First Name' to reduce name reversal errors" style={{ background: '#EEF3FF', borderRadius: 6, padding: '2px 7px', fontSize: 10, color: accent, fontWeight: 700, cursor: 'help' }}>✦</div>
+          </div>
+          <input value={given} onChange={(e) => setGiven(e.target.value.toUpperCase())} placeholder="e.g. SITI NUR AISYAH"
+          style={{ width: '100%', border: 'none', outline: 'none', fontSize: 14, fontWeight: 500, color: '#111827', padding: '5px 0', letterSpacing: .3, background: 'transparent', fontFamily: 'Inter,sans-serif' }} />
+          <div style={{ height: 1, background: '#E5E7EB', marginTop: 4 }} />
+          <div style={{ fontSize: 10, color: '#9CA3AF', marginTop: 5 }}>Your personal / given name as per passport</div>
+        </div>
+
+        {/* Family Name */}
+        <div key={`fam-${shakeKey}`} className={`a-fsi ${shakeKey > 0 ? 'a-shake' : ''}`} style={{ animationDelay: '.15s', background: 'white', borderRadius: 14, padding: '13px 14px', marginBottom: 8, boxShadow: '0 1px 4px rgba(0,0,0,.06)', border: `1.5px solid ${validation === 'gender_mismatch' ? '#EF4444' : validation === 'ok' ? '#10B981' : 'transparent'}`, transition: 'border-color .3s' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
+            <div><span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>Nama Keluarga</span><span style={{ fontSize: 11, color: '#9CA3AF', marginLeft: 5 }}>(Family Name)</span></div>
+            <div title="Changed from 'Last Name' to match Malaysian naming structure" style={{ background: '#EEF3FF', borderRadius: 6, padding: '2px 7px', fontSize: 10, color: accent, fontWeight: 700, cursor: 'help' }}>✦</div>
+          </div>
+          <input value={family} onChange={(e) => handleFamily(e.target.value)}
+          style={{ width: '100%', border: 'none', outline: 'none', fontSize: 14, fontWeight: 500, color: validation === 'gender_mismatch' ? '#EF4444' : '#111827', padding: '5px 0', letterSpacing: .3, background: 'transparent', fontFamily: 'Inter,sans-serif', transition: 'color .3s' }} />
+          <div style={{ height: 1, background: validation === 'gender_mismatch' ? '#EF4444' : validation === 'ok' ? '#10B981' : '#E5E7EB', marginTop: 4, transition: 'background .3s' }} />
+          <div style={{ fontSize: 10, color: '#9CA3AF', marginTop: 5 }}>Include bin / binti / A/L / A/P as shown on passport</div>
+        </div>
+
+        {validation === 'gender_mismatch' &&
+        <div className="a-fsi" style={{ background: '#FEF2F2', border: '1px solid #FECACA', borderRadius: 12, padding: '10px 12px', marginBottom: 8, display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+            <span style={{ fontSize: 16, flexShrink: 0 }}>⚠️</span>
+            <div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: '#DC2626', marginBottom: 2 }}>Gender Mismatch Detected</div>
+              <div style={{ fontSize: 11, color: '#991B1B', lineHeight: 1.45 }}>For female passengers, "bin" should be "binti". Please verify your passport. <em>System guides without blocking.</em></div>
+              {demoState === 'triggered' &&
+            <button onClick={() => {setFamily('BINTI AHMAD KAMIL');setValidation('ok');setDemoState('fixed');}}
+            style={{ marginTop: 8, background: '#DC2626', color: 'white', border: 'none', borderRadius: 8, padding: '5px 12px', fontSize: 11, fontWeight: 600, cursor: 'pointer' }}>
+                  Fix: Replace "bin" → "binti"
+                </button>
+            }
+            </div>
+          </div>
+        }
+        {validation === 'ok' &&
+        <div className="a-fsi" style={{ background: '#ECFDF5', border: '1px solid #A7F3D0', borderRadius: 12, padding: '9px 12px', marginBottom: 8, display: 'flex', gap: 8, alignItems: 'center' }}>
+            <span style={{ fontSize: 15 }}>✅</span><div style={{ fontSize: 12, fontWeight: 600, color: '#065F46' }}>Looks good — prefix verified.</div>
+          </div>
+        }
+
+        <div className="a-fsi" style={{ animationDelay: '.2s', background: '#EEF3FF', borderRadius: 12, padding: '10px 12px', marginBottom: 10, display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+          <span style={{ color: accent, fontSize: 14, flexShrink: 0, marginTop: 1 }}>ℹ</span>
+          <div style={{ fontSize: 11, color: '#1E40AF', lineHeight: 1.45, flex: 1 }}><strong>Prefix Reminder:</strong> Include any name prefixes shown on your passport (bin, binti, A/L, A/P, Anak).</div>
+          <div style={{ background: '#C7D9FF', borderRadius: 6, padding: '2px 7px', fontSize: 9, color: accent, fontWeight: 700, flexShrink: 0 }}>✦ New</div>
+        </div>
+
+        {/* Examples */}
+        <div className="a-fsi" style={{ animationDelay: '.25s', background: 'white', borderRadius: 14, marginBottom: 10, boxShadow: '0 1px 4px rgba(0,0,0,.06)', overflow: 'hidden' }}>
+          <button onClick={() => setShowEx(!showEx)} style={{ width: '100%', padding: '12px 14px', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div style={{ background: '#EEF3FF', borderRadius: 8, width: 28, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14 }}>📋</div>
+              <div style={{ textAlign: 'left' }}>
+                <div style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>Name Examples</div>
+                <div style={{ fontSize: 10, color: '#9CA3AF' }}>Malay · Chinese · Indian formats</div>
+              </div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <div style={{ background: '#EEF3FF', borderRadius: 6, padding: '2px 7px', fontSize: 9, color: accent, fontWeight: 700 }}>✦ New</div>
+              <span style={{ color: '#9CA3AF', transform: showEx ? 'rotate(180deg)' : 'none', transition: 'transform .3s', display: 'block' }}>▾</span>
+            </div>
+          </button>
+          {showEx &&
+          <div className="a-fsi" style={{ borderTop: '1px solid #F0F0F0' }}>
+              <div style={{ display: 'flex', padding: '8px 10px 0', gap: 4 }}>
+                {Object.entries(ETHNIC).map(([k, v]) =>
+              <button key={k} onClick={() => setEthnic(k)} style={{ flex: 1, padding: '6px 4px', borderRadius: 8, border: 'none', background: ethnic === k ? accent : '#F5F7FA', color: ethnic === k ? 'white' : '#6B7280', fontSize: 11, fontWeight: ethnic === k ? 600 : 400, cursor: 'pointer', transition: 'all .2s' }}>{v.label}</button>
+              )}
+              </div>
+              <div key={ethnic} className="a-fsi" style={{ padding: '12px 14px 14px' }}>
+                <div style={{ background: '#1A1A2E', borderRadius: 10, padding: '10px 12px', marginBottom: 10 }}>
+                  <div style={{ fontSize: 9, color: 'rgba(255,255,255,.35)', letterSpacing: 1.2, textTransform: 'uppercase', marginBottom: 4 }}>Passport Name Field (MRZ)</div>
+                  <div style={{ fontFamily: 'Courier New,monospace', fontSize: 13, color: '#90CDF4', letterSpacing: 1.5, fontWeight: 600 }}>{ex.passport}</div>
+                </div>
+                <div style={{ textAlign: 'center', color: '#9CA3AF', fontSize: 16, marginBottom: 8 }}>↓</div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                  {[{ label: 'Nama Pemberian\n(Given Name)', val: ex.given, c: '#1B6EFD' }, { label: 'Nama Keluarga\n(Family Name)', val: ex.family, c: '#7C3AED' }].map((f) =>
+                <div key={f.label} style={{ background: '#F8F9FF', borderRadius: 10, padding: '9px', border: `1px solid ${f.c}22` }}>
+                      <div style={{ fontSize: 9, color: f.c, fontWeight: 600, letterSpacing: .3, marginBottom: 4, whiteSpace: 'pre-line' }}>{f.label}</div>
+                      <div style={{ fontSize: 11, fontWeight: 700, color: '#111827', letterSpacing: .5, fontFamily: 'Courier New,monospace' }}>{f.val}</div>
+                    </div>
+                )}
+                </div>
+                <div style={{ marginTop: 8, fontSize: 10, color: '#6B7280', background: '#F9FAFB', borderRadius: 8, padding: '6px 10px' }}>💡 {ex.note}</div>
+              </div>
+            </div>
+          }
+        </div>
+
+        <button onClick={() => setShowScan(true)} className="a-fsi" style={{ animationDelay: '.3s', width: '100%', padding: '11px 14px', borderRadius: 12, border: `1.5px dashed ${accent}`, background: '#EEF3FF', color: accent, fontSize: 12, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7, marginBottom: 10 }}>
+          <span>📷</span>Scan Passport MRZ
+          <span style={{ background: '#C7D9FF', borderRadius: 6, padding: '2px 7px', fontSize: 9, color: accent, fontWeight: 700 }}>P1 Feature</span>
+        </button>
+
+        {demoState === 'idle' &&
+        <div className="a-fsi" style={{ animationDelay: '.35s', border: '1px dashed #E5E7EB', borderRadius: 12, padding: '11px 12px', marginBottom: 10 }}>
+            <div style={{ fontSize: 10, color: '#9CA3AF', fontWeight: 600, textTransform: 'uppercase', letterSpacing: .5, marginBottom: 7 }}>Demo Interactions</div>
+            <button onClick={triggerDemo} style={{ padding: '6px 12px', borderRadius: 8, border: '1px solid #FECACA', background: '#FEF2F2', color: '#DC2626', fontSize: 11, fontWeight: 500, cursor: 'pointer' }}>⚡ Trigger: Gender Mismatch</button>
+          </div>
+        }
+        {demoState === 'fixed' &&
+        <div className="a-fsi" style={{ border: '1px dashed #A7F3D0', borderRadius: 12, padding: '10px 12px', marginBottom: 10, background: '#F0FDF4' }}>
+            <span style={{ fontSize: 11, color: '#065F46' }}>✅ Smart validation guided the fix without blocking submission.&nbsp;
+              <button onClick={() => {setDemoState('idle');setFamily('BINTI AHMAD KAMIL');setValidation(null);}} style={{ background: 'none', border: 'none', color: '#059669', fontSize: 11, cursor: 'pointer', fontWeight: 600, textDecoration: 'underline' }}>Reset</button>
+            </span>
+          </div>
+        }
+      </div>
+
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent,white 28%)', padding: '20px 14px 18px', flexShrink: 0 }}>
+        <button onClick={onContinue} style={{ width: '100%', padding: '15px', borderRadius: 14, border: 'none', background: accent, color: 'white', fontSize: 14, fontWeight: 700, cursor: 'pointer', boxShadow: `0 4px 20px ${accent}55`, animation: 'confirmPulse 2.5s ease-in-out infinite' }}>
+          {validation === 'gender_mismatch' ? 'Continue Anyway (Warning Active) →' : 'Continue →'}
+        </button>
+      </div>
+
+      {showScan && <PassportScanModal onClose={() => setShowScan(false)} onApply={(g, f) => {setGiven(g);setFamily(f);setValidation('ok');setShowScan(false);}} accent={accent} />}
+    </div>);
+
+}
+
+// ─── PassportScanModal ──────────────────────────────────────────────────────
+function PassportScanModal({ onClose, onApply, accent }) {
+  const [phase, setPhase] = useState('scanning');
+  const [pGiven, setPGiven] = useState('');
+  const [pFamily, setPFamily] = useState('');
+  const G = 'SITI NUR AISYAH',F = 'BINTI AHMAD KAMIL';
+
+  useEffect(() => {
+    const t1 = setTimeout(() => {
+      setPhase('parsed');
+      let i = 0;const ti = setInterval(() => {i++;setPGiven(G.slice(0, i));if (i >= G.length) clearInterval(ti);}, 55);
+      let j = 0;const tj = setInterval(() => {j++;setPFamily(F.slice(0, j));if (j >= F.length) clearInterval(tj);}, 55);
+    }, 1700);
+    const t2 = setTimeout(() => setPhase('done'), 4000);
+    return () => {clearTimeout(t1);clearTimeout(t2);};
+  }, []);
+
+  return (
+    <div className="a-fade" style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,.87)', zIndex: 100, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
+      <div className="a-slide-up" style={{ background: '#1A1B22', borderRadius: 20, padding: 18, width: '100%', maxWidth: 340 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
+          <div style={{ fontSize: 14, fontWeight: 700, color: 'white' }}>Scan Passport MRZ</div>
+          <button onClick={onClose} style={{ background: 'rgba(255,255,255,.1)', border: 'none', borderRadius: 8, color: 'white', fontSize: 12, padding: '4px 10px', cursor: 'pointer' }}>✕ Close</button>
+        </div>
+        <div style={{ position: 'relative', background: '#1E2E4A', borderRadius: 12, padding: 14, marginBottom: 14, overflow: 'hidden', minHeight: 150 }}>
+          <div style={{ fontSize: 9, color: 'rgba(255,255,255,.35)', letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 8 }}>MALAYSIA · PASPORT</div>
+          <div style={{ display: 'flex', gap: 10, marginBottom: 12 }}>
+            <div style={{ width: 44, height: 56, background: 'rgba(255,255,255,.1)', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: 22 }}>👤</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+              <div style={{ height: 7, background: 'rgba(255,255,255,.2)', borderRadius: 4, width: 90 }} />
+              <div style={{ height: 5, background: 'rgba(255,255,255,.1)', borderRadius: 4, width: 70 }} />
+              <div style={{ height: 5, background: 'rgba(255,255,255,.1)', borderRadius: 4, width: 55 }} />
+            </div>
+          </div>
+          <div style={{ background: '#111B2E', borderRadius: 6, padding: '8px 10px', border: `1px solid ${phase !== 'scanning' ? '#48BB78' : 'transparent'}`, transition: 'border-color .5s' }}>
+            <div style={{ fontFamily: 'Courier New,monospace', fontSize: 9, color: '#90CDF4', letterSpacing: 1, lineHeight: 1.7 }}>
+              <div>P&lt;MYSSITIINUR&lt;AISYAH&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div>
+              <div>A12345678&lt;MYS8801214F2601019&lt;&lt;&lt;&lt;2</div>
+            </div>
+          </div>
+          {phase === 'scanning' && <div style={{ position: 'absolute', left: 0, right: 0, height: 2, background: `linear-gradient(90deg,transparent,${accent},transparent)`, animation: 'scanLine 1.6s ease-in-out infinite', boxShadow: `0 0 10px ${accent}` }} />}
+          {phase !== 'scanning' && <div style={{ position: 'absolute', bottom: 14, right: 14, background: '#48BB78', borderRadius: 20, padding: '3px 9px', fontSize: 9, color: 'white', fontWeight: 600 }}>✓ MRZ Parsed</div>}
+        </div>
+        {phase !== 'scanning' &&
+        <div className="a-fsi" style={{ marginBottom: 14 }}>
+            <div style={{ fontSize: 11, color: 'rgba(255,255,255,.4)', marginBottom: 8 }}>Fields extracted from MRZ:</div>
+            {[['Nama Pemberian (Given Name)', pGiven], ['Nama Keluarga (Family Name)', pFamily]].map(([l, v]) =>
+          <div key={l} style={{ background: 'rgba(255,255,255,.06)', borderRadius: 10, padding: '9px 11px', marginBottom: 7 }}>
+                <div style={{ fontSize: 9, color: 'rgba(255,255,255,.35)', marginBottom: 4 }}>{l}</div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: 'white', fontFamily: 'Courier New,monospace', letterSpacing: .5, minHeight: 18 }}>{v}<span style={{ opacity: .3 }}>|</span></div>
+              </div>
+          )}
+          </div>
+        }
+        {phase === 'done' && <button className="a-pop" onClick={() => onApply(G, F)} style={{ width: '100%', padding: '13px', borderRadius: 12, border: 'none', background: '#48BB78', color: 'white', fontSize: 13, fontWeight: 700, cursor: 'pointer', animation: 'confirmPulse 2s ease-in-out infinite' }}>Apply to Form ✓</button>}
+        {phase === 'scanning' && <div style={{ textAlign: 'center', fontSize: 11, color: 'rgba(255,255,255,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}><div style={{ width: 14, height: 14, border: `2px solid ${accent}`, borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin .8s linear infinite' }} />Reading MRZ zone...</div>}
+      </div>
+    </div>);
+
+}
+
+// ─── VerificationScreen ─────────────────────────────────────────────────────
+function VerificationScreen({ onBack, onConfirm, accent }) {
+  const [view, setView] = useState('after');
+  const [confirmed, setConfirmed] = useState(false);
+  const doConfirm = () => {setConfirmed(true);setTimeout(onConfirm, 1300);};
+
+  return (
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: '#F5F7FA', overflow: 'hidden' }}>
+      <StatusBar dark={false} />
+      <div style={{ background: 'white', padding: '9px 14px', borderBottom: '1px solid #F0F0F0', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+        <button onClick={onBack} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, display: 'flex', alignItems: 'center' }}>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12.5 5L7.5 10L12.5 15" stroke="#111827" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </button>
+        <div style={{ flex: 1, fontSize: 15, fontWeight: 700, color: '#111827', letterSpacing: -.3 }}>Verify Name Details</div>
+        <div style={{ display: 'flex', background: '#F0F0F0', borderRadius: 8, padding: 2 }}>
+          {[['before', 'Before'], ['after', '✦ After']].map(([k, l]) =>
+          <button key={k} onClick={() => setView(k)} style={{ padding: '4px 9px', borderRadius: 6, border: 'none', background: view === k ? 'white' : 'transparent', color: view === k ? '#111827' : '#9CA3AF', fontSize: 11, fontWeight: view === k ? 600 : 400, cursor: 'pointer', transition: 'all .2s', boxShadow: view === k ? '0 1px 3px rgba(0,0,0,.1)' : 'none' }}>{l}</button>
+          )}
+        </div>
+      </div>
+      <div className="scroll" style={{ flex: 1, padding: 14 }}>
+        {view === 'before' ?
+        <div key="before" className="a-fsi">
+            <div style={{ background: 'white', borderRadius: 14, padding: 18, boxShadow: '0 1px 4px rgba(0,0,0,.06)', marginBottom: 10 }}>
+              <div style={{ fontSize: 15, fontWeight: 600, color: '#111827', marginBottom: 14, textAlign: 'center' }}>Please Verify Passenger Name</div>
+              <div style={{ background: '#F5F7FA', borderRadius: 10, padding: '11px 13px', marginBottom: 14 }}>
+                <div style={{ fontSize: 12, color: '#6B7280', marginBottom: 4 }}>Passenger</div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: '#111827' }}>SITI NUR AISYAH BINTI AHMAD KAMIL</div>
+              </div>
+              <div style={{ fontSize: 11, color: '#6B7280', textAlign: 'center', marginBottom: 14, lineHeight: 1.5 }}>We kindly advise verifying that the name matches your travel document to prevent any potential change fees or travel disruptions.</div>
+              <div style={{ display: 'flex', gap: 10 }}>
+                <button style={{ flex: 1, padding: '11px', borderRadius: 10, border: '1px solid #E5E7EB', background: 'white', color: '#6B7280', fontSize: 12, cursor: 'pointer' }}>Back to Edit</button>
+                <button style={{ flex: 2, padding: '11px', borderRadius: 10, border: 'none', background: '#6B7280', color: 'white', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Verify</button>
+              </div>
+            </div>
+            <div style={{ background: '#FFF8E6', border: '1px solid #FDE68A', borderRadius: 12, padding: '10px 13px', fontSize: 11, color: '#92400E', lineHeight: 1.5 }}>⚠️ <strong>Issues:</strong> No boarding denial risk warning · Name shown without field labels · "Verify" button — ambiguous action · Low urgency design</div>
+          </div> :
+
+        <div key="after" className="a-fsi">
+            <div style={{ background: 'linear-gradient(135deg,#FEF3C7,#FEE2E2)', borderRadius: 14, padding: '12px 13px', marginBottom: 10, border: '1px solid #FDE68A', display: 'flex', gap: 9, alignItems: 'flex-start' }}>
+              <span style={{ fontSize: 20, flexShrink: 0 }}>⚠️</span>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#92400E', marginBottom: 2 }}>Important: Verify Before Continuing</div>
+                <div style={{ fontSize: 11, color: '#78350F', lineHeight: 1.45 }}>Incorrect names may result in <strong>denied boarding</strong>. This airline may not allow corrections after payment.</div>
+              </div>
+            </div>
+            <div style={{ background: 'white', borderRadius: 14, padding: '14px', boxShadow: '0 1px 4px rgba(0,0,0,.06)', marginBottom: 10 }}>
+              <div style={{ fontSize: 10, fontWeight: 600, color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: .5, marginBottom: 10 }}>Passenger Name — Verify Against Passport</div>
+              {[['Nama Pemberian (Given Name)', 'SITI NUR AISYAH'], ['Nama Keluarga (Family Name)', 'BINTI AHMAD KAMIL']].map(([l, v]) =>
+            <div key={l} style={{ marginBottom: 10 }}>
+                  <div style={{ fontSize: 10, color: '#9CA3AF', marginBottom: 3 }}>{l}</div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: '#111827', letterSpacing: .5, fontFamily: 'Courier New,monospace' }}>{v}</div>
+                </div>
+            )}
+              <div style={{ height: 1, background: '#F0F0F0', marginBottom: 8 }} />
+              <div style={{ fontSize: 11, color: '#6B7280', display: 'flex', gap: 5 }}><span>✓</span><span>Name must exactly match your passport or national ID</span></div>
+            </div>
+            <div style={{ background: '#EEF3FF', borderRadius: 12, padding: '10px 13px', marginBottom: 14, fontSize: 11, color: '#1E40AF', lineHeight: 1.5 }}>ℹ️ <strong>AirAsia (AK):</strong> Name corrections after booking may incur fees. bin/binti must be included exactly as on passport.</div>
+            <div style={{ display: 'flex', gap: 9 }}>
+              <button onClick={onBack} style={{ flex: 1, padding: '13px', borderRadius: 12, border: '1.5px solid #E5E7EB', background: 'white', color: '#374151', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>← Edit Name</button>
+              <button onClick={doConfirm} disabled={confirmed} style={{ flex: 2, padding: '13px', borderRadius: 12, border: 'none', background: confirmed ? '#10B981' : accent, color: 'white', fontSize: 13, fontWeight: 700, cursor: confirmed ? 'default' : 'pointer', animation: confirmed ? 'none' : 'confirmPulse 2s ease-in-out infinite', boxShadow: confirmed ? 'none' : `0 4px 16px ${accent}50`, transition: 'background .4s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+                {confirmed ? <><span className="a-pop" style={{ fontSize: 15 }}>✓</span>Confirmed!</> : 'Confirm & Continue →'}
+              </button>
+            </div>
+            <div style={{ marginTop: 10, background: '#ECFDF5', border: '1px solid #A7F3D0', borderRadius: 10, padding: '8px 11px', fontSize: 10, color: '#065F46', lineHeight: 1.5 }}>✦ <em>Improvements: Boarding denial warning · Labeled name fields · Action-oriented CTA · Airline-specific policy shown</em></div>
+          </div>
+        }
+      </div>
+    </div>);
+
+}
+
+// ─── SuccessScreen ──────────────────────────────────────────────────────────
+function SuccessScreen({ onRestart, accent }) {
+  const [phase, setPhase] = useState('processing');
+  useEffect(() => {const t = setTimeout(() => setPhase('success'), 1800);return () => clearTimeout(t);}, []);
+
+  if (phase === 'processing') return (
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#F5F7FA', gap: 14 }}>
+      <div style={{ width: 52, height: 52, border: `3px solid ${accent}`, borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin .8s linear infinite' }} />
+      <div style={{ fontSize: 14, fontWeight: 600, color: '#374151' }}>Processing payment...</div>
+      <div style={{ fontSize: 11, color: '#9CA3AF' }}>Issuing ticket · KUL → SIN</div>
+    </div>);
+
+
+  return (
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: '#F5F7FA', overflow: 'hidden' }}>
+      <StatusBar dark={false} />
+      <div className="scroll" style={{ flex: 1, padding: '14px 14px 20px' }}>
+        <div className="a-fsi" style={{ background: 'white', borderRadius: 16, padding: '22px 18px', marginBottom: 10, textAlign: 'center', boxShadow: '0 1px 4px rgba(0,0,0,.06)' }}>
+          <div className="a-bounce" style={{ width: 60, height: 60, borderRadius: '50%', background: '#ECFDF5', margin: '0 auto 12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 30 }}>✅</div>
+          <div style={{ fontSize: 17, fontWeight: 800, color: '#111827', letterSpacing: -.5, marginBottom: 3 }}>Booking Confirmed!</div>
+          <div style={{ fontSize: 12, color: '#6B7280', marginBottom: 11 }}>Payment successful · Ticket being issued</div>
+          <div style={{ background: '#F5F7FA', borderRadius: 10, padding: '9px 14px', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 10, color: '#9CA3AF' }}>Booking</span>
+            <span style={{ fontSize: 11, fontWeight: 700, color: '#111827', fontFamily: 'Courier New,monospace' }}>TRP-KUL-20250721</span>
+          </div>
+        </div>
+        <div className="a-fsi" style={{ animationDelay: '.1s', background: 'white', borderRadius: 14, padding: '14px', boxShadow: '0 1px 4px rgba(0,0,0,.06)', marginBottom: 10 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ textAlign: 'center' }}><div style={{ fontSize: 20, fontWeight: 800, color: '#111827' }}>KUL</div><div style={{ fontSize: 10, color: '#9CA3AF' }}>Kuala Lumpur</div></div>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
+              <div style={{ fontSize: 9, color: '#9CA3AF' }}>AK 721 · 21 Jul 2025</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 3, width: '100%', justifyContent: 'center' }}>
+                <div style={{ flex: 1, height: 1, background: '#E5E7EB' }} /><span style={{ color: '#9CA3AF', fontSize: 13 }}>✈</span><div style={{ flex: 1, height: 1, background: '#E5E7EB' }} />
+              </div>
+              <div style={{ fontSize: 9, color: '#9CA3AF' }}>2h 10m</div>
+            </div>
+            <div style={{ textAlign: 'center' }}><div style={{ fontSize: 20, fontWeight: 800, color: '#111827' }}>SIN</div><div style={{ fontSize: 10, color: '#9CA3AF' }}>Singapore</div></div>
+          </div>
+        </div>
+        <div className="a-fsi" style={{ animationDelay: '.2s', background: 'white', borderRadius: 14, padding: '14px', boxShadow: '0 2px 12px rgba(245,158,11,.18)', border: '1.5px solid #FDE68A', marginBottom: 10 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+            <div style={{ background: '#FEF3C7', borderRadius: 8, width: 30, height: 30, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: 15 }}>📋</div>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#92400E' }}>Name Verification Reminder</div>
+              <div style={{ fontSize: 9, color: '#B45309' }}>Critical window · Before ticket issuance</div>
+            </div>
+            <div style={{ background: '#FEF3C7', borderRadius: 6, padding: '2px 7px', fontSize: 9, color: '#92400E', fontWeight: 700 }}>✦ New</div>
+          </div>
+          <div style={{ background: '#FFFBEB', borderRadius: 10, padding: '9px 11px', marginBottom: 10 }}>
+            {['Passenger: SITI NUR AISYAH / BINTI AHMAD KAMIL', 'Please verify this exactly matches your passport', 'Free correction window closes when ticket is issued'].map((t, i) =>
+            <div key={i} style={{ display: 'flex', gap: 5, alignItems: 'flex-start', marginBottom: i < 2 ? 5 : 0 }}>
+                <span style={{ color: '#F59E0B', flexShrink: 0, fontSize: 11 }}>•</span>
+                <span style={{ fontSize: 11, color: '#78350F', lineHeight: 1.4 }}>{t}</span>
+              </div>
+            )}
+          </div>
+          <div style={{ display: 'flex', gap: 8 }}>
+            <button style={{ flex: 1, padding: '10px', borderRadius: 10, border: 'none', background: '#F59E0B', color: 'white', fontSize: 12, fontWeight: 700, cursor: 'pointer', animation: 'confirmPulse 2s ease-in-out infinite' }}>Verify Name Now</button>
+            <button style={{ padding: '10px 13px', borderRadius: 10, border: '1px solid #FDE68A', background: 'white', color: '#92400E', fontSize: 12, cursor: 'pointer' }}>Later</button>
+          </div>
+          <div style={{ marginTop: 8, fontSize: 9, color: '#9CA3AF', lineHeight: 1.4 }}>✦ <em>Improvement: Added between order placement & ticket issuance — critical free-correction window per research</em></div>
+        </div>
+        <div className="a-fsi" style={{ animationDelay: '.3s', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 9, marginBottom: 12 }}>
+          {[['View Booking', '🗓', true], ['Download App', '📱', false]].map(([l, ic, p]) =>
+          <button key={l} style={{ padding: '13px 8px', borderRadius: 12, border: `1.5px solid ${p ? accent : '#E5E7EB'}`, background: p ? '#EEF3FF' : 'white', color: p ? accent : '#374151', fontSize: 12, fontWeight: 600, cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+              <span style={{ fontSize: 20 }}>{ic}</span>{l}
+            </button>
+          )}
+        </div>
+        <div className="a-fsi" style={{ animationDelay: '.4s', textAlign: 'center' }}>
+          <button onClick={onRestart} style={{ background: 'none', border: '1px solid #E5E7EB', borderRadius: 10, padding: '9px 18px', color: '#6B7280', fontSize: 12, cursor: 'pointer', fontWeight: 500 }}>↩ Restart Demo</button>
+        </div>
+      </div>
+    </div>);
+
+}
+
+// ─── PhoneFrame ─────────────────────────────────────────────────────────────
+function PhoneFrame({ children, scale }) {
+  return (
+    <div style={{ position: 'relative', flexShrink: 0, transform: `scale(${scale})`, transformOrigin: 'center center', filter: 'drop-shadow(0 28px 60px rgba(0,0,0,.6))' }}>
+      <div style={{ position: 'absolute', inset: -11, borderRadius: 54, background: 'linear-gradient(145deg,#2C2C2E,#0A0A0A)', boxShadow: 'inset 0 0 0 1px rgba(255,255,255,.07),0 0 0 1px rgba(0,0,0,.6)' }} />
+      <div style={{ position: 'absolute', left: -14, top: 170, width: 4, height: 32, background: '#1A1A1A', borderRadius: '2px 0 0 2px' }} />
+      <div style={{ position: 'absolute', left: -14, top: 215, width: 4, height: 32, background: '#1A1A1A', borderRadius: '2px 0 0 2px' }} />
+      <div style={{ position: 'absolute', right: -14, top: 200, width: 4, height: 62, background: '#1A1A1A', borderRadius: '0 2px 2px 0' }} />
+      <div style={{ position: 'relative', borderRadius: 44, overflow: 'hidden', width: 390, height: 780, background: '#F5F7FA', display: 'flex', flexDirection: 'column' }}>
+        {children}
+      </div>
+    </div>);
+
+}
+
+// ─── AnnotationCard ──────────────────────────────────────────────────────────
+function AnnotationCard({ title, body, research, delay }) {
+  return (
+    <div className="ann" style={{ animationDelay: `${delay}s` }}>
+      <div style={{ fontSize: 11, fontWeight: 700, color: '#93C5FD', marginBottom: 4 }}>{title}</div>
+      <div style={{ fontSize: 11, color: 'rgba(255,255,255,.7)', lineHeight: 1.5, marginBottom: 6 }}>{body}</div>
+      <div style={{ fontSize: 10, color: 'rgba(255,255,255,.3)', lineHeight: 1.4, borderTop: '1px solid rgba(255,255,255,.07)', paddingTop: 5 }}>📊 {research}</div>
+    </div>);
+
+}
+
+// ─── TweaksPanel ─────────────────────────────────────────────────────────────
+function TweaksPanel({ tweaks, onUpdate, onClose }) {
+  return (
+    <div style={{ position: 'fixed', bottom: 22, right: 22, background: '#1A1B22', border: '1px solid rgba(255,255,255,.1)', borderRadius: 16, padding: 18, width: 270, zIndex: 1000, boxShadow: '0 20px 60px rgba(0,0,0,.55)', animation: 'slideUp .3s ease' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
+        <span style={{ fontSize: 13, fontWeight: 700, color: 'white' }}>Tweaks</span>
+        <button onClick={onClose} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,.4)', cursor: 'pointer', fontSize: 18, lineHeight: 1 }}>×</button>
+      </div>
+      <div style={{ marginBottom: 14 }}>
+        <div style={{ fontSize: 10, color: 'rgba(255,255,255,.4)', textTransform: 'uppercase', letterSpacing: .5, marginBottom: 8 }}>Accent Color</div>
+        <div style={{ display: 'flex', gap: 8 }}>
+          {['#1B6EFD', '#7C3AED', '#059669', '#DC2626', '#D97706'].map((c) =>
+          <button key={c} onClick={() => onUpdate({ accentColor: c })} style={{ width: 26, height: 26, borderRadius: 8, background: c, border: 'none', cursor: 'pointer', outline: tweaks.accentColor === c ? '2.5px solid white' : 'none', outlineOffset: 2 }} />
+          )}
+        </div>
+      </div>
+      <div>
+        <div style={{ fontSize: 10, color: 'rgba(255,255,255,.4)', textTransform: 'uppercase', letterSpacing: .5, marginBottom: 8 }}>Annotations</div>
+        <button onClick={() => onUpdate({ showAnnotations: !tweaks.showAnnotations })} style={{ padding: '6px 13px', borderRadius: 8, border: 'none', background: tweaks.showAnnotations ? tweaks.accentColor : 'rgba(255,255,255,.1)', color: 'white', fontSize: 11, cursor: 'pointer', fontWeight: 500 }}>
+          {tweaks.showAnnotations ? 'Visible ✓' : 'Hidden'}
+        </button>
+      </div>
+    </div>);
+
+}
+
+// ─── Annotations per screen ──────────────────────────────────────────────────
+const LEFT_ANNS = {
+  'name-entry': [
+  { title: 'Terminology Localization', body: '"Given Name" replaces "First Name" to match Malaysian naming conventions — reduces confusion from Western field labels.', research: '19.13% name reversal rate · Internal data analysis' },
+  { title: 'Prefix Reminder', body: 'Explicit in-form reminder to include bin/binti/A/L/A/P as shown on passport.', research: '23.87% of amendments due to missing Malay prefixes' }],
+
+  verification: [{ title: 'Boarding Denial Warning', body: 'Explicit risk statement added — "incorrect names may result in denied boarding." Traveloka & MH do this; Trip.com did not.', research: 'Competitive gap identified vs. Traveloka' }],
+  success: [{ title: 'Post-Order Reminder', body: 'Name reminder added between order placement and ticket issuance — the critical free-correction window.', research: 'Internal interviews: most errors discovered at reconfirmation stage' }]
+};
+const RIGHT_ANNS = {
+  'name-entry': [
+  { title: 'Multi-ethnic Examples', body: 'Malay/Chinese/Indian passport format guidance, aligned with field order. Covers 31.55% prefix-related errors.', research: 'Competitive gap vs. Malaysia Airlines & AirAsia' },
+  { title: 'Smart Validation', body: 'Real-time bin/binti gender mismatch detection — guides without blocking submission.', research: '1.55% of amendments from bin/binti gender errors' }],
+
+  verification: [{ title: 'Action-oriented CTA', body: '"Confirm & Continue" replaces "Verify" — clearer intent, more decisive user action.', research: 'UX writing improvement from internal interview insight' }],
+  success: [{ title: 'Labeled Name Fields', body: 'Given / Family name displayed with labels for passport cross-checking — not as one merged string.', research: 'P0 quick win — low effort, high clarity impact' }]
+};
+
+const STEP_INFO = {
+  cover: { n: '01', label: 'Project Overview' },
+  'name-entry': { n: '02', label: 'Name Entry Redesign' },
+  verification: { n: '03', label: 'Pre-payment Verification' },
+  success: { n: '04', label: 'Post-booking Reminder' }
+};
+
+// ─── App ──────────────────────────────────────────────────────────────────────
+function App() {
+  const [screen, setScreen] = useLS('my-portfolio-screen', 'cover');
+  const [tweaks, setTweaks] = useState({ ...TWEAK_DEFAULTS });
+  const [showTweaks, setShowTweaks] = useState(false);
+  const [phoneScale, setPhoneScale] = useState(1);
+  const accent = tweaks.accentColor;
+
+  useEffect(() => {
+    const calc = () => {
+      const sh = Math.min(1, (window.innerHeight - 180) / 780);
+      const sw = Math.min(1, (window.innerWidth - (tweaks.showAnnotations ? 520 : 60)) / 390);
+      setPhoneScale(Math.min(sh, sw, 1));
+    };
+    calc();
+    window.addEventListener('resize', calc);
+    return () => window.removeEventListener('resize', calc);
+  }, [tweaks.showAnnotations]);
+
+  useEffect(() => {
+    const h = (e) => {
+      if (e.data?.type === '__activate_edit_mode') setShowTweaks(true);
+      if (e.data?.type === '__deactivate_edit_mode') setShowTweaks(false);
+    };
+    window.addEventListener('message', h);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', h);
+  }, []);
+
+  const updateTweaks = (partial) => {
+    const next = { ...tweaks, ...partial };
+    setTweaks(next);
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { accentColor: next.accentColor, showAnnotations: next.showAnnotations } }, '*');
+  };
+
+  const leftAnns = tweaks.showAnnotations && LEFT_ANNS[screen] || [];
+  const rightAnns = tweaks.showAnnotations && RIGHT_ANNS[screen] || [];
+  const info = STEP_INFO[screen] || STEP_INFO.cover;
+
+  return (
+    <div style={{ width: '100vw', height: '100vh', fontFamily: 'Inter,sans-serif', overflow: 'hidden' }}>
+      {/* ── Cover: full-page ── */}
+      {screen === 'cover' &&
+      <div key="cover" style={{ width: '100%', height: '100%', animation: 'fadeSlideIn .5s ease both', position: 'relative' }}>
+          <CoverScreen onStart={() => setScreen('name-entry')} accent={accent} />
+          <div style={{ position: 'absolute', bottom: 24, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 8, zIndex: 10 }}>
+            {SCREENS.map((s) =>
+          <button key={s} onClick={() => setScreen(s)} style={{ width: screen === s ? 26 : 8, height: 8, borderRadius: 4, background: screen === s ? accent : 'rgba(255,255,255,.15)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all .3s ease' }} />
+          )}
+          </div>
+        </div>
+      }
+
+      {/* ── Prototype: phone + annotations ── */}
+      {screen !== 'cover' &&
+      <div key="proto" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', height: '100%', animation: 'fadeSlideIn .4s ease both' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, marginTop: 16, flexShrink: 0 }}>
+            <div style={{ background: 'rgba(255,255,255,.05)', borderRadius: 20, padding: '3px 11px', fontSize: 10, color: 'rgba(255,255,255,.4)', fontWeight: 500 }}>UX Design Portfolio</div>
+            <div style={{ width: 3, height: 3, borderRadius: '50%', background: 'rgba(255,255,255,.15)' }} />
+            <div style={{ background: 'rgba(255,255,255,.05)', borderRadius: 20, padding: '3px 11px', fontSize: 10, color: 'rgba(255,255,255,.4)', fontWeight: 500 }}>Malaysia Market · Trip.com</div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 24, width: '100%', maxWidth: 1100, padding: '0 16px', flex: 1, justifyContent: 'center' }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-end', minWidth: 180 }}>
+              {leftAnns.map((a, i) => <AnnotationCard key={i} {...a} delay={.08 + i * .1} />)}
+            </div>
+            <PhoneFrame scale={phoneScale}>
+              {screen === 'name-entry' && <NameEntryScreen onContinue={() => setScreen('verification')} accent={accent} />}
+              {screen === 'verification' && <VerificationScreen onBack={() => setScreen('name-entry')} onConfirm={() => setScreen('success')} accent={accent} />}
+              {screen === 'success' && <SuccessScreen onRestart={() => setScreen('cover')} accent={accent} />}
+            </PhoneFrame>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start', minWidth: 180 }}>
+              {rightAnns.map((a, i) => <AnnotationCard key={i} {...a} delay={.12 + i * .1} />)}
+            </div>
+          </div>
+          <div style={{ marginBottom: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 7, flexShrink: 0 }}>
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              {SCREENS.map((s) =>
+            <button key={s} onClick={() => setScreen(s)} style={{ width: screen === s ? 26 : 8, height: 8, borderRadius: 4, background: screen === s ? accent : 'rgba(255,255,255,.18)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all .3s ease' }} />
+            )}
+              <span style={{ fontSize: 10, color: accent, fontWeight: 600, marginLeft: 6 }}>{info.n} / 04 · {info.label}</span>
+            </div>
+            <div key={screen} style={{ fontSize: 11, color: 'rgba(255,255,255,.3)', textAlign: 'center', maxWidth: 380, lineHeight: 1.55, animation: 'fadeSlideIn .4s ease both' }}>
+              {screen === 'name-entry' && 'Improved terminology · multi-ethnic examples · smart prefix validation · MRZ scan guidance'}
+              {screen === 'verification' && 'Toggle Before / After to compare — boarding denial warning and clearer CTA added'}
+              {screen === 'success' && 'Name reminder between order placement and ticket issuance — critical free-correction window'}
+            </div>
+          </div>
+        </div>
+      }
+      {showTweaks && <TweaksPanel tweaks={tweaks} onUpdate={updateTweaks} onClose={() => setShowTweaks(false)} />}
+    </div>);
+
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
