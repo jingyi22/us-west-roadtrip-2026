@@ -160,7 +160,7 @@ function PlanningScreen({ onContinue, accent }) {
       </div>
       <div style={{ background: '#E5E7EB', height: 3, flexShrink: 0 }}><div style={{ background: accent, height: '100%', width: stage === 'response' ? '100%' : '50%', borderRadius: '0 2px 2px 0', transition: 'width .5s ease' }} /></div>
 
-      <div className="scroll" style={{ flex: 1, padding: 14 }}>
+      <div className="scroll" style={{ flex: 1, padding: '14px 14px 120px' }}>
         {/* Before/After Toggle */}
         <div style={{ display: 'flex', background: '#F0F0F0', borderRadius: 10, padding: 3, marginBottom: 12 }}>
           {[['before', '✗ Before'], ['after', '✦ After']].map(([k, l]) =>
@@ -200,9 +200,14 @@ function PlanningScreen({ onContinue, accent }) {
             {/* Query input */}
             <div style={{ background: 'white', borderRadius: 14, padding: 16, boxShadow: '0 1px 4px rgba(0,0,0,.06)', marginBottom: 10 }}>
               <div style={{ fontSize: 12, fontWeight: 600, color: '#374151', marginBottom: 8 }}>Describe your trip</div>
-              <div style={{ display: 'flex', gap: 8 }}>
-                <input value={query} onChange={e => setQuery(e.target.value)} onKeyDown={e => e.key === 'Enter' && handleAskAI()} placeholder="e.g. Muslim family, 2 adults 2 kids, Kyoto 3 days June..." style={{ flex: 1, padding: '10px 12px', borderRadius: 10, border: '1.5px solid ' + accent, fontSize: 13, outline: 'none', fontFamily: 'Inter,sans-serif', color: '#111827', background: '#FAFBFF' }} />
+              <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+                <input value={query} onChange={e => setQuery(e.target.value)} onKeyDown={e => e.key === 'Enter' && handleAskAI()} placeholder="Type your trip details or tap a template below..." style={{ flex: 1, padding: '10px 12px', borderRadius: 10, border: '1.5px solid ' + accent, fontSize: 13, outline: 'none', fontFamily: 'Inter,sans-serif', color: '#111827', background: '#FAFBFF' }} />
                 <button onClick={handleAskAI} disabled={stage !== 'input'} style={{ padding: '10px 16px', borderRadius: 10, border: 'none', background: stage === 'input' ? accent : '#C7D9FF', color: 'white', fontSize: 13, fontWeight: 600, cursor: stage === 'input' ? 'pointer' : 'default', transition: 'all .3s' }}>Ask AI</button>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                <button onClick={() => { setQuery('Muslim family, 2 adults 2 kids, Kyoto 3 days June, halal food'); setStage('input'); setDetected(null); }} style={{ padding: '5px 10px', borderRadius: 8, border: '1.5px solid ' + accent, background: 'rgba(27,110,253,.06)', color: accent, fontSize: 11, fontWeight: 500, cursor: 'pointer' }}>🕌 Muslim family</button>
+                <button onClick={() => { setQuery('Business trip, Shanghai 2 days, tight schedule, prefer central hotel'); setStage('input'); setDetected(null); }} style={{ padding: '5px 10px', borderRadius: 8, border: '1.5px solid #E5E7EB', background: 'white', color: '#6B7280', fontSize: 11, fontWeight: 500, cursor: 'pointer' }}>💼 Business trip</button>
+                <button onClick={() => { setQuery('Honeymoon couple, Paris 5 days, romantic, fine dining'); setStage('input'); setDetected(null); }} style={{ padding: '5px 10px', borderRadius: 8, border: '1.5px solid #E5E7EB', background: 'white', color: '#6B7280', fontSize: 11, fontWeight: 500, cursor: 'pointer' }}>💑 Honeymoon</button>
               </div>
             </div>
 
@@ -309,7 +314,7 @@ function HotelScreen({ onBack, onContinue, accent }) {
       </div>
       <div style={{ background: '#E5E7EB', height: 3, flexShrink: 0 }}><div style={{ background: accent, height: '100%', width: '100%', borderRadius: '0 2px 2px 0' }} /></div>
 
-      <div className="scroll" style={{ flex: 1, padding: 14 }}>
+      <div className="scroll" style={{ flex: 1, padding: '14px 14px 120px' }}>
         {/* Before/After Toggle */}
         <div style={{ display: 'flex', background: '#F0F0F0', borderRadius: 10, padding: 3, marginBottom: 12 }}>
           {[['before', '✗ Before'], ['after', '✦ After']].map(([k, l]) =>
@@ -392,7 +397,7 @@ function HotelScreen({ onBack, onContinue, accent }) {
 
 
 // ─── ServiceScreen ─────────────────────────────────────────────────────────
-function ServiceScreen({ onBack, accent }) {
+function ServiceScreen({ onBack, onRestart, accent }) {
   const [view, setView] = useState('after');
   const [selectedAction, setSelectedAction] = useState(null);
   const [actionStage, setActionStage] = useState('idle'); // idle -> processing -> done
@@ -421,7 +426,7 @@ function ServiceScreen({ onBack, accent }) {
       </div>
       <div style={{ background: '#E5E7EB', height: 3, flexShrink: 0 }}><div style={{ background: accent, height: '100%', width: '100%', borderRadius: '0 2px 2px 0' }} /></div>
 
-      <div className="scroll" style={{ flex: 1, padding: 14 }}>
+      <div className="scroll" style={{ flex: 1, padding: '14px 14px 120px' }}>
         {/* Before/After Toggle */}
         <div style={{ display: 'flex', background: '#F0F0F0', borderRadius: 10, padding: 3, marginBottom: 12 }}>
           {[['before', '✗ Before'], ['after', '✦ After']].map(([k, l]) =>
@@ -505,9 +510,20 @@ function ServiceScreen({ onBack, accent }) {
       </div>
 
       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent,white 28%)', padding: '20px 14px 18px', flexShrink: 0 }}>
-        <button onClick={onBack} style={{ width: '100%', padding: '15px', borderRadius: 14, border: 'none', background: '#6B7280', color: 'white', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
-          ← Back to Hotels
-        </button>
+        {actionStage === 'done' && (
+          <button onClick={onBack} style={{ width: '100%', padding: '15px', borderRadius: 14, border: 'none', background: accent, color: 'white', fontSize: 14, fontWeight: 700, cursor: 'pointer', boxShadow: '0 4px 20px ' + accent + '55', animation: 'confirmPulse 2s ease-in-out infinite', marginBottom: 8 }}>
+            ← Back to Hotels
+          </button>
+        )}
+        {actionStage === 'done' ? (
+          <button onClick={onRestart} style={{ width: '100%', padding: '15px', borderRadius: 14, border: 'none', background: 'white', color: '#374151', fontSize: 14, fontWeight: 600, cursor: 'pointer', border: '1.5px solid #E5E7EB' }}>
+            ↩ Restart Demo
+          </button>
+         : (
+          <button onClick={onBack} style={{ width: '100%', padding: '15px', borderRadius: 14, border: 'none', background: '#6B7280', color: 'white', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
+            ← Back to Hotels
+          </button>
+        )}
       </div>
     </div>);
 }
@@ -667,7 +683,7 @@ function App() {
             <PhoneFrame scale={phoneScale}>
               {screen === 'planning' && <PlanningScreen onContinue={() => setScreen('hotels')} accent={accent} />}
               {screen === 'hotels' && <HotelScreen onBack={() => setScreen('planning')} onContinue={() => setScreen('service')} accent={accent} />}
-              {screen === 'service' && <ServiceScreen onBack={() => setScreen('hotels')} accent={accent} />}
+              {screen === 'service' && <ServiceScreen onBack={() => setScreen('hotels')} onRestart={() => { setScreen('cover'); }} accent={accent} />}
             </PhoneFrame>
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start', minWidth: 180 }}>
               {rightAnns.map((a, i) => <AnnotationCard key={i} {...a} delay={.12 + i * .1} />)}
