@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trip.com AI Chatbot Feedback</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+:root{--primary:#FF6600;--primary-light:#FF8533;--primary-pale:#FFF3EC;--bg:#F4F5F8;--card:#FFFFFF;--text:#1A1A2E;--text-sec:#6B7280;--border:#E5E7EB;--success:#00C853;--shadow:0 4px 24px rgba(0,0,0,0.08);--shadow-lg:0 8px 40px rgba(0,0,0,0.12);--radius:16px;--radius-sm:10px;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter','PingFang SC','Microsoft YaHei',sans-serif;background:#D8D9DC;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+.frame{width:390px;min-height:680px;max-height:844px;background:var(--card);border-radius:44px;box-shadow:var(--shadow-lg);overflow:hidden;position:relative;display:flex;flex-direction:column;}
+.island{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:124px;height:36px;background:#000;border-radius:20px;z-index:10;}
+.statusbar{display:flex;align-items:center;justify-content:space-between;padding:14px 24px 6px;font-size:14px;font-weight:600;color:var(--text);flex-shrink:0;}
+.scroller{flex:1;overflow-y:auto;overflow-x:hidden;position:relative;}
+.scr{position:absolute;inset:0;display:flex;flex-direction:column;transition:opacity .35s ease,transform .35s ease;}
+.scr.hidden{opacity:0;pointer-events:none;transform:translateY(14px);}
+.ihead{background:linear-gradient(135deg,#FF6600,#FF8533);padding:32px 24px 36px;color:#fff;}
+.ibadge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.2);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;letter-spacing:.05em;margin-bottom:14px;}
+.ihead h1{font-family:'Poppins',sans-serif;font-size:20px;font-weight:700;line-height:1.35;margin-bottom:8px;}
+.ihead p{font-size:12.5px;opacity:.9;line-height:1.5;}
+.ibody{padding:20px;flex:1;}
+.ilabel{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--primary);text-transform:uppercase;margin-bottom:10px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+.chip{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:11px;color:var(--text-sec);font-weight:500;}
+.chip.hi{background:var(--primary-pale);border-color:var(--primary-light);color:var(--primary);}
+.fgrid{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.fcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;display:flex;gap:12px;align-items:flex-start;}
+.ficon{width:36px;height:36px;border-radius:10px;background:var(--primary-pale);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.ftext h3{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;}
+.ftext p{font-size:11.5px;color:var(--text-sec);line-height:1.45;}
+.ctabtn{width:100%;background:linear-gradient(135deg,#FF6600,#FF8533);color:#fff;border:none;border-radius:14px;padding:16px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:600;cursor:pointer;box-shadow:0 4px 16px rgba(255,102,0,.3);}
+.ctabtn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,102,0,.4);}
+.ctabtn:active{transform:scale(.98);}
+.c_head{background:var(--card);padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.c_ava{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#FF6600,#FF8533);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;}
+.c_hinfo h2{font-size:15px;font-weight:600;color:var(--text);}
+.c_hinfo p{font-size:11px;color:var(--success);font-weight:500;}
+.c_badge{margin-left:auto;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:20px;padding:4px 10px;font-size:11px;color:#16A34A;font-weight:500;}
+.c_body{flex:1;padding:20px 16px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;}
+.brow{display:flex;gap:8px;align-items:flex-end;}
+.brow.u{flex-direction:row-reverse;}
+.bava{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;}
+.bava.ai{background:linear-gradient(135deg,#FF6600,#FF8533);color:#fff;}
+.bava.uu{background:#E5E7EB;color:var(--text-sec);}
+.bubble{max-width:75%;padding:11px 14px;border-radius:16px;font-size:13.5px;line-height:1.5;color:var(--text);animation:bIn .3s ease;}
+@keyframes bIn{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.bubble.ai{background:#F3F4F6;border-bottom-left-radius:4px;}
+.bubble.uu{background:var(--primary);color:#fff;border-bottom-right-radius:4px;}
+.icard{margin:6px 0;background:var(--card);border:1.5px solid var(--primary-light);border-left:4px solid var(--primary);border-radius:var(--radius-sm);padding:16px;animation:cSlide .4s ease;}
+@keyframes cSlide{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.ilbl{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--primary);text-transform:uppercase;margin-bottom:8px;}
+.iscript{font-size:13px;color:var(--text);line-height:1.6;margin-bottom:14px;font-style:italic;}
+.iact{display:flex;gap:8px;}
+.ibtn{flex:1;padding:10px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.ibtn.p{background:var(--primary);color:#fff;}
+.ibtn.p:hover{background:#E65500;}
+.ibtn.g{background:var(--bg);color:var(--text-sec);border:1px solid var(--border);}
+.ibtn.g:hover{background:#EBEBEB;}
+.ibtn:active{transform:scale(.97);}
+.chhead{background:var(--card);padding:20px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.chhead h2{font-size:17px;font-weight:700;color:var(--text);font-family:'Poppins',sans-serif;margin-bottom:4px;}
+.chhead p{font-size:12px;color:var(--text-sec);}
+.chbody{padding:20px 16px;display:flex;flex-direction:column;gap:14px;}
+.ccard{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);padding:20px;cursor:pointer;transition:all .2s;animation:fUp .3s ease both;}
+.ccard:nth-child(2){animation-delay:.1s}
+@keyframes fUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.ccard:hover{border-color:var(--primary-light);box-shadow:var(--shadow);transform:translateY(-1px);}
+.ccard.sel{border-color:var(--primary);background:var(--primary-pale);}
+.ci{font-size:30px;margin-bottom:10px;}
+.ccard h3{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;font-family:'Poppins',sans-serif;}
+.ccard p{font-size:12.5px;color:var(--text-sec);line-height:1.5;margin-bottom:14px;}
+.cdet{display:flex;gap:8px;flex-wrap:wrap;}
+.mtag{background:var(--bg);border-radius:8px;padding:4px 10px;font-size:11px;color:var(--text-sec);border:1px solid var(--border);}
+.ccard.sel .mtag{background:#fff;border-color:var(--primary-light);color:var(--primary);}
+.thumbs{display:flex;gap:10px;margin-bottom:10px;}
+.tbtn{width:52px;height:52px;border-radius:50%;border:2px solid var(--border);background:var(--card);font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.tbtn:hover{border-color:var(--primary-light);transform:scale(1.08);}
+.tbtn:active{transform:scale(.95);}
+.tbtn.pos.sel{background:#F0FDF4;border-color:#22C55E;}
+.tbtn.neg.sel{background:#FEF2F2;border-color:#EF4444;}
+.cbtn{width:100%;background:var(--primary);color:#fff;border:none;border-radius:12px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .15s;margin-top:4px;}
+.cbtn:hover{background:#E65500;}
+.cbtn:disabled{background:#D1D5DB;cursor:not-allowed;}
+.cbtn:active{transform:scale(.98);}
+.surhead{background:var(--card);padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.bkb{background:none;border:none;font-size:18px;cursor:pointer;color:var(--text-sec);padding:4px;border-radius:8px;display:flex;align-items:center;}
+.bkb:hover{background:var(--bg);}
+.surhead h2{font-size:15px;font-weight:700;color:var(--text);font-family:'Poppins',sans-serif;flex:1;}
+.pdots{display:flex;gap:5px;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all .3s;}
+.dot.act{background:var(--primary);width:20px;border-radius:4px;}
+.dot.done{background:var(--success);}
+.surbody{padding:20px 16px;flex:1;overflow-y:auto;}
+.sq{margin-bottom:24px;}
+.sq label{font-size:12px;font-weight:600;color:var(--text-sec);display:block;margin-bottom:12px;}
+.emoji-row{display:flex;justify-content:space-between;padding:0 4px;}
+.emoji-btn{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:8px;border-radius:12px;border:2px solid transparent;transition:all .15s;}
+.emoji-btn:hover{background:var(--primary-pale);}
+.emoji-btn.sel{border-color:var(--primary);background:var(--primary-pale);}
+.emoji-btn span{font-size:28px;}
+.emoji-btn small{font-size:10px;color:var(--text-sec);font-weight:500;}
+.emoji-btn.sel small{color:var(--primary);}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;}
+.rtag{padding:8px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--card);font-size:12px;color:var(--text-sec);cursor:pointer;transition:all .15s;font-weight:500;}
+.rtag:hover{border-color:var(--primary-light);color:var(--primary);}
+.rtag.sel{background:var(--primary-pale);border-color:var(--primary);color:var(--primary);}
+.ta{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:12px;font-size:13px;font-family:'Inter',sans-serif;color:var(--text);resize:none;outline:none;min-height:90px;}
+.ta:focus{border-color:var(--primary);}
+.skip-link{text-align:center;margin-top:10px;}
+.skip-link button{background:none;border:none;color:var(--text-sec);font-size:12px;cursor:pointer;text-decoration:underline;}
+.snext{width:100%;background:var(--primary);color:#fff;border:none;border-radius:12px;padding:14px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .15s;margin-top:6px;}
+.snext:hover{background:#E65500;}
+.snext:disabled{background:#D1D5DB;cursor:not-allowed;}
+.snext:active{transform:scale(.98);}
+.tybody{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:40px 24px;text-align:center;animation:fUp .4s ease;}
+.tyicon{width:80px;height:80px;border-radius:50%;background:#F0FDF4;border:3px solid #22C55E;display:flex;align-items:center;justify-content:center;font-size:40px;margin-bottom:20px;animation:popIn .5s cubic-bezier(.34,1.56,.64,1) both;}
+@keyframes popIn{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+.tybody h2{font-family:'Poppins',sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:8px;}
+.tybody p{font-size:13.5px;color:var(--text-sec);line-height:1.6;margin-bottom:24px;max-width:280px;}
+.tycard{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:10px;margin-bottom:8px;width:100%;text-align:left;}
+.tycard.alt{background:#FFF8F0;border-color:#FFDDB0;}
+.tycard .tyico{font-size:24px;}
+.tycard p{font-size:12.5px;color:var(--text);line-height:1.4;flex:1;}
+.tycard strong{display:block;font-size:13px;margin-bottom:2px;}
+.restart{background:none;border:1.5px solid var(--primary);color:var(--primary);border-radius:12px;padding:12px 28px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .15s;margin-top:20px;}
+.restart:hover{background:var(--primary-pale);}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+
+const {useState}=React;
+
+function IntroPage({onStart}){
+  const competitors=[
+    {n:'Trip.com',hi:true},{n:'Agoda'},{n:'Expedia'},{n:'Airbnb'},
+    {n:'British Airways'},{n:'Singapore Airlines'},{n:'Cathay Pacific'},
+    {n:'United Airlines'},{n:'Lufthansa'},{n:'Hilton'},{n:'Amazon'}
+  ];
+  return React.createElement('div',{className:'scr active'},
+    React.createElement('div',{className:'ihead'},
+      React.createElement('div',{className:'ibadge'},'IBU CSC UXA · Research Report'),
+      React.createElement('h1',null,'AI Chatbot Feedback Mechanism'),
+      React.createElement('p',null,'Trip.com and Competitors Comparison Analysis \u2014 July 2025')
+    ),
+    React.createElement('div',{className:'ibody'},
+      React.createElement('div',{className:'ilabel'},'Platforms Covered'),
+      React.createElement('div',{className:'chips'},
+        competitors.map(c=>React.createElement('span',{key:c.n,className:'chip'+(c.hi?' hi':'')},c.n))
+      ),
+      React.createElement('div',{className:'ilabel'},'Key Findings'),
+      React.createElement('div',{className:'fgrid'},
+        React.createElement('div',{className:'fcard'},
+          React.createElement('div',{className:'ficon'},'\u23f0'),
+          React.createElement('div',{className:'ftext'},
+            React.createElement('h3',null,'Auto-Trigger is Most Effective'),
+            React.createElement('p',null,'Automatic trigger at conversation end yields highest feedback completion rates across all tested platforms.')
+          )
+        ),
+        React.createElement('div',{className:'fcard'},
+          React.createElement('div',{className:'ficon'},'\u2705'),
+          React.createElement('div',{className:'ftext'},
+            React.createElement('h3',null,'In-Conversation UX is Best'),
+            React.createElement('p',null,'Embedding feedback in conversation provides seamless integration and higher engagement than pop-ups.')
+          )
+        ),
+        React.createElement('div',{className:'fcard'},
+          React.createElement('div',{className:'ficon'},'\u26a1'),
+          React.createElement('div',{className:'ftext'},
+            React.createElement('h3',null,'Trip.com Needs Script Optimization'),
+            React.createElement('p',null,'Trip.com lacks proactive invitation scripts. Recommended: add scripts before human transfer and at session end.')
+          )
+        )
+      ),
+      React.createElement('button',{className:'ctabtn',onClick:onStart},'Start Interactive Demo \u2192')
+    )
+  );
+}
+
+function ChatEndPage({onAcceptDetailed,onSkip}){
+  return React.createElement('div',{className:'scr active'},
+    React.createElement('div',{className:'c_head'},
+      React.createElement('div',{className:'c_ava'},'T'),
+      React.createElement('div',{className:'c_hinfo'},
+        React.createElement('h2',null,'Trip.com AI Assistant'),
+        React.createElement('p',null,'Online')
+      ),
+      React.createElement('div',{className:'c_badge'},'Session ended')
+    ),
+    React.createElement('div',{className:'c_body'},
+      React.createElement('div',{className:'brow'},
+        React.createElement('div',{className:'bava ai'},'T'),
+        React.createElement('div',{className:'bubble ai'},'Your booking for Tokyo (Jun 15\u2013Jun 22) has been confirmed. You will receive a confirmation email shortly.')
+      ),
+      React.createElement('div',{className:'brow u'},
+        React.createElement('div',{className:'bava uu'},'U'),
+        React.createElement('div',{className:'bubble uu'},'Thank you! Can I get a window seat reminder?')
+      ),
+      React.createElement('div',{className:'brow'},
+        React.createElement('div',{className:'bava ai'},'T'),
+        React.createElement('div',{className:'bubble ai'},'Done! A window seat reminder has been added to your trip. Is there anything else I can help you with?')
+      ),
+      React.createElement('div',{className:'brow'},
+        React.createElement('div',{className:'bava ai'},'T'),
+        React.createElement('div',{className:'bubble ai'},'Glad I could help! Have a wonderful trip to Tokyo! \ud83c\uddef\ud83c\uddf5')
+      ),
+      React.createElement('div',{className:'icard'},
+        React.createElement('div',{className:'ilbl'},
+          React.createElement('span',null,'\u2709\ufe0f'),' Feedback Invitation \u2014 Auto-Trigger'
+        ),
+        React.createElement('div',{className:'iscript'},'"To better assist our customers, your feedback is greatly valued. Would you like to share your experience with our AI assistant?"'),
+        React.createElement('div',{className:'iact'},
+          React.createElement('button',{className:'ibtn p',onClick:onAcceptDetailed},'\ud83d\udc4d / \ud83d\udc4e Take Survey'),
+          React.createElement('button',{className:'ibtn g',onClick:onSkip},'Skip')
+        )
+      )
+    )
+  );
+}
+
+function ChoicePage({onSelectQuick,onSelectDetailed,quickThumb,setQuickThumb}){
+  return React.createElement('div',{className:'scr active'},
+    React.createElement('div',{className:'chhead'},
+      React.createElement('h2',null,'How would you rate your experience?'),
+      React.createElement('p',null,'Choose how detailed you want to be')
+    ),
+    React.createElement('div',{className:'chbody'},
+      React.createElement('div',{className:'ccard sel',onClick:onSelectDetailed},
+        React.createElement('div',{className:'ci'},'\ud83d\udc4d'),
+        React.createElement('h3',null,'Detailed Feedback'),
+        React.createElement('p',null,'3 quick questions to help us improve our AI assistant. Takes about 20 seconds.'),
+        React.createElement('div',{className:'cdet'},
+          React.createElement('span',{className:'mtag'},'\ud83c\udf1f Satisfaction rating'),
+          React.createElement('span',{className:'mtag'},'\ud83d\udcc4 Reason selection'),
+          React.createElement('span',{className:'mtag'},'\ud83d\udcad Optional comments')
+        )
+      ),
+      React.createElement('div',{className:'ccard',onClick:onSelectQuick},
+        React.createElement('div',{className:'ci'},'\u26a1'),
+        React.createElement('h3',null,'Quick Feedback'),
+        React.createElement('p',null,'A simple thumbs up or down with an optional reason.'),
+        React.createElement('div',{className:'thumbs'},
+          React.createElement('button',{className:'tbtn pos'+(quickThumb==='up'?' sel':''),onClick:(e)=>{e.stopPropagation();setQuickThumb('up')}},'\ud83d\udc4d'),
+          React.createElement('button',{className:'tbtn neg'+(quickThumb==='down'?' sel':''),onClick:(e)=>{e.stopPropagation();setQuickThumb('down')}},'\ud83d\udc4e')
+        ),
+        React.createElement('div',{className:'cdet'},
+          React.createElement('span',{className:'mtag'},'Instant'),
+          React.createElement('span',{className:'mtag'},'Optional reason')
+        )
+      )
+    )
+  );
+}
+
+const EMOJIS=[{v:1,s:'\ud83d\ude1e',l:'Very Poor'},{v:2,s:'\ud83d\ude14',l:'Poor'},{v:3,s:'\ud83d\ude10',l:'Fair'},{v:4,s:'\ud83d\ude42',l:'Good'},{v:5,s:'\ud83d\ude0d',l:'Excellent'}];
+const REASONS=['Issue resolved quickly','Helpful response','Clear explanation','Friendly AI assistant','Fast response time','Others'];
+
+function SurveyPage({onBack,onComplete}){
+  const [step,setStep]=useState(1);
+  const [rating,setRating]=useState(null);
+  const [reason,setReason]=useState('');
+  const [comment,setComment]=useState('');
+  return React.createElement('div',{className:'scr active'},
+    React.createElement('div',{className:'surhead'},
+      React.createElement('button',{className:'bkb',onClick:onBack},'\u2190'),
+      React.createElement('h2',null,step===1?'Rate your experience':step===2?'Select a reason':'Additional feedback'),
+      React.createElement('div',{className:'pdots'},
+        [1,2,3].map(i=>React.createElement('div',{key:i,className:'dot'+(i<step?' done':i===step?' act':'')}))
+      )
+    ),
+    React.createElement('div',{className:'surbody'},
+      step===1&&React.createElement('div',{className:'sq'},
+        React.createElement('label',null,'How would you rate your experience with the Trip.com AI Assistant?'),
+        React.createElement('div',{className:'emoji-row'},
+          EMOJIS.map(e=>React.createElement('div',{key:e.v,className:'emoji-btn'+(rating===e.v?' sel':''),onClick:()=>setRating(e.v)},
+            React.createElement('span',null,e.s),
+            React.createElement('small',null,e.l)
+          ))
+        ),
+        React.createElement('button',{className:'snext',disabled:!rating,onClick:()=>setStep(2)},'Continue \u2192')
+      ),
+      step===2&&React.createElement('div',{className:'sq'},
+        React.createElement('label',null,'What is the main reason for your rating?'),
+        React.createElement('div',{className:'tag-row'},
+          REASONS.map(r=>React.createElement('div',{key:r,className:'rtag'+(reason===r?' sel':''),onClick:()=>setReason(r)},r))
+        ),
+        React.createElement('button',{className:'snext',disabled:!reason,onClick:()=>setStep(3)},'Continue \u2192')
+      ),
+      step===3&&React.createElement('div',{className:'sq'},
+        React.createElement('label',null,'Any other feedback? (Optional)'),
+        React.createElement('textarea',{className:'ta',placeholder:'Share more thoughts to help us improve...',value:comment,onChange:e=>setComment(e.target.value)}),
+        React.createElement('button',{className:'snext',onClick:()=>{const d={rating,reason,comment};onComplete(d);}},'Submit Feedback')
+      )
+    )
+  );
+}
+
+function ThankYouPage({rating,reason,onRestart,isNeg}){
+  // isNeg passed as prop
+  return React.createElement('div',{className:'scr active'},
+    React.createElement('div',{className:'tybody'},
+      React.createElement('div',{className:'tyicon'},'\u2713'),
+      React.createElement('h2',null,'Thank You!'),
+      React.createElement('p',null,'Your feedback helps us improve the Trip.com AI Assistant for everyone.'),
+      isNeg
+        ?React.createElement('div',{className:'tycard alt'},
+            React.createElement('span',{className:'tyico'},'\ud83d\udd04'),
+            React.createElement('p',React.createElement('strong',null,'Issue flagged for follow-up'),'We have noted your concern and our team will review this interaction to better assist you next time.')
+          )
+        :React.createElement('div',{className:'tycard'},
+            React.createElement('span',{className:'tyico'},'\ud83c\udf1f'),
+            React.createElement('p',React.createElement('strong',null,'Feedback recorded'),'Your '+(reason||'rating')+' has been logged and will help improve future AI interactions.')
+          ),
+      React.createElement('button',{className:'restart',onClick:onRestart},'Experience Again')
+    )
+  );
+}
+
+function QuickThankYouPage({thumb,onRestart}){
+  return React.createElement('div',{className:'scr active'},
+    React.createElement('div',{className:'tybody'},
+      React.createElement('div',{className:'tyicon'},thumb==='up'?'\ud83d\udc4d':'\ud83d\udc4e'),
+      React.createElement('h2',null,thumb==='up'?'Thanks for the thumbs up!' : 'We appreciate your feedback'),
+      React.createElement('p',null,thumb==='up'?'Glad we could help! Your positive feedback motivates our team.' : 'We will work to improve your experience next time.'),
+      React.createElement('button',{className:'restart',onClick:onRestart},'Experience Again')
+    )
+  );
+}
+
+function App(){
+  const [screen,setScreen]=useState('intro');
+  const [quickThumb,setQuickThumb]=useState(null);
+  const [surveyData,setSurveyData]=useState({});
+  const go=s=>{setScreen(s);window.scrollTo&&window.scrollTo({top:0,behavior:'smooth'});};
+  return React.createElement('div',{className:'frame'},
+    React.createElement('div',{className:'island'}),
+    React.createElement('div',{className:'statusbar'},
+      React.createElement('span',{className:'t'},'9:41'),
+      React.createElement('div',{style:{display:'flex',gap:'5px',alignItems:'center'}},
+        React.createElement('svg',{width:'16',height:'16',viewBox:'0 0 24 24',fill:'currentColor'},
+          React.createElement('path',{d:'M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z'})),
+        React.createElement('svg',{width:'16',height:'16',viewBox:'0 0 24 24',fill:'currentColor'},
+          React.createElement('path',{d:'M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z'}))
+      )
+    ),
+    React.createElement('div',{className:'scroller'},
+      screen==='intro'&&React.createElement(IntroPage,{onStart:()=>go('chat-end')}),
+      screen==='chat-end'&&React.createElement(ChatEndPage,{onAcceptDetailed:()=>go('survey'),onSkip:()=>go('quick-end')}),
+      screen==='choice'&&React.createElement(ChoicePage,{onSelectQuick:()=>go('quick-end'),onSelectDetailed:()=>go('survey'),quickThumb:quickThumb,setQuickThumb:setQuickThumb}),
+      screen==='survey'&&React.createElement(SurveyPage,{onBack:()=>go('chat-end'),onComplete:(d)=>{setSurveyData(d);go('thank-you')}}),
+      screen==='quick-end'&&React.createElement(QuickThankYouPage,{thumb:quickThumb,onRestart:()=>go('intro')}),
+      screen==='thank-you'&&React.createElement(ThankYouPage,{rating:surveyData.rating||3,reason:surveyData.reason,onRestart:()=>go('intro'),isNeg:(surveyData.rating||3)<=2})
+    )
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
+
+</script>
+</body>
+</html>
