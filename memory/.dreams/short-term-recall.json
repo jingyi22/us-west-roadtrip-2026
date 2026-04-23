@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-20T23:43:07.007Z",
+  "updatedAt": "2026-04-22T23:38:59.553Z",
   "entries": {
     "memory:memory/2026-04-18.md:1:22": {
       "key": "memory:memory/2026-04-18.md:1:22",
@@ -294,6 +294,99 @@
         "lax",
         "tijuana",
         "santa"
+      ]
+    },
+    "memory:memory/2026-04-19.md:410:434": {
+      "key": "memory:memory/2026-04-19.md:410:434",
+      "path": "memory/2026-04-19.md",
+      "startLine": 410,
+      "endLine": 434,
+      "source": "memory",
+      "snippet": "- Part 3: 2025年4月贸易战TikTok现象 - Part 4: 6大钩子类型详细拆解 - Part 5: 基于真实数据的40条钩子文案库 - Part 6: 视频脚本框架 - Part 7: 7天内容日历 **输出文件**: `/Users/jingyilu/.openclaw/workspace/TikTok_B2B_Watch_Research_Report.docx` (40KB) **文档发送**: 通过飞书发送给用户 ### 工具使用问题记录 **write 工具问题**: - write 工具需要同时提供 `content` 和 `path` 参数 - 之前一直报错 \"path: must have required property 'path'\" - 解决方案：使用 `exec(command=\"python3 -c \\\\\\\"content\\\\\\\" > /tmp/file.py\")` 或 base64 编码 **exec 工具限制**: - heredoc 语法会被拦截：\"complex interpreter invocation detected\" - 需要用 base64 编码大段内容 ### Feishu 文档发送 - 使用飞书开放平台发送文档 - 文件路径: `/Users/jingyilu/.openclaw/workspace/TikTok_B2B_Watch_Research_Report.docx`",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7824174786049729,
+      "maxScore": 0.7824174786049729,
+      "firstRecalledAt": "2026-04-22T23:38:59.553Z",
+      "lastRecalledAt": "2026-04-22T23:38:59.553Z",
+      "queryHashes": [
+        "d08f84c7c2f2"
+      ],
+      "recallDays": [
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "users/jingyilu",
+        "tmp/file.py",
+        "贸易",
+        "tiktok",
+        "现象",
+        "钩子",
+        "类型",
+        "详细"
+      ]
+    },
+    "memory:memory/2026-04-18.md:136:152": {
+      "key": "memory:memory/2026-04-18.md:136:152",
+      "path": "memory/2026-04-18.md",
+      "startLine": 136,
+      "endLine": 152,
+      "source": "memory",
+      "snippet": "- Day 11: Getty Center, The Grove ### GitHub Issues Encountered - GitHub connectivity issues (timeouts) prevented pushes at times - GitHub token authentication failed with \"Device not configured\" error - Eventually pushed successfully via gh cli ### Files - **HTML**: `/Users/jingyilu/.openclaw/workspace/roadtrip-usa-2026.html` - **GitHub**: https://github.com/jingyi22/us-west-roadtrip-2026 - **Published URL**: https://jingyi22.github.io/us-west-roadtrip-2026/ - **Sokolov Report**: `/Users/jingyilu/.openclaw/workspace/Sokolov_Sokolov手表俄罗斯电商评论深度分析报告_2024-2025.docx` ### Pending - None at this time — all user requests completed",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.735483563656232,
+      "maxScore": 0.735483563656232,
+      "firstRecalledAt": "2026-04-22T23:38:59.553Z",
+      "lastRecalledAt": "2026-04-22T23:38:59.553Z",
+      "queryHashes": [
+        "d08f84c7c2f2"
+      ],
+      "recallDays": [
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "users/jingyilu",
+        "day",
+        "getty",
+        "center",
+        "the",
+        "grove",
+        "github",
+        "issues"
+      ]
+    },
+    "memory:memory/2026-04-19.md:387:417": {
+      "key": "memory:memory/2026-04-19.md:387:417",
+      "path": "memory/2026-04-19.md",
+      "startLine": 387,
+      "endLine": 417,
+      "source": "memory",
+      "snippet": "| @milliotandco | 34万 | 工厂+品牌 | 工厂生产流程+设计理念 | | @clean.factory | 2.5万 | 复刻表对比 | \"VS Factory vs Branded\" | | @powertimewatch1 | 1万 | 复刻表评测 | 开箱评测 | | @zf.factory | 2.5万 | 工厂展示 | 产品展示 | **贸易战TikTok大背景**: - #ChinaTiktok: 9.37亿次播放 - #TradeWarTikTok: 1.14亿次播放 - DHgate 冲上 App Store #2 - 深圳工厂视频：单条700+询盘 - 义乌工厂：单条100万+人民币销售 **6种真实钩子类型（从爆款账号提炼）**: 1. 成本揭秘型 - \"This watch costs $3,000 at the store — factory makes it for $200\" 2. 揭秘/曝光型 - \"Most luxury watches are assembled in China\" 3. VS对比型 - \"VS Factory vs Branded — can you spot the difference?\" 4. 工厂实拍型 - \"Hello boss, welcome to our watch factory\" 5. 痛点解决型 - \"Struggling to find a reliable watch supplier?\" 6. 数据背书型 - \"50,000 watches monthly, 99.5% q",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.6921955889865944,
+      "maxScore": 0.6921955889865944,
+      "firstRecalledAt": "2026-04-22T23:38:59.553Z",
+      "lastRecalledAt": "2026-04-22T23:38:59.553Z",
+      "queryHashes": [
+        "d08f84c7c2f2"
+      ],
+      "recallDays": [
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "clean.factory",
+        "2.5万",
+        "zf.factory",
+        "9.37亿次播放",
+        "1.14亿次播放",
+        "揭秘/曝光型",
+        "99.5",
+        "milliotandco"
       ]
     }
   }

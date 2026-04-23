@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flight Fare Card Redesign · UX Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<template id="__bundler_thumbnail" data-bg-color="#0C0D12">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0C0D12"/>
+    <defs><pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/></pattern></defs>
+    <rect width="1200" height="800" fill="url(#grid)" opacity=".4"/>
+    <radialGradient id="glow" cx="50%" cy="45%" r="40%"><stop offset="0%" stop-color="#1B6EFD" stop-opacity=".18"/><stop offset="100%" stop-color="#1B6EFD" stop-opacity="0"/></radialGradient>
+    <rect width="1200" height="800" fill="url(#glow)"/>
+    <rect x="484" y="190" width="110" height="34" rx="8" fill="white"/>
+    <text x="539" y="213" font-family="Arial,sans-serif" font-size="16" font-weight="800" fill="#1B6EFD" text-anchor="middle">trip.com</text>
+    <text x="600" y="296" font-family="Arial,sans-serif" font-size="50" font-weight="800" fill="white" text-anchor="middle">Flight Fare Card</text>
+    <text x="600" y="358" font-family="Arial,sans-serif" font-size="50" font-weight="800" fill="#1B6EFD" text-anchor="middle">Redesign</text>
+    <rect x="240" y="400" width="720" height="70" rx="16" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+    <text x="340" y="441" font-family="Arial,sans-serif" font-size="22" font-weight="800" fill="white" text-anchor="middle">85%+</text>
+    <text x="340" y="460" font-family="Arial,sans-serif" font-size="10" fill="rgba(255,255,255,.4)" text-anchor="middle">Cart Abandon</text>
+    <text x="600" y="441" font-family="Arial,sans-serif" font-size="22" font-weight="800" fill="white" text-anchor="middle">3 Variants</text>
+    <text x="600" y="460" font-family="Arial,sans-serif" font-size="10" fill="rgba(255,255,255,.4)" text-anchor="middle">Design Explored</text>
+    <text x="860" y="441" font-family="Arial,sans-serif" font-size="22" font-weight="800" fill="white" text-anchor="middle">4</text>
+    <text x="860" y="460" font-family="Arial,sans-serif" font-size="10" fill="rgba(255,255,255,.4)" text-anchor="middle">Competitors</text>
+    <rect x="476" y="530" width="248" height="52" rx="14" fill="#1B6EFD"/>
+    <text x="600" y="562" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="white" text-anchor="middle">Experience the Redesign →</text>
+  </svg>
+</template>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Inter',sans-serif;overflow:hidden}
+body{background:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px) 0 0/48px 48px,radial-gradient(ellipse at 50% 40%,#161825 0%,#0C0D12 100%)}
+#root{height:100vh;display:flex;align-items:center;justify-content:center}
+@keyframes fadeSlideIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{0%{transform:scale(0) rotate(-10deg);opacity:0}60%{transform:scale(1.3) rotate(3deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes confirmPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.016)}}
+@keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bounceIn{0%{transform:scale(.2);opacity:0}55%{transform:scale(1.1)}75%{transform:scale(.95)}100%{transform:scale(1);opacity:1}}
+@keyframes floatIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes variantIn{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.a-fsi{animation:fadeSlideIn .45s ease-out both}
+.a-pop{animation:popIn .6s cubic-bezier(.175,.885,.32,1.275) both}
+.a-slide-up{animation:slideUp .35s cubic-bezier(.4,0,.2,1) both}
+.a-fade{animation:fadeIn .3s ease both}
+.a-bounce{animation:bounceIn .65s cubic-bezier(.175,.885,.32,1.275) both}
+.a-vi{animation:variantIn .5s cubic-bezier(.16,1,.3,1) both}
+.scroll{overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.scroll::-webkit-scrollbar{display:none}
+.ann{background:rgba(27,110,253,.07);border:1px solid rgba(27,110,253,.18);border-radius:12px;padding:12px 14px;max-width:200px;animation:floatIn .5s ease both}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+const { useState, useEffect, useCallback } = React;
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accentColor": "#1B6EFD",
+  "showAnnotations": true
+} /*EDITMODE-END*/;
+
+// ─── SVG Icon System (anti-emoji, anti-slop) ────────────────────────────────
+const Ic = {
+  Bag: ({s=14,c='currentColor'}) => (
+    <svg width={s} height={s} viewBox="0 0 20 20" fill="none" stroke={c} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/><rect x="3" y="7" width="14" height="10" rx="2"/><path d="M3 12h14"/>
+    </svg>
+  ),
+  BagCheck: ({s=14,c='currentColor'}) => (
+    <svg width={s} height={s} viewBox="0 0 20 20" fill="none" stroke={c} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/><rect x="3" y="7" width="14" height="10" rx="2"/><path d="M7 13l2 2 4-4"/>
+    </svg>
+  ),
+  BagX: ({s=14,c='currentColor'}) => (
+    <svg width={s} height={s} viewBox="0 0 20 20" fill="none" stroke={c} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/><rect x="3" y="7" width="14" height="10" rx="2"/><path d="M8 12l4 4m0-4l-4 4"/>
+    </svg>
+  ),
+  Check: ({s=12,c='currentColor'}) => (
+    <svg width={s} height={s} viewBox="0 0 16 16" fill="none" stroke={c} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 8l3.5 3.5L13 5"/>
+    </svg>
+  ),
+  X: ({s=10,c='currentColor'}) => (
+    <svg width={s} height={s} viewBox="0 0 14 14" fill="none" stroke={c} strokeWidth="2" strokeLinecap="round">
+      <path d="M3 3l8 8M11 3L3 11"/>
+    </svg>
+  ),
+  Dollar: ({s=10,c='currentColor'}) => (
+    <svg width={s} height={s} viewBox="0 0 14 14" fill="none" stroke={c} strokeWidth="1.8" strokeLinecap="round">
+      <path d="M7 1v12M9.5 3.5H5.75A2.25 2.25 0 003.5 5.75c0 1.24 1.01 2.25 2.25 2.25h2.5A2.25 2.25 0 0110.5 10.25 2.25 2.25 0 018.25 12.5H3.5"/>
+    </svg>
+  ),
+  Shield: ({s=14,c='currentColor'}) => (
+    <svg width={s} height={s} viewBox="0 0 20 20" fill="none" stroke={c} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 2.5L3.5 5.5v4c0 3.75 2.8 6.9 6.5 7.5 3.7-.6 6.5-3.75 6.5-7.5v-4L10 2.5z"/>
+      <path d="M7 10.5l2 2 4-4"/>
+    </svg>
+  ),
+  Headphones: ({s=14,c='currentColor'}) => (
+    <svg width={s} height={s} viewBox="0 0 20 20" fill="none" stroke={c} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 15v-4a6 6 0 0112 0v4"/><rect x="3" y="14" width="3" height="4" rx="1.5"/><rect x="14" y="14" width="3" height="4" rx="1.5"/>
+    </svg>
+  ),
+  Lock: ({s=14,c='currentColor'}) => (
+    <svg width={s} height={s} viewBox="0 0 20 20" fill="none" stroke={c} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="4" y="9" width="12" height="9" rx="2"/><path d="M7.5 9V6.5a2.5 2.5 0 015 0V9"/>
+      <circle cx="10" cy="14" r="1.2" fill={c} stroke="none"/>
+    </svg>
+  ),
+  Warning: ({s=14,c='currentColor'}) => (
+    <svg width={s} height={s} viewBox="0 0 20 20" fill="none" stroke={c} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 3L2.5 17h15L10 3z"/><path d="M10 11V8"/><circle cx="10" cy="14" r=".8" fill={c} stroke="none"/>
+    </svg>
+  ),
+  Plane: ({s=14,c='currentColor'}) => (
+    <svg width={s} height={s} viewBox="0 0 20 20" fill={c}>
+      <path d="M17.5 9.5l-3-3-7.5 3-3-3L2 8.5 5 11l-1 4 1.5.5L7 12l3 1.5v3.5l1.5.5.5-4.5 5.5-3.5z"/>
+    </svg>
+  ),
+  Refresh: ({s=14,c='currentColor'}) => (
+    <svg width={s} height={s} viewBox="0 0 20 20" fill="none" stroke={c} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3.5 10a6.5 6.5 0 0011.07-4.6M16.5 10a6.5 6.5 0 01-11.07 4.6"/><path d="M3.5 6V10h4"/>
+    </svg>
+  ),
+  Star: ({s=14,c='currentColor',fill='none'}) => (
+    <svg width={s} height={s} viewBox="0 0 20 20" fill={fill} stroke={c} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 2.5l2.2 5H17l-3.9 3 1.5 5L10 13l-4.6 2.5 1.5-5L3 7.5h4.8L10 2.5z"/>
+    </svg>
+  ),
+  ChevronDown: ({s=14,c='currentColor'}) => (
+    <svg width={s} height={s} viewBox="0 0 20 20" fill="none" stroke={c} strokeWidth="2" strokeLinecap="round">
+      <path d="M5 8l5 5 5-5"/>
+    </svg>
+  ),
+  ChevronLeft: ({s=18,c='currentColor'}) => (
+    <svg width={s} height={s} viewBox="0 0 20 20" fill="none" stroke={c} strokeWidth="2" strokeLinecap="round">
+      <path d="M13 5l-5 5 5 5"/>
+    </svg>
+  ),
+};
+
+// ─── Flight data ─────────────────────────────────────────────────────────────
+const FLIGHTS = [
+  { id:'ak721', airline:'AirAsia', code:'AK', num:'721', logoColor:'#FF0000', logoText:'AK',
+    from:'KUL', to:'SIN', dep:'07:15', arr:'08:25', duration:'1h 10m',
+    stops:0, price:89, tag:'Cheapest', tagColor:'#1B6EFD',
+    baggage:'none', cancellation:false, verified:true, recommended:false },
+  { id:'mh720', airline:'Malaysia Airlines', code:'MH', num:'720', logoColor:'#003580', logoText:'MH',
+    from:'KUL', to:'SIN', dep:'10:30', arr:'11:40', duration:'1h 10m',
+    stops:0, price:134, tag:'Best Value', tagColor:'#059669',
+    baggage:'carry-on', cancellation:true, verified:true, recommended:true },
+  { id:'od901', airline:'Batik Air', code:'OD', num:'901', logoColor:'#C8922A', logoText:'OD',
+    from:'KUL', to:'SIN', dep:'14:00', arr:'17:40', duration:'3h 40m',
+    stops:1, stopCity:'KUL', layover:'2h 0m', price:76, tag:null,
+    baggage:'checked', cancellation:false, verified:true, recommended:false },
+];
+
+const FARE_FEATURES = ['Carry-on Bag','Checked Bag (20kg)','Seat Selection','Changes','Refund'];
+const FARE_TIERS = [
+  { id:'basic', name:'Basic', delta:0, values:[false,false,'fee',false,false] },
+  { id:'standard', name:'Standard', delta:28, recommended:true, values:[true,false,true,'fee',false] },
+  { id:'flex', name:'Flex', delta:65, values:[true,true,true,true,true] },
+];
+
+const SCREENS = ['cover','variants','search','fare-select','confirm'];
+
+function useLS(key,init) {
+  const [v,setV] = useState(()=>{try{const s=localStorage.getItem(key);return s?JSON.parse(s):init;}catch{return init;}});
+  const set = useCallback((x)=>{setV(x);try{localStorage.setItem(key,JSON.stringify(x));}catch{}}, [key]);
+  return [v,set];
+}
+
+// ─── StatusBar ────────────────────────────────────────────────────────────────
+function StatusBar({dark}) {
+  const c = dark ? '#fff' : '#111827';
+  return (
+    <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'14px 20px 0',height:44,position:'relative',zIndex:10,flexShrink:0}}>
+      <span style={{fontSize:15,fontWeight:600,color:c,letterSpacing:-.3}}>9:41</span>
+      <div style={{position:'absolute',left:'50%',top:6,transform:'translateX(-50%)',background:dark?'rgba(0,0,0,.6)':'#111',borderRadius:20,width:118,height:30,display:'flex',alignItems:'center',justifyContent:'center',gap:8}}>
+        <div style={{width:8,height:8,borderRadius:'50%',background:'#222'}}/><div style={{width:5,height:5,borderRadius:'50%',background:'#333'}}/>
+      </div>
+      <div style={{display:'flex',gap:5,alignItems:'center'}}>
+        <svg width="16" height="12" viewBox="0 0 16 12"><rect x="0" y="8" width="3" height="4" rx="1" fill={c}/><rect x="4.5" y="5" width="3" height="7" rx="1" fill={c}/><rect x="9" y="2" width="3" height="10" rx="1" fill={c}/><rect x="13.5" y="0" width="2.5" height="12" rx="1" fill={c} opacity=".3"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0" y="1" width="21" height="10" rx="2.5" stroke={c} strokeWidth="1.2" fill="none"/><rect x="22.5" y="4" width="2" height="4" rx="1" fill={c} opacity=".4"/><rect x="1.5" y="2.5" width="15" height="7" rx="1.5" fill={c}/></svg>
+      </div>
+    </div>
+  );
+}
+
+// ─── Airline Badge ────────────────────────────────────────────────────────────
+function AirlineBadge({flight,size=30}) {
+  return (
+    <div style={{width:size,height:size,borderRadius:size*.25,background:flight.logoColor,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+      <span style={{fontSize:size*.32,fontWeight:800,color:'white',letterSpacing:-.5}}>{flight.logoText}</span>
+    </div>
+  );
+}
+
+// ─── Stop Timeline ────────────────────────────────────────────────────────────
+function StopTimeline({flight}) {
+  const isStop = flight.stops > 0;
+  return (
+    <div style={{flex:1,display:'flex',flexDirection:'column',alignItems:'center',gap:3}}>
+      <span style={{fontSize:10,color:'#9CA3AF'}}>{flight.duration}</span>
+      <div style={{width:'100%',display:'flex',alignItems:'center'}}>
+        <div style={{width:6,height:6,borderRadius:'50%',border:'1.5px solid #CBD5E1',background:'white',flexShrink:0}}/>
+        <div style={{flex:1,height:1.5,background:isStop?'#EF4444':'#E2E8F0',position:'relative'}}>
+          {isStop && <div style={{position:'absolute',left:'50%',top:'50%',transform:'translate(-50%,-50%)',width:7,height:7,borderRadius:'50%',background:'#EF4444',border:'2px solid white'}}/>}
+        </div>
+        <div style={{width:6,height:6,borderRadius:'50%',border:'1.5px solid #CBD5E1',background:'white',flexShrink:0}}/>
+      </div>
+      <span style={{fontSize:9,fontWeight:600,color:isStop?'#EF4444':'#059669'}}>
+        {isStop ? `1 Stop · ${flight.stopCity} · ${flight.layover}` : 'Direct'}
+      </span>
+    </div>
+  );
+}
+
+// ─── Baggage Chip ─────────────────────────────────────────────────────────────
+function BaggageChip({baggage,withBag}) {
+  const cfg = {
+    none: {Icon:Ic.BagX, label:withBag?'+$25 carry-on':'No carry-on', color:'#EF4444', bg:'#FEF2F2'},
+    'carry-on': {Icon:Ic.BagCheck, label:'Carry-on incl.', color:'#059669', bg:'#ECFDF5'},
+    checked: {Icon:Ic.BagCheck, label:'Checked bag incl.', color:'#7C3AED', bg:'#F5F3FF'},
+  }[baggage];
+  return (
+    <div style={{display:'flex',alignItems:'center',gap:5,background:cfg.bg,borderRadius:6,padding:'3px 8px'}}>
+      <cfg.Icon s={12} c={cfg.color}/>
+      <span style={{fontSize:10,fontWeight:600,color:cfg.color}}>{cfg.label}</span>
+    </div>
+  );
+}
+
+// ─── BEFORE Card (current Trip.com, dense + badge-confetti) ──────────────────
+function BeforeCard({flight,accent}) {
+  return (
+    <div style={{background:'white',borderRadius:10,marginBottom:9,overflow:'hidden',border:'1px solid #F0F0F0',boxShadow:'0 1px 3px rgba(0,0,0,.07)'}}>
+      <div style={{display:'flex',gap:4,padding:'7px 10px 0',flexWrap:'wrap'}}>
+        {flight.recommended && <span style={{background:'#EEF3FF',color:accent,fontSize:8,padding:'2px 5px',borderRadius:4,fontWeight:700}}>✦ Trip.Best</span>}
+        {flight.tag==='Cheapest' && <span style={{background:'#FEF3C7',color:'#B45309',fontSize:8,padding:'2px 5px',borderRadius:4,fontWeight:700}}>⚡ Flash Deal</span>}
+        {flight.tag && <span style={{background:'#F3F4F6',color:'#6B7280',fontSize:8,padding:'2px 5px',borderRadius:4}}>{flight.tag}</span>}
+        <span style={{background:'#F3F4F6',color:'#9CA3AF',fontSize:8,padding:'2px 5px',borderRadius:4}}>Trip Coins +{Math.round(flight.price*.5)}</span>
+        {flight.cancellation && <span style={{background:'#ECFDF5',color:'#065F46',fontSize:8,padding:'2px 5px',borderRadius:4}}>Free Cancel</span>}
+      </div>
+      <div style={{padding:'8px 10px 6px'}}>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:5}}>
+          <span style={{fontSize:11,fontWeight:600,color:'#374151'}}>{flight.airline} · {flight.code}{flight.num} · Economy Light</span>
+          <span style={{fontSize:17,fontWeight:800,color:'#111827'}}>${flight.price}</span>
+        </div>
+        <div style={{display:'flex',alignItems:'center',gap:5,marginBottom:4}}>
+          <span style={{fontSize:14,fontWeight:700}}>{flight.dep}</span>
+          <div style={{flex:1,height:1,background:'#E5E7EB'}}/>
+          {flight.stops>0&&<div style={{width:5,height:5,borderRadius:'50%',background:'#EF4444'}}/>}
+          <span style={{fontSize:9,color:'#9CA3AF'}}>{flight.stops===0?'Direct':'1 Stop'} {flight.duration}</span>
+          <div style={{flex:1,height:1,background:'#E5E7EB'}}/>
+          <span style={{fontSize:14,fontWeight:700}}>{flight.arr}</span>
+        </div>
+        <div style={{fontSize:9,color:'#9CA3AF',marginBottom:7}}>Baggage fees may apply · taxes not included</div>
+        <button style={{width:'100%',padding:'9px',background:'#EF4444',color:'white',border:'none',borderRadius:8,fontSize:12,fontWeight:700,cursor:'pointer'}}>Book Now</button>
+      </div>
+    </div>
+  );
+}
+
+// ─── AFTER Card (redesigned) ──────────────────────────────────────────────────
+function AfterCard({flight,withBag,accent,onSelect,delay=0}) {
+  const displayPrice = withBag&&flight.baggage==='none' ? flight.price+25 : flight.price;
+  return (
+    <div className="a-fsi" style={{animationDelay:`${delay}s`,background:'white',borderRadius:14,marginBottom:10,boxShadow:'0 1px 6px rgba(0,0,0,.07)',overflow:'hidden',border:flight.recommended?`1.5px solid ${accent}33`:'1.5px solid transparent'}}>
+      {flight.tag && (
+        <div style={{background:flight.tagColor,padding:'4px 14px',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+          <span style={{fontSize:10,fontWeight:700,color:'white',letterSpacing:.3}}>{flight.tag}</span>
+          {flight.recommended && <span style={{fontSize:9,color:'rgba(255,255,255,.8)'}}>Recommended for you</span>}
+        </div>
+      )}
+      <div style={{padding:'12px 14px'}}>
+        {/* Airline + trust */}
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:10}}>
+          <div style={{display:'flex',alignItems:'center',gap:8}}>
+            <AirlineBadge flight={flight} size={30}/>
+            <div>
+              <div style={{fontSize:12,fontWeight:700,color:'#111827'}}>{flight.airline}</div>
+              <div style={{fontSize:10,color:'#9CA3AF'}}>{flight.code}{flight.num} · Economy</div>
+            </div>
+          </div>
+          {flight.cancellation && (
+            <div style={{background:'#ECFDF5',borderRadius:7,padding:'3px 8px',display:'flex',alignItems:'center',gap:5}}>
+              <Ic.Check s={10} c="#059669"/><span style={{fontSize:10,fontWeight:700,color:'#065F46'}}>Free Cancel</span>
+            </div>
+          )}
+        </div>
+        {/* Times + timeline */}
+        <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:10}}>
+          <div>
+            <div style={{fontSize:20,fontWeight:800,color:'#111827',letterSpacing:-.5,lineHeight:1}}>{flight.dep}</div>
+            <div style={{fontSize:10,color:'#9CA3AF',marginTop:2}}>{flight.from}</div>
+          </div>
+          <StopTimeline flight={flight}/>
+          <div style={{textAlign:'right'}}>
+            <div style={{fontSize:20,fontWeight:800,color:'#111827',letterSpacing:-.5,lineHeight:1}}>{flight.arr}</div>
+            <div style={{fontSize:10,color:'#9CA3AF',marginTop:2}}>{flight.to}</div>
+          </div>
+        </div>
+        {/* Baggage + price */}
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',paddingTop:10,borderTop:'1px solid #F3F4F6'}}>
+          <div style={{display:'flex',flexDirection:'column',gap:5}}>
+            <BaggageChip baggage={flight.baggage} withBag={withBag}/>
+            {flight.verified && (
+              <div style={{display:'flex',alignItems:'center',gap:5}}>
+                <Ic.Shield s={11} c="#6B7280"/>
+                <span style={{fontSize:10,color:'#6B7280'}}>Verified · 24/7 Support</span>
+              </div>
+            )}
+          </div>
+          <div style={{textAlign:'right'}}>
+            <div style={{fontSize:21,fontWeight:800,color:'#111827',letterSpacing:-.5}}>USD ${displayPrice}</div>
+            <div style={{fontSize:9,color:'#9CA3AF',marginTop:1}}>incl. taxes &amp; fees</div>
+          </div>
+        </div>
+      </div>
+      <button onClick={()=>onSelect&&onSelect(flight)} style={{width:'100%',padding:'12px',background:accent,color:'white',border:'none',fontSize:13,fontWeight:700,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:6}}>
+        Select Flight <Ic.Plane s={13} c="white"/>
+      </button>
+    </div>
+  );
+}
+
+// ─── VariantsScreen (huashu-design: Variations Over Final Answers) ────────────
+function VariantsScreen({onContinue,accent}) {
+  const [chosen,setChosen] = useState('balanced');
+
+  const variants = [
+    {
+      id:'compact',
+      name:'Compact',
+      sub:'Data-Dense · Google Flights–inspired',
+      philosophy:'Information first. Every pixel carries data. Power users scan and decide in 3 seconds without a single tap.',
+      decisions:['8px padding — maximum data density','Monospace font for times — scannable alignment','No trust signals — assumes experienced users','Price excludes taxes — matches search engine convention','Zero progressive disclosure'],
+      verdict:'Best for power users and repeat bookers. Fails for first-time visitors.',
+      color:'#374151',
+      border:'rgba(255,255,255,.08)',
+    },
+    {
+      id:'balanced',
+      name:'Balanced',
+      sub:'Trust-Centric · Proposed Redesign',
+      philosophy:'Empathy-first. Addresses first-time user anxiety through transparency, visual clarity, and embedded trust signals.',
+      decisions:['16px padding — breathable, premium feel','Visual stop timeline — graphic > text processing','Baggage icon on card face — true cost visible','"Select" CTA — lowers commitment barrier','All-in price with "incl. taxes & fees" note'],
+      verdict:'Proposed design. Converts first-time users by resolving the trust deficit.',
+      color:accent,
+      border:accent,
+      proposed:true,
+    },
+    {
+      id:'expressive',
+      name:'Expressive',
+      sub:'Conversion-Heavy · Hopper–inspired',
+      philosophy:'Urgency and social proof drive immediate action. Works on impulse purchasers but risks alienating skeptical users.',
+      decisions:['Hero price (28px, dominant) — "deal" framing','Social proof badge — "Booked 42× today"','"12 seats left" urgency trigger','Gamified earn indicator — loyalty loop','Larger CTA — full-width, pulsing animation'],
+      verdict:'High short-term CVR. Risks dark-pattern perception; trust score trade-off.',
+      color:'#7C3AED',
+      border:'rgba(255,255,255,.08)',
+    },
+  ];
+
+  // Mini card mockups for each variant
+  const MiniCompact = ({fl}) => (
+    <div style={{background:'white',borderRadius:8,padding:'9px 10px',marginBottom:7,border:'1px solid #E5E7EB'}}>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:4}}>
+        <span style={{fontSize:10,color:'#374151',fontFamily:'Courier New,monospace',fontWeight:600}}>{fl.code}{fl.num}</span>
+        <span style={{fontSize:13,fontWeight:700,color:'#111827'}}>${fl.price}</span>
+      </div>
+      <div style={{display:'flex',alignItems:'center',gap:4,marginBottom:3}}>
+        <span style={{fontSize:12,fontWeight:700,color:'#111827',fontFamily:'Courier New,monospace'}}>{fl.dep}</span>
+        <div style={{flex:1,height:1,background:'#E5E7EB'}}/>
+        <span style={{fontSize:9,color:'#6B7280'}}>{fl.duration}</span>
+        <div style={{flex:1,height:1,background:'#E5E7EB'}}/>
+        <span style={{fontSize:12,fontWeight:700,color:'#111827',fontFamily:'Courier New,monospace'}}>{fl.arr}</span>
+      </div>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+        <span style={{fontSize:9,color:'#9CA3AF'}}>{fl.stops===0?'Nonstop':'1 stop'} · {fl.airline}</span>
+        <span style={{fontSize:9,color:'#9CA3AF'}}>Bags: extra</span>
+      </div>
+    </div>
+  );
+
+  const MiniBalanced = ({fl,ac}) => (
+    <div style={{background:'white',borderRadius:11,marginBottom:7,overflow:'hidden',border:fl.recommended?`1.5px solid ${ac}33`:'1px solid #F0F0F0',boxShadow:'0 1px 4px rgba(0,0,0,.07)'}}>
+      {fl.tag && <div style={{background:fl.tagColor,padding:'3px 10px'}}><span style={{fontSize:9,fontWeight:700,color:'white'}}>{fl.tag}</span></div>}
+      <div style={{padding:'9px 10px'}}>
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:7}}>
+          <div style={{display:'flex',alignItems:'center',gap:6}}>
+            <div style={{width:20,height:20,borderRadius:5,background:fl.logoColor,display:'flex',alignItems:'center',justifyContent:'center'}}>
+              <span style={{fontSize:8,fontWeight:800,color:'white'}}>{fl.logoText}</span>
+            </div>
+            <div style={{fontSize:10,fontWeight:600,color:'#111827'}}>{fl.airline}</div>
+          </div>
+          {fl.cancellation && <span style={{fontSize:8,color:'#059669',fontWeight:600}}>Free Cancel</span>}
+        </div>
+        <div style={{display:'flex',alignItems:'center',gap:6,marginBottom:7}}>
+          <div>
+            <div style={{fontSize:14,fontWeight:800,color:'#111827',lineHeight:1}}>{fl.dep}</div>
+            <div style={{fontSize:8,color:'#9CA3AF'}}>{fl.from}</div>
+          </div>
+          <div style={{flex:1,display:'flex',flexDirection:'column',alignItems:'center',gap:1}}>
+            <span style={{fontSize:8,color:'#9CA3AF'}}>{fl.duration}</span>
+            <div style={{width:'100%',display:'flex',alignItems:'center'}}>
+              <div style={{width:4,height:4,borderRadius:'50%',border:'1px solid #CBD5E1',background:'white',flexShrink:0}}/>
+              <div style={{flex:1,height:1,background:fl.stops>0?'#EF4444':'#E2E8F0'}}/>
+              <div style={{width:4,height:4,borderRadius:'50%',border:'1px solid #CBD5E1',background:'white',flexShrink:0}}/>
+            </div>
+            <span style={{fontSize:8,fontWeight:600,color:fl.stops>0?'#EF4444':'#059669'}}>{fl.stops===0?'Direct':'1 Stop'}</span>
+          </div>
+          <div style={{textAlign:'right'}}>
+            <div style={{fontSize:14,fontWeight:800,color:'#111827',lineHeight:1}}>{fl.arr}</div>
+            <div style={{fontSize:8,color:'#9CA3AF'}}>{fl.to}</div>
+          </div>
+        </div>
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',paddingTop:6,borderTop:'1px solid #F3F4F6'}}>
+          <span style={{fontSize:9,color:fl.baggage==='none'?'#EF4444':'#059669',fontWeight:600}}>
+            {fl.baggage==='none'?'No carry-on':'Carry-on incl.'}
+          </span>
+          <div style={{textAlign:'right'}}>
+            <div style={{fontSize:14,fontWeight:800,color:'#111827'}}>USD ${fl.price}</div>
+            <div style={{fontSize:8,color:'#9CA3AF'}}>incl. taxes</div>
+          </div>
+        </div>
+      </div>
+      <div style={{background:ac,padding:'7px',textAlign:'center'}}>
+        <span style={{fontSize:11,fontWeight:700,color:'white'}}>Select →</span>
+      </div>
+    </div>
+  );
+
+  const MiniExpressive = ({fl,ac}) => (
+    <div style={{background:'white',borderRadius:11,marginBottom:7,overflow:'hidden',border:'1px solid #F0F0F0',boxShadow:'0 2px 8px rgba(0,0,0,.08)'}}>
+      {fl.cancellation && (
+        <div style={{background:'linear-gradient(90deg,#059669,#10B981)',padding:'4px 10px'}}>
+          <span style={{fontSize:9,fontWeight:700,color:'white'}}>FREE CANCELLATION — Book risk-free</span>
+        </div>
+      )}
+      <div style={{padding:'10px 10px 8px'}}>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:6}}>
+          <div>
+            <div style={{display:'flex',alignItems:'center',gap:5,marginBottom:3}}>
+              <div style={{width:18,height:18,borderRadius:4,background:fl.logoColor,display:'flex',alignItems:'center',justifyContent:'center'}}>
+                <span style={{fontSize:7,fontWeight:800,color:'white'}}>{fl.logoText}</span>
+              </div>
+              <span style={{fontSize:9,color:'#6B7280'}}>{fl.airline} · {fl.stops===0?'Direct':'1 Stop'}</span>
+            </div>
+            <div style={{fontSize:10,fontWeight:600,color:'#374151'}}>{fl.dep} → {fl.arr} · {fl.duration}</div>
+          </div>
+          <div style={{textAlign:'right'}}>
+            <div style={{fontSize:22,fontWeight:800,color:'#111827',letterSpacing:-.5,lineHeight:1}}>${fl.price}</div>
+            <div style={{fontSize:8,color:'#9CA3AF'}}>/ person</div>
+          </div>
+        </div>
+        <div style={{display:'flex',gap:5,marginBottom:7}}>
+          <div style={{background:'#FEF3C7',borderRadius:5,padding:'2px 7px',fontSize:8,fontWeight:600,color:'#B45309'}}>🔥 Booked 42× today</div>
+          <div style={{background:'#FEF2F2',borderRadius:5,padding:'2px 7px',fontSize:8,fontWeight:600,color:'#EF4444'}}>12 seats left</div>
+        </div>
+        <button style={{width:'100%',padding:'8px',background:'linear-gradient(135deg,#7C3AED,#6D28D9)',color:'white',border:'none',borderRadius:8,fontSize:11,fontWeight:700,cursor:'pointer',animation:'confirmPulse 2s ease-in-out infinite'}}>
+          Grab This Deal →
+        </button>
+      </div>
+    </div>
+  );
+
+  const sampleFlights = [FLIGHTS[1],FLIGHTS[0]];
+
+  return (
+    <div style={{width:'100vw',height:'100vh',overflow:'hidden',display:'flex',flexDirection:'column',padding:'28px 32px 20px',position:'relative'}}>
+      <div style={{position:'absolute',width:600,height:400,borderRadius:'50%',background:`radial-gradient(circle,${accent}10 0%,transparent 70%)`,top:'40%',left:'50%',transform:'translate(-50%,-50%)',pointerEvents:'none'}}/>
+
+      {/* Header */}
+      <div className="a-fsi" style={{marginBottom:24,flexShrink:0}}>
+        <div style={{display:'flex',alignItems:'baseline',gap:16,marginBottom:6}}>
+          <div style={{fontSize:9,color:'rgba(255,255,255,.28)',fontWeight:700,letterSpacing:2.2,textTransform:'uppercase'}}>Design Exploration · Step 02 / 05</div>
+          <div style={{height:1,flex:1,background:'rgba(255,255,255,.07)'}}/>
+        </div>
+        <div style={{display:'flex',alignItems:'baseline',gap:12}}>
+          <h1 style={{fontSize:28,fontWeight:800,color:'white',letterSpacing:-.8,lineHeight:1}}>Fare Card</h1>
+          <h1 style={{fontSize:28,fontWeight:800,color:accent,letterSpacing:-.8,lineHeight:1}}>Design Variants</h1>
+          <div style={{fontSize:13,color:'rgba(255,255,255,.35)',marginLeft:4,fontWeight:400}}>— 3 directions explored before arriving at the proposed redesign</div>
+        </div>
+      </div>
+
+      {/* 3 Variant columns */}
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:14,flex:1,minHeight:0}}>
+        {variants.map((v,vi)=>(
+          <div key={v.id} className="a-vi" onClick={()=>setChosen(v.id)} style={{animationDelay:`${vi*.07}s`,background:chosen===v.id?'rgba(255,255,255,.05)':'rgba(255,255,255,.025)',border:`1.5px solid ${chosen===v.id?v.border:'rgba(255,255,255,.07)'}`,borderRadius:18,padding:'18px 16px',display:'flex',flexDirection:'column',gap:12,cursor:'pointer',transition:'all .25s',position:'relative',overflow:'hidden'}}>
+            {v.proposed && (
+              <div style={{position:'absolute',top:0,right:0,background:accent,borderRadius:'0 18px 0 12px',padding:'5px 14px',fontSize:10,fontWeight:700,color:'white'}}>Proposed ✦</div>
+            )}
+            {/* Variant header */}
+            <div>
+              <div style={{fontSize:18,fontWeight:800,color:chosen===v.id?v.color:'rgba(255,255,255,.7)',marginBottom:3,letterSpacing:-.3}}>{v.name}</div>
+              <div style={{fontSize:11,color:'rgba(255,255,255,.35)',fontWeight:500}}>{v.sub}</div>
+            </div>
+
+            {/* Mini phone preview */}
+            <div style={{background:'#F5F7FA',borderRadius:14,padding:'10px 10px 6px',overflow:'hidden'}}>
+              <div style={{fontSize:8,color:'#9CA3AF',marginBottom:7,fontWeight:600,letterSpacing:.5,textTransform:'uppercase'}}>KUL → SIN · 2 flights</div>
+              {sampleFlights.slice(0,v.id==='compact'?2:2).map(fl=>(
+                v.id==='compact' ? <MiniCompact key={fl.id} fl={fl}/> :
+                v.id==='balanced' ? <MiniBalanced key={fl.id} fl={fl} ac={accent}/> :
+                <MiniExpressive key={fl.id} fl={fl} ac={accent}/>
+              ))}
+            </div>
+
+            {/* Design decisions */}
+            <div style={{flex:1}}>
+              <div style={{fontSize:9,color:'rgba(255,255,255,.25)',fontWeight:700,letterSpacing:1,textTransform:'uppercase',marginBottom:8}}>Design Decisions</div>
+              {v.decisions.map((d,di)=>(
+                <div key={di} style={{display:'flex',alignItems:'flex-start',gap:7,marginBottom:5}}>
+                  <div style={{width:14,height:14,borderRadius:4,background:`${v.color}22`,border:`1px solid ${v.color}44`,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:1}}>
+                    <span style={{fontSize:8,color:v.color,fontWeight:700}}>{di+1}</span>
+                  </div>
+                  <span style={{fontSize:11,color:'rgba(255,255,255,.5)',lineHeight:1.4}}>{d}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Verdict */}
+            <div style={{background:v.proposed?`${accent}15`:'rgba(255,255,255,.04)',borderRadius:10,padding:'8px 10px',borderLeft:`2px solid ${v.color}`,marginTop:'auto'}}>
+              <div style={{fontSize:10,color:v.proposed?accent:'rgba(255,255,255,.4)',lineHeight:1.45}}>{v.verdict}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Bottom CTA */}
+      <div className="a-fsi" style={{animationDelay:'.25s',display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:16,flexShrink:0}}>
+        <div style={{display:'flex',alignItems:'center',gap:10}}>
+          <div style={{fontSize:10,color:'rgba(255,255,255,.25)',fontWeight:700,letterSpacing:1,textTransform:'uppercase'}}>Selected direction</div>
+          <div style={{background:`${accent}20`,borderRadius:8,padding:'4px 12px',fontSize:12,fontWeight:700,color:accent}}>{variants.find(v=>v.id===chosen)?.name}</div>
+        </div>
+        <button onClick={onContinue} style={{padding:'12px 24px',borderRadius:12,border:'none',background:accent,color:'white',fontSize:13,fontWeight:700,cursor:'pointer',display:'flex',alignItems:'center',gap:8,boxShadow:`0 4px 20px ${accent}44`,animation:'confirmPulse 2.2s ease-in-out infinite'}}>
+          See Balanced Redesign in Action <Ic.Plane s={13} c="white"/>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ─── SearchScreen ─────────────────────────────────────────────────────────────
+function SearchScreen({onSelectFlight,accent}) {
+  const [view,setView] = useState('after');
+  const [withBag,setWithBag] = useState(false);
+  const [sortTab,setSortTab] = useState('cheapest');
+
+  const sorted = [...FLIGHTS].sort((a,b)=>
+    sortTab==='cheapest'?a.price-b.price:sortTab==='fastest'?a.duration.localeCompare(b.duration):b.recommended-a.recommended
+  );
+
+  return (
+    <div style={{flex:1,display:'flex',flexDirection:'column',background:'#F5F7FA',overflow:'hidden',position:'relative'}}>
+      <StatusBar dark={false}/>
+      <div style={{background:'white',padding:'8px 14px 9px',borderBottom:'1px solid #F0F0F0',flexShrink:0}}>
+        <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:7}}>
+          <button style={{background:'none',border:'none',cursor:'pointer',padding:2,display:'flex'}}>
+            <Ic.ChevronLeft s={18} c="#111827"/>
+          </button>
+          <div style={{flex:1}}>
+            <div style={{fontSize:14,fontWeight:800,color:'#111827',letterSpacing:-.3}}>KUL → SIN</div>
+            <div style={{fontSize:10,color:'#9CA3AF'}}>Mon 21 Jul · 1 Adult · Economy</div>
+          </div>
+          <div style={{background:'#EEF3FF',borderRadius:8,padding:'3px 8px',fontSize:10,color:accent,fontWeight:700}}>✦ Redesigned</div>
+        </div>
+        <div style={{display:'flex',alignItems:'center',gap:8}}>
+          <div style={{display:'flex',background:'#F0F0F0',borderRadius:8,padding:2,flex:1}}>
+            {[['before','Before'],['after','✦ After']].map(([k,l])=>(
+              <button key={k} onClick={()=>setView(k)} style={{flex:1,padding:'4px 8px',borderRadius:6,border:'none',background:view===k?'white':'transparent',color:view===k?'#111827':'#9CA3AF',fontSize:10,fontWeight:view===k?600:400,cursor:'pointer',transition:'all .2s',boxShadow:view===k?'0 1px 3px rgba(0,0,0,.1)':'none'}}>{l}</button>
+            ))}
+          </div>
+          {view==='after' && (
+            <button onClick={()=>setWithBag(!withBag)} style={{padding:'4px 10px',borderRadius:8,border:`1.5px solid ${withBag?accent:'#E5E7EB'}`,background:withBag?'#EEF3FF':'white',color:withBag?accent:'#6B7280',fontSize:10,fontWeight:600,cursor:'pointer',transition:'all .2s',flexShrink:0,display:'flex',alignItems:'center',gap:5}}>
+              <Ic.Bag s={11} c={withBag?accent:'#6B7280'}/>{withBag?'w/ Carry-on ✓':'+ Carry-on'}
+            </button>
+          )}
+        </div>
+      </div>
+      <div style={{background:'#E5E7EB',height:3,flexShrink:0}}><div style={{background:accent,height:'100%',width:'33%',borderRadius:'0 2px 2px 0'}}/></div>
+
+      {view==='after' && (
+        <div style={{display:'flex',gap:0,padding:'8px 14px 0',flexShrink:0}}>
+          {[['cheapest','Cheapest'],['best','Best Value'],['fastest','Fastest']].map(([k,l])=>(
+            <button key={k} onClick={()=>setSortTab(k)} style={{padding:'5px 11px',borderRadius:20,border:'none',background:sortTab===k?accent:'transparent',color:sortTab===k?'white':'#6B7280',fontSize:10,fontWeight:sortTab===k?700:400,cursor:'pointer',transition:'all .2s',marginRight:4}}>{l}</button>
+          ))}
+        </div>
+      )}
+
+      <div className="scroll" style={{flex:1,padding:'10px 14px 80px'}}>
+        <div style={{fontSize:10,color:'#9CA3AF',marginBottom:8,marginTop:2}}>
+          {view==='after'?`${FLIGHTS.length} flights · Sorted by ${sortTab}`:'Current Trip.com design'}
+        </div>
+
+        {view==='before' ? (
+          <div key="before" className="a-fsi">
+            <div style={{background:'#FFF8E6',border:'1px solid #FDE68A',borderRadius:10,padding:'8px 11px',marginBottom:9,fontSize:10,color:'#92400E',lineHeight:1.5}}>
+              <strong>Issues identified:</strong> Badge clutter · No baggage clarity · Price excludes taxes · "Book Now" commitment pressure · No verified signals
+            </div>
+            {FLIGHTS.map(f=><BeforeCard key={f.id} flight={f} accent={accent}/>)}
+          </div>
+        ) : (
+          <div key="after">
+            {sorted.map((f,i)=><AfterCard key={f.id} flight={f} withBag={withBag} accent={accent} onSelect={onSelectFlight} delay={i*.06}/>)}
+            <div className="a-fsi" style={{animationDelay:'.2s',background:'#EEF3FF',borderRadius:12,padding:'10px 12px',marginBottom:10,display:'flex',gap:8,alignItems:'flex-start'}}>
+              <span style={{color:accent,fontSize:14,flexShrink:0,marginTop:1}}>ℹ</span>
+              <div style={{fontSize:10,color:'#1E40AF',lineHeight:1.5,flex:1}}><strong>All prices include taxes &amp; fees.</strong> Toggle "+ Carry-on" to see true cost with baggage included.</div>
+              <div style={{background:'#C7D9FF',borderRadius:6,padding:'2px 7px',fontSize:9,color:accent,fontWeight:700,flexShrink:0}}>✦ New</div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {view==='after' && (
+        <div style={{position:'absolute',bottom:0,left:0,right:0,background:'linear-gradient(transparent,white 30%)',padding:'16px 14px 14px'}}>
+          <div style={{display:'flex',gap:8}}>
+            <button style={{flex:1,padding:'11px',borderRadius:12,border:'1.5px solid #E5E7EB',background:'white',color:'#374151',fontSize:12,fontWeight:600,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:6}}>
+              Watch Prices
+            </button>
+            <button style={{flex:1,padding:'11px',borderRadius:12,border:'none',background:'#F5F3FF',color:'#7C3AED',fontSize:12,fontWeight:600,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:6}}>
+              <Ic.Lock s={12} c="#7C3AED"/>Freeze Price
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── FareSelectScreen ─────────────────────────────────────────────────────────
+function FareSelectScreen({flight,onBack,onSelect,accent}) {
+  const [selTier,setSelTier] = useState('standard');
+  const [showFreeze,setShowFreeze] = useState(false);
+  const tier = FARE_TIERS.find(t=>t.id===selTier);
+  const total = flight.price + tier.delta;
+
+  const fIcon = (val) => {
+    if (val===true) return {C:Ic.Check,color:'#059669',bg:'#ECFDF5'};
+    if (val===false) return {C:Ic.X,color:'#EF4444',bg:'#FEF2F2'};
+    return {C:Ic.Dollar,color:'#D97706',bg:'#FFFBEB'};
+  };
+
+  return (
+    <div style={{flex:1,display:'flex',flexDirection:'column',background:'#F5F7FA',overflow:'hidden'}}>
+      <StatusBar dark={false}/>
+      <div style={{background:'white',padding:'8px 14px 10px',borderBottom:'1px solid #F0F0F0',display:'flex',alignItems:'center',gap:10,flexShrink:0}}>
+        <button onClick={onBack} style={{background:'none',border:'none',cursor:'pointer',padding:4,display:'flex'}}><Ic.ChevronLeft s={18} c="#111827"/></button>
+        <div style={{flex:1}}>
+          <div style={{fontSize:14,fontWeight:700,color:'#111827',letterSpacing:-.3}}>Select Fare</div>
+          <div style={{fontSize:10,color:'#9CA3AF'}}>Step 3 of 5 · Fare Class</div>
+        </div>
+        <div style={{background:'#EEF3FF',borderRadius:8,padding:'3px 8px',fontSize:10,color:accent,fontWeight:700}}>✦ Improved</div>
+      </div>
+      <div style={{background:'#E5E7EB',height:3,flexShrink:0}}><div style={{background:accent,height:'100%',width:'55%',borderRadius:'0 2px 2px 0'}}/></div>
+
+      <div className="scroll" style={{flex:1,padding:'12px 14px 90px'}}>
+        {/* Flight mini-summary */}
+        <div className="a-fsi" style={{background:'white',borderRadius:12,padding:'10px 14px',marginBottom:12,boxShadow:'0 1px 4px rgba(0,0,0,.06)',display:'flex',alignItems:'center',gap:10}}>
+          <AirlineBadge flight={flight} size={28}/>
+          <div style={{flex:1}}>
+            <div style={{fontSize:12,fontWeight:700,color:'#111827'}}>{flight.airline} · {flight.code}{flight.num}</div>
+            <div style={{fontSize:11,color:'#9CA3AF'}}>{flight.dep} → {flight.arr} · {flight.stops===0?'Direct':'1 Stop'} · {flight.duration}</div>
+          </div>
+          <div style={{fontSize:13,fontWeight:800,color:'#111827'}}>from ${flight.price}</div>
+        </div>
+
+        {/* Fare matrix */}
+        <div className="a-fsi" style={{animationDelay:'.06s',background:'white',borderRadius:14,overflow:'hidden',marginBottom:12,boxShadow:'0 1px 4px rgba(0,0,0,.06)'}}>
+          {/* Tier headers */}
+          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',borderBottom:'1px solid #F0F0F0'}}>
+            {FARE_TIERS.map(t=>(
+              <button key={t.id} onClick={()=>setSelTier(t.id)} style={{padding:'10px 4px',border:'none',background:selTier===t.id?accent:'white',cursor:'pointer',transition:'all .2s',borderRight:'1px solid #F0F0F0',position:'relative'}}>
+                {t.recommended && <div style={{position:'absolute',top:-1,left:'50%',transform:'translateX(-50%)',background:'#F59E0B',borderRadius:'0 0 6px 6px',padding:'1px 8px',fontSize:8,color:'white',fontWeight:700,whiteSpace:'nowrap'}}>Recommended</div>}
+                <div style={{fontSize:12,fontWeight:700,color:selTier===t.id?'white':'#111827',marginTop:t.recommended?6:0}}>{t.name}</div>
+                <div style={{fontSize:11,fontWeight:800,color:selTier===t.id?'rgba(255,255,255,.9)':accent,marginTop:2}}>
+                  {t.delta===0?`$${flight.price}`:`+$${t.delta}`}
+                </div>
+              </button>
+            ))}
+          </div>
+          {/* Feature rows */}
+          {FARE_FEATURES.map((feat,fi)=>(
+            <div key={feat} style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',borderBottom:fi<4?'1px solid #F9FAFB':'none'}}>
+              {FARE_TIERS.map(t=>{
+                const cfg=fIcon(t.values[fi]);
+                const sel=t.id===selTier;
+                return (
+                  <div key={t.id} onClick={()=>setSelTier(t.id)} style={{padding:'9px 6px',display:'flex',flexDirection:'column',alignItems:'center',gap:3,background:sel?`${accent}08`:'white',cursor:'pointer',borderRight:'1px solid #F0F0F0',transition:'background .2s'}}>
+                    <div style={{fontSize:8,color:'#9CA3AF',textAlign:'center',lineHeight:1.2}}>
+                      {fi===0?'Carry-on':fi===1?'Checked':fi===2?'Seat':fi===3?'Changes':'Refund'}
+                    </div>
+                    <div style={{width:20,height:20,borderRadius:6,background:cfg.bg,display:'flex',alignItems:'center',justifyContent:'center'}}>
+                      <cfg.C s={t.values[fi]===true?10:t.values[fi]==='fee'?9:9} c={cfg.color}/>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+          {/* Price total */}
+          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',background:'#FAFAFA',borderTop:'2px solid #F0F0F0'}}>
+            {FARE_TIERS.map(t=>{
+              const sel=t.id===selTier;
+              return (
+                <div key={t.id} onClick={()=>setSelTier(t.id)} style={{padding:'10px 4px',textAlign:'center',cursor:'pointer',borderRight:'1px solid #F0F0F0',background:sel?`${accent}08`:'transparent',transition:'background .2s'}}>
+                  <div style={{fontSize:14,fontWeight:800,color:sel?accent:'#374151'}}>${flight.price+t.delta}</div>
+                  <div style={{fontSize:8,color:'#9CA3AF'}}>total</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Selected summary */}
+        <div className="a-fsi" style={{animationDelay:'.1s',background:'#EEF3FF',borderRadius:12,padding:'10px 13px',marginBottom:10,display:'flex',gap:8,alignItems:'flex-start'}}>
+          <span style={{color:accent,fontSize:13,flexShrink:0,marginTop:1}}>ℹ</span>
+          <div style={{fontSize:11,color:'#1E40AF',lineHeight:1.5,flex:1}}>
+            <strong>{tier.name} selected</strong> — ${total} total incl. taxes &amp; fees.
+            {tier.id==='basic'&&' No carry-on; seat selection costs extra.'}
+            {tier.id==='standard'&&' Carry-on + seat selection included.'}
+            {tier.id==='flex'&&' Full flex: carry-on, checked bag, free changes + full refund.'}
+          </div>
+          <div style={{background:'#C7D9FF',borderRadius:6,padding:'2px 7px',fontSize:9,color:accent,fontWeight:700,flexShrink:0}}>✦ New</div>
+        </div>
+
+        {/* Price freeze */}
+        <div className="a-fsi" style={{animationDelay:'.14s',background:'white',borderRadius:12,padding:'11px 13px',marginBottom:10,boxShadow:'0 1px 4px rgba(0,0,0,.06)'}}>
+          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:6}}>
+            <div style={{display:'flex',alignItems:'center',gap:8}}>
+              <div style={{background:'#F5F3FF',borderRadius:8,width:28,height:28,display:'flex',alignItems:'center',justifyContent:'center'}}>
+                <Ic.Lock s={14} c="#7C3AED"/>
+              </div>
+              <div>
+                <div style={{fontSize:12,fontWeight:700,color:'#111827'}}>Freeze This Price</div>
+                <div style={{fontSize:10,color:'#9CA3AF'}}>Pay $15 · Hold ${total} for 24h</div>
+              </div>
+            </div>
+            <button onClick={()=>setShowFreeze(!showFreeze)} style={{padding:'5px 11px',borderRadius:8,border:`1.5px solid ${showFreeze?'#7C3AED':'#E5E7EB'}`,background:showFreeze?'#F5F3FF':'white',color:showFreeze?'#7C3AED':'#6B7280',fontSize:11,fontWeight:600,cursor:'pointer',transition:'all .2s'}}>
+              {showFreeze?'✓ Added':'Add'}
+            </button>
+          </div>
+          {showFreeze && (
+            <div className="a-fsi" style={{background:'#F5F3FF',borderRadius:8,padding:'7px 10px',fontSize:10,color:'#6D28D9',lineHeight:1.5}}>
+              Pay $15 now. If price rises, you pay ${total}. If it drops, you pay the lower price. E-ticket confirmed by email.
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div style={{position:'absolute',bottom:0,left:0,right:0,background:'linear-gradient(transparent,white 28%)',padding:'16px 14px 14px'}}>
+        <button onClick={()=>onSelect(tier)} style={{width:'100%',padding:'15px',borderRadius:14,border:'none',background:accent,color:'white',fontSize:14,fontWeight:700,cursor:'pointer',boxShadow:`0 4px 20px ${accent}55`,animation:'confirmPulse 2.5s ease-in-out infinite'}}>
+          Select {tier.name} · ${total} →
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ─── ConfirmScreen ────────────────────────────────────────────────────────────
+function ConfirmScreen({flight,tier,onRestart,accent}) {
+  const [done,setDone] = useState(false);
+  const total = flight.price + tier.delta;
+
+  if (done) return (
+    <div style={{flex:1,display:'flex',flexDirection:'column',background:'#F5F7FA',overflow:'hidden'}}>
+      <StatusBar dark={false}/>
+      <div className="scroll" style={{flex:1,padding:'14px 14px 20px'}}>
+        <div className="a-fsi" style={{background:'white',borderRadius:16,padding:'22px 18px',marginBottom:10,textAlign:'center',boxShadow:'0 1px 4px rgba(0,0,0,.06)'}}>
+          <div className="a-bounce" style={{width:60,height:60,borderRadius:'50%',background:'#ECFDF5',margin:'0 auto 12px',display:'flex',alignItems:'center',justifyContent:'center'}}>
+            <Ic.Check s={28} c="#059669"/>
+          </div>
+          <div style={{fontSize:17,fontWeight:800,color:'#111827',letterSpacing:-.5,marginBottom:3}}>Booking Confirmed!</div>
+          <div style={{fontSize:12,color:'#6B7280',marginBottom:11}}>Payment successful · Ticket being issued</div>
+          <div style={{background:'#F5F7FA',borderRadius:10,padding:'9px 14px',display:'inline-flex',alignItems:'center',gap:8}}>
+            <span style={{fontSize:10,color:'#9CA3AF'}}>Booking</span>
+            <span style={{fontSize:11,fontWeight:700,color:'#111827',fontFamily:'Courier New,monospace'}}>TRP-KUL-20250721</span>
+          </div>
+        </div>
+        <div className="a-fsi" style={{animationDelay:'.15s',textAlign:'center'}}>
+          <button onClick={onRestart} style={{background:'none',border:'1px solid #E5E7EB',borderRadius:10,padding:'9px 18px',color:'#6B7280',fontSize:12,cursor:'pointer',fontWeight:500}}>↩ Restart Demo</button>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div style={{flex:1,display:'flex',flexDirection:'column',background:'#F5F7FA',overflow:'hidden'}}>
+      <StatusBar dark={false}/>
+      <div style={{background:'white',padding:'8px 14px 10px',borderBottom:'1px solid #F0F0F0',display:'flex',alignItems:'center',gap:10,flexShrink:0}}>
+        <div style={{flex:1,fontSize:14,fontWeight:700,color:'#111827',letterSpacing:-.3}}>Review &amp; Confirm</div>
+        <div style={{background:'#EEF3FF',borderRadius:8,padding:'3px 8px',fontSize:10,color:accent,fontWeight:700}}>✦ Improved</div>
+      </div>
+      <div style={{background:'#E5E7EB',height:3,flexShrink:0}}><div style={{background:accent,height:'100%',width:'90%',borderRadius:'0 2px 2px 0'}}/></div>
+
+      <div className="scroll" style={{flex:1,padding:'12px 14px 90px'}}>
+        {/* Flight summary */}
+        <div className="a-fsi" style={{background:'white',borderRadius:14,padding:'14px',marginBottom:10,boxShadow:'0 1px 4px rgba(0,0,0,.06)'}}>
+          <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:10}}>
+            <AirlineBadge flight={flight} size={30}/>
+            <div style={{flex:1}}>
+              <div style={{fontSize:13,fontWeight:700,color:'#111827'}}>{flight.airline} · {flight.code}{flight.num}</div>
+              <div style={{fontSize:10,color:'#9CA3AF'}}>KUL {flight.dep} → SIN {flight.arr} · Mon 21 Jul</div>
+            </div>
+            <span style={{fontSize:10,fontWeight:700,color:'#059669',background:'#ECFDF5',borderRadius:6,padding:'2px 8px'}}>Direct</span>
+          </div>
+          <div style={{height:1,background:'#F0F0F0',marginBottom:10}}/>
+          <div style={{fontSize:10,fontWeight:700,color:'#9CA3AF',textTransform:'uppercase',letterSpacing:.5,marginBottom:8}}>Price Breakdown — No Hidden Fees</div>
+          {[
+            ['Base fare',`$${flight.price}`],
+            [tier.name!=='Basic'?`${tier.name} upgrade`:'Economy Basic', tier.delta>0?`+$${tier.delta}`:'Included'],
+            ['Taxes & fees','Included ✓'],
+          ].map(([l,v],i)=>(
+            <div key={i} style={{display:'flex',justifyContent:'space-between',marginBottom:6}}>
+              <span style={{fontSize:12,color:'#6B7280'}}>{l}</span>
+              <span style={{fontSize:12,fontWeight:600,color:v.includes('+')?accent:'#111827'}}>{v}</span>
+            </div>
+          ))}
+          <div style={{height:1,background:'#F0F0F0',margin:'8px 0'}}/>
+          <div style={{display:'flex',justifyContent:'space-between',alignItems:'baseline'}}>
+            <span style={{fontSize:13,fontWeight:700,color:'#111827'}}>Total</span>
+            <div style={{textAlign:'right'}}>
+              <span style={{fontSize:21,fontWeight:800,color:'#111827'}}>USD ${total}</span>
+              <div style={{fontSize:9,color:'#059669',fontWeight:600,marginTop:1}}>Price you see = price you pay</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Fare inclusions */}
+        <div className="a-fsi" style={{animationDelay:'.07s',background:'white',borderRadius:14,padding:'12px 14px',marginBottom:10,boxShadow:'0 1px 4px rgba(0,0,0,.06)'}}>
+          <div style={{fontSize:10,fontWeight:700,color:'#9CA3AF',textTransform:'uppercase',letterSpacing:.5,marginBottom:9}}>{tier.name} Fare Includes</div>
+          {FARE_FEATURES.map((feat,fi)=>{
+            const val=tier.values[fi];
+            const cfg={true:{C:Ic.Check,s:10,color:'#059669',bg:'#ECFDF5'},false:{C:Ic.X,s:8,color:'#EF4444',bg:'#FEF2F2'},fee:{C:Ic.Dollar,s:8,color:'#D97706',bg:'#FFFBEB'}}[val];
+            return (
+              <div key={fi} style={{display:'flex',alignItems:'center',gap:8,marginBottom:6}}>
+                <div style={{width:18,height:18,borderRadius:5,background:cfg.bg,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+                  <cfg.C s={cfg.s} c={cfg.color}/>
+                </div>
+                <span style={{fontSize:12,color:val===true?'#374151':'#9CA3AF'}}>{feat}</span>
+                {val==='fee'&&<span style={{fontSize:9,color:'#D97706'}}>— extra charge</span>}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Trust guarantees */}
+        <div className="a-fsi" style={{animationDelay:'.13s',background:'white',borderRadius:14,padding:'12px 14px',marginBottom:10,boxShadow:'0 1px 4px rgba(0,0,0,.06)'}}>
+          <div style={{fontSize:10,fontWeight:700,color:'#9CA3AF',textTransform:'uppercase',letterSpacing:.5,marginBottom:9}}>Booking Guarantees</div>
+          {[
+            [Ic.Shield,'Verified Partner','Trip.com is an authorized airline seller — ticket guaranteed'],
+            [Ic.Plane,'Instant Confirmation','E-ticket issued within minutes of payment'],
+            [Ic.Headphones,'24/7 Support','Live support before and after travel — not just a chatbot'],
+          ].map(([IconC,t,s],i)=>(
+            <div key={i} style={{display:'flex',gap:9,alignItems:'flex-start',marginBottom:i<2?9:0}}>
+              <div style={{width:28,height:28,borderRadius:8,background:'#EEF3FF',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+                <IconC s={14} c={accent}/>
+              </div>
+              <div>
+                <div style={{fontSize:12,fontWeight:700,color:'#111827',marginBottom:1}}>{t}</div>
+                <div style={{fontSize:10,color:'#9CA3AF',lineHeight:1.4}}>{s}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* CFAR add-on */}
+        <div className="a-fsi" style={{animationDelay:'.17s',background:'#FFFBEB',border:'1px solid #FDE68A',borderRadius:12,padding:'11px 13px',marginBottom:10}}>
+          <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:5}}>
+            <Ic.Refresh s={14} c="#D97706"/>
+            <div style={{flex:1}}>
+              <div style={{fontSize:12,fontWeight:700,color:'#92400E'}}>Cancel for Any Reason</div>
+              <div style={{fontSize:9,color:'#B45309'}}>Add-on · +$18 · 80% refund for any cancellation</div>
+            </div>
+            <button style={{padding:'5px 10px',borderRadius:8,border:'1px solid #FDE68A',background:'white',color:'#D97706',fontSize:11,fontWeight:600,cursor:'pointer'}}>Add</button>
+          </div>
+          <div style={{fontSize:9,color:'#92400E',lineHeight:1.4}}>✦ <em>Improvement: CFAR surfaced inline — not buried in fine print. Post-pandemic flexibility demand.</em></div>
+        </div>
+      </div>
+
+      <div style={{position:'absolute',bottom:0,left:0,right:0,background:'linear-gradient(transparent,white 28%)',padding:'16px 14px 14px'}}>
+        <button onClick={()=>setDone(true)} style={{width:'100%',padding:'15px',borderRadius:14,border:'none',background:accent,color:'white',fontSize:14,fontWeight:700,cursor:'pointer',boxShadow:`0 4px 20px ${accent}55`,animation:'confirmPulse 2.5s ease-in-out infinite'}}>
+          Confirm &amp; Pay USD ${total} →
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ─── CoverScreen ──────────────────────────────────────────────────────────────
+function CoverScreen({onStart,accent}) {
+  const bars = [
+    {label:'Drip Pricing / Hidden Fees',rank:'#1',tag:'Critical',note:'Primary exit trigger',w:88},
+    {label:'Card Info Overload',rank:'#2',tag:'High',note:'"badge confetti"',w:68},
+    {label:'Fare Class Jargon',rank:'#3',tag:'High',note:'airline-specific naming',w:54},
+    {label:'Missing Baggage Clarity',rank:'#4',tag:'Medium',note:'true cost hidden',w:42},
+    {label:'Weak CTA Copy',rank:'#5',tag:'Medium',note:'commitment anxiety',w:32},
+  ];
+  const findings = [
+    {stage:'Search Results',issue:'Trust Deficit',detail:'No verified partner badge or support guarantee — first-time users fear phantom tickets and abandoned claims',hot:false},
+    {stage:'Fare Card',issue:'Info Overload',detail:'"Badge confetti" (Trip Coins, Flash Sale, Trip.Best, Cheapest) disrupts Z-pattern scan — 71% struggle to find key data',hot:true},
+    {stage:'Fare Selection',issue:'Class Jargon',detail:'"Economy Light," "Saver," "Classic" — airline-specific naming with no translation forces users to Google each term',hot:true},
+    {stage:'Pre-Booking',issue:'Fee Opacity',detail:'Baggage costs hidden until checkout. $76 card → $101+ true cost — drip pricing destroys first-time trust',hot:true},
+    {stage:'Post-Booking',issue:'Fragile State',detail:'Wrong fare class = penalties or no recourse. No free-correction window — users stranded with non-refundable tickets',hot:false},
+  ];
+  const card=(children,extra={})=>(
+    <div style={{background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.08)',borderRadius:16,padding:'22px 24px',display:'flex',flexDirection:'column',overflow:'hidden',...extra}}>{children}</div>
+  );
+  const lbl=t=><div style={{color:'rgba(255,255,255,.3)',fontWeight:700,letterSpacing:1.5,textTransform:'uppercase',marginBottom:22,flexShrink:0,fontSize:14}}>{t}</div>;
+
+  return (
+    <div style={{display:'grid',gridTemplateColumns:'340px 1fr 1fr',gridTemplateRows:'1fr 1fr 1fr',gap:12,padding:'28px 32px',height:'100vh',width:'100vw',overflow:'hidden',position:'relative'}}>
+      <div style={{position:'absolute',width:500,height:500,borderRadius:'50%',background:`radial-gradient(circle,${accent}13 0%,transparent 70%)`,top:'45%',left:'32%',transform:'translate(-50%,-50%)',pointerEvents:'none',zIndex:0}}/>
+
+      {/* Hero */}
+      <div className="a-fsi" style={{gridRow:'1/-1',gridColumn:'1',display:'flex',flexDirection:'column',justifyContent:'space-between',position:'relative',zIndex:1,animationDelay:'.04s'}}>
+        <div>
+          <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:22}}>
+            <div style={{background:'white',borderRadius:7,padding:'4px 10px',fontSize:13,fontWeight:800,color:accent}}>trip.com</div>
+            <div style={{background:'rgba(255,255,255,.06)',border:'1px solid rgba(255,255,255,.1)',borderRadius:20,padding:'3px 10px',fontSize:10,color:'rgba(255,255,255,.45)',fontWeight:500}}>UX Portfolio</div>
+          </div>
+          <div style={{fontSize:9,color:'rgba(255,255,255,.28)',fontWeight:700,letterSpacing:2.2,textTransform:'uppercase',marginBottom:11}}>Case Study · Global Markets · 2025</div>
+          <div style={{fontSize:36,fontWeight:800,color:'white',lineHeight:1.13,letterSpacing:-.8,marginBottom:16}}>Flight Fare Card<br/><span style={{color:accent}}>Redesign</span></div>
+          <div style={{color:'rgba(255,255,255,.42)',lineHeight:1.72,fontSize:15}}>First-time users abandon flight booking at 85%+ rates — primarily due to hidden fees, information overload, and a core trust deficit. This project benchmarks 4 competitors, explores 3 design variants, and proposes targeted interventions to transform the fare card into a trust-centric decision tool.</div>
+        </div>
+        <div>
+          <div style={{color:'rgba(255,255,255,.28)',fontWeight:700,letterSpacing:1.4,textTransform:'uppercase',marginBottom:10,fontSize:14}}>Research Approach</div>
+          {[
+            ['🔬','Behavioral Psychology','Hick\'s Law · Loss Aversion · Decoy Effect · Drip Pricing'],
+            ['🧪','Competitive Benchmarking','Expedia · Google Flights · Skyscanner · Hopper'],
+            ['📊','Internal Analysis','UX audit · 5 staff interviews · WCAG 2.1 compliance'],
+          ].map(([ic,t,s])=>(
+            <div key={t} style={{display:'flex',alignItems:'flex-start',gap:10,padding:'9px 11px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:10,marginBottom:7}}>
+              <span style={{fontSize:13,flexShrink:0,marginTop:1}}>{ic}</span>
+              <div>
+                <div style={{fontSize:12,fontWeight:600,color:'rgba(255,255,255,.75)',marginBottom:1}}>{t}</div>
+                <div style={{fontSize:10,color:'rgba(255,255,255,.32)'}}>{s}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div>
+          <button onClick={onStart} style={{width:'100%',padding:'14px 20px',borderRadius:13,border:'none',background:accent,color:'white',fontSize:14,fontWeight:700,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:8,animation:'confirmPulse 2.2s ease-in-out infinite',boxShadow:`0 6px 24px ${accent}44`}}>
+            Experience the Redesign <Ic.Plane s={14} c="white"/>
+          </button>
+          <div style={{textAlign:'center',marginTop:7,fontSize:10,color:'rgba(255,255,255,.2)'}}>5 Screens · 3 Design Variants · iPhone Frame</div>
+        </div>
+      </div>
+
+      {/* A: Conversion Barriers */}
+      {card(<>
+        {lbl('Conversion Barriers · Priority Ranking')}
+        <div style={{fontSize:10,color:'rgba(255,255,255,.2)',marginBottom:12}}>Qualitative severity based on competitive audit &amp; user research — not quantitative survey data</div>
+        <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
+          {bars.map((b,i)=>{
+            const tagColor = b.tag==='Critical' ? accent : b.tag==='High' ? `${accent}90` : 'rgba(255,255,255,.3)';
+            return (
+              <div key={i}>
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:5}}>
+                  <div style={{display:'flex',alignItems:'center',gap:7}}>
+                    <span style={{fontSize:10,fontWeight:800,color:tagColor,minWidth:20}}>{b.rank}</span>
+                    <span style={{color:'rgba(255,255,255,.7)',fontWeight:i<2?600:400,fontSize:15}}>{b.label}</span>
+                  </div>
+                  <div style={{display:'flex',alignItems:'center',gap:6}}>
+                    {b.note&&<span style={{fontSize:9,color:'rgba(255,255,255,.27)',fontStyle:'italic'}}>{b.note}</span>}
+                    <span style={{fontSize:9,fontWeight:700,color:tagColor,background:`${tagColor}18`,borderRadius:4,padding:'2px 6px',border:`1px solid ${tagColor}44`}}>{b.tag}</span>
+                  </div>
+                </div>
+                <div style={{height:4,background:'rgba(255,255,255,.07)',borderRadius:2}}>
+                  <div style={{height:'100%',width:`${b.w}%`,borderRadius:2,background:i===0?accent:i===1?`${accent}70`:'rgba(255,255,255,.22)'}}/>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </>,{gridRow:'1',gridColumn:'2',zIndex:1,animationDelay:'.08s'})}
+
+      {/* B: Dropout stats */}
+      {card(<>
+        {lbl('First-Time User Dropout Data')}
+        <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
+          {[
+            {pct:'85%+',label:'Cart abandonment rate',sub:'Travel industry benchmark — hidden fees = primary trigger at checkout',c:accent},
+            {pct:'60%+',label:'Traffic is mobile',sub:'Mobile-first design critical — thumb zone, vertical cards, 44px tap targets',c:'#10B981'},
+            {pct:'<1h',label:'Risky layover threshold',sub:'Short connections = top post-booking complaint across platforms tested',c:'#EF4444'},
+            {pct:'$0',label:'Visible baggage cost on card',sub:'Current Trip.com design — baggage fees only revealed at checkout stage',c:'rgba(255,255,255,.45)'},
+          ].map((t,i)=>(
+            <div key={i} style={{display:'flex',gap:10,alignItems:'flex-start',padding:'8px 10px',background:'rgba(255,255,255,.03)',borderRadius:9,borderLeft:`2px solid ${t.c}`}}>
+              <div style={{fontSize:16,fontWeight:800,color:t.c,flexShrink:0,minWidth:54,letterSpacing:-.3}}>{t.pct}</div>
+              <div>
+                <div style={{fontWeight:600,color:'rgba(255,255,255,.72)',marginBottom:2,fontSize:16}}>{t.label}</div>
+                <div style={{fontSize:10,color:'rgba(255,255,255,.3)',lineHeight:1.4}}>{t.sub}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </>,{gridRow:'1',gridColumn:'3',zIndex:1,animationDelay:'.1s'})}
+
+      {/* C: Key findings */}
+      {card(<>
+        {lbl('Key Findings · Across the Booking Journey')}
+        <div style={{flex:1,display:'grid',gridTemplateColumns:'repeat(5,1fr)',gap:10}}>
+          {findings.map((f,i)=>(
+            <div key={i} style={{padding:'12px',background:'rgba(255,255,255,.03)',borderRadius:10,borderTop:`1.5px solid ${f.hot?accent:'rgba(255,255,255,.09)'}`,display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
+              <div>
+                <div style={{color:'rgba(255,255,255,.28)',fontWeight:700,textTransform:'uppercase',letterSpacing:.7,marginBottom:6,fontSize:12}}>{f.stage}</div>
+                <div style={{fontWeight:700,color:f.hot?accent:'rgba(255,255,255,.8)',marginBottom:6,lineHeight:1.25,fontSize:22}}>{f.issue}</div>
+              </div>
+              <div style={{color:'rgba(255,255,255,.38)',lineHeight:1.45,fontSize:13}}>{f.detail}</div>
+            </div>
+          ))}
+        </div>
+      </>,{gridRow:'2',gridColumn:'2/-1',zIndex:1,animationDelay:'.12s'})}
+
+      {/* D: Research coverage */}
+      {card(<>
+        {lbl('Research Coverage')}
+        <div style={{flex:1,display:'grid',gridTemplateColumns:'1fr 1fr',gridTemplateRows:'1fr 1fr 1fr',gap:8}}>
+          {[['4','Competitors benchmarked'],['10+','UX patterns analyzed'],['85%+','Industry abandon rate'],['5','Staff interviews'],['WCAG','2.1 compliance check'],['3','Design variants explored']].map(([v,l])=>(
+            <div key={l} style={{padding:'10px 12px',background:'rgba(255,255,255,.04)',borderRadius:10,display:'flex',flexDirection:'column',justifyContent:'center'}}>
+              <div style={{fontSize:20,fontWeight:800,color:'white',letterSpacing:-.3,lineHeight:1}}>{v}</div>
+              <div style={{color:'rgba(255,255,255,.32)',marginTop:3,lineHeight:1.3,fontSize:14}}>{l}</div>
+            </div>
+          ))}
+        </div>
+      </>,{gridRow:'3',gridColumn:'2',zIndex:1,animationDelay:'.14s'})}
+
+      {/* E: Feature gaps */}
+      {card(<>
+        <div style={{color:'rgba(255,255,255,.3)',fontWeight:700,letterSpacing:1.5,textTransform:'uppercase',marginBottom:10,flexShrink:0,fontSize:13}}>Trip.com Feature Gaps vs. Competitors</div>
+        <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
+          {[
+            ['True Cost Baggage Toggle','Expedia & Google Flights — dynamic bag-fee display'],
+            ['Visual Stop Timeline','Google Flights graphical layover representation'],
+            ['Free Cancellation Hero Badge','Skyscanner green pill — most prominent card element'],
+            ['Price Freeze Secondary CTA','Hopper-pioneered — 25%+ conversion lift on return'],
+            ['AI-Driven Sort Personalization','No major OTA has fully shipped this — opportunity'],
+          ].map(([f,n],i)=>(
+            <div key={i} style={{display:'flex',alignItems:'flex-start',gap:7,padding:'4px 0',borderBottom:i<4?'1px solid rgba(255,255,255,.05)':'none'}}>
+              <div style={{width:14,height:14,borderRadius:3,background:'rgba(239,68,68,.1)',border:'1px solid rgba(239,68,68,.22)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>
+                <Ic.X s={7} c="#EF4444"/>
+              </div>
+              <div>
+                <div style={{fontWeight:600,color:'rgba(255,255,255,.65)',lineHeight:1.3,fontSize:13}}>{f}</div>
+                <div style={{fontSize:9,color:'rgba(255,255,255,.28)',marginTop:1,lineHeight:1.3}}>{n}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </>,{gridRow:'3',gridColumn:'3',zIndex:1,animationDelay:'.16s',padding:'14px 16px'})}
+    </div>
+  );
+}
+
+// ─── PhoneFrame ───────────────────────────────────────────────────────────────
+function PhoneFrame({children,scale}) {
+  return (
+    <div style={{position:'relative',flexShrink:0,transform:`scale(${scale})`,transformOrigin:'center center',filter:'drop-shadow(0 28px 60px rgba(0,0,0,.6))'}}>
+      <div style={{position:'absolute',inset:-11,borderRadius:54,background:'linear-gradient(145deg,#2C2C2E,#0A0A0A)',boxShadow:'inset 0 0 0 1px rgba(255,255,255,.07),0 0 0 1px rgba(0,0,0,.6)'}}/>
+      <div style={{position:'absolute',left:-14,top:170,width:4,height:32,background:'#1A1A1A',borderRadius:'2px 0 0 2px'}}/>
+      <div style={{position:'absolute',left:-14,top:215,width:4,height:32,background:'#1A1A1A',borderRadius:'2px 0 0 2px'}}/>
+      <div style={{position:'absolute',right:-14,top:200,width:4,height:62,background:'#1A1A1A',borderRadius:'0 2px 2px 0'}}/>
+      <div style={{position:'relative',borderRadius:44,overflow:'hidden',width:390,height:780,background:'#F5F7FA',display:'flex',flexDirection:'column'}}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+// ─── AnnotationCard ───────────────────────────────────────────────────────────
+function AnnotationCard({title,body,research,delay}) {
+  return (
+    <div className="ann" style={{animationDelay:`${delay}s`}}>
+      <div style={{fontSize:11,fontWeight:700,color:'#93C5FD',marginBottom:4}}>{title}</div>
+      <div style={{fontSize:11,color:'rgba(255,255,255,.7)',lineHeight:1.5,marginBottom:6}}>{body}</div>
+      <div style={{fontSize:10,color:'rgba(255,255,255,.3)',lineHeight:1.4,borderTop:'1px solid rgba(255,255,255,.07)',paddingTop:5}}>📊 {research}</div>
+    </div>
+  );
+}
+
+// ─── TweaksPanel ──────────────────────────────────────────────────────────────
+function TweaksPanel({tweaks,onUpdate,onClose}) {
+  return (
+    <div style={{position:'fixed',bottom:22,right:22,background:'#1A1B22',border:'1px solid rgba(255,255,255,.1)',borderRadius:16,padding:18,width:270,zIndex:1000,boxShadow:'0 20px 60px rgba(0,0,0,.55)',animation:'slideUp .3s ease'}}>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:14}}>
+        <span style={{fontSize:13,fontWeight:700,color:'white'}}>Tweaks</span>
+        <button onClick={onClose} style={{background:'none',border:'none',color:'rgba(255,255,255,.4)',cursor:'pointer',fontSize:18,lineHeight:1}}>×</button>
+      </div>
+      <div style={{marginBottom:14}}>
+        <div style={{fontSize:10,color:'rgba(255,255,255,.4)',textTransform:'uppercase',letterSpacing:.5,marginBottom:8}}>Accent Color</div>
+        <div style={{display:'flex',gap:8}}>
+          {['#1B6EFD','#7C3AED','#059669','#DC2626','#D97706'].map(c=>(
+            <button key={c} onClick={()=>onUpdate({accentColor:c})} style={{width:26,height:26,borderRadius:8,background:c,border:'none',cursor:'pointer',outline:tweaks.accentColor===c?'2.5px solid white':'none',outlineOffset:2}}/>
+          ))}
+        </div>
+      </div>
+      <div>
+        <div style={{fontSize:10,color:'rgba(255,255,255,.4)',textTransform:'uppercase',letterSpacing:.5,marginBottom:8}}>Annotations</div>
+        <button onClick={()=>onUpdate({showAnnotations:!tweaks.showAnnotations})} style={{padding:'6px 13px',borderRadius:8,border:'none',background:tweaks.showAnnotations?tweaks.accentColor:'rgba(255,255,255,.1)',color:'white',fontSize:11,cursor:'pointer',fontWeight:500}}>
+          {tweaks.showAnnotations?'Visible ✓':'Hidden'}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ─── Annotations ──────────────────────────────────────────────────────────────
+const LEFT_ANNS = {
+  variants:[
+    {title:'Variations Over Final Answers',body:'3 design directions explored before settling — Compact, Balanced (proposed), and Expressive. Each has a distinct philosophy and target user.',research:'huashu-design principle: deliver variants, not one answer'},
+    {title:'Decoy Effect in Variant Selection',body:'Compact is too sparse; Expressive risks dark-pattern perception — Balanced wins as the clear mid-tier with principled trade-offs.',research:'Behavioral econ: center-stage anchoring increases mid-option selection'},
+  ],
+  search:[
+    {title:'True Cost Transparency',body:'"Baggage included" shown on card face — carry-on icons eliminate sticker shock at checkout.',research:'Hidden fees = #1 abandonment reason · 85%+ cart abandon rate (industry)'},
+    {title:'Visual Hierarchy (Z-Pattern)',body:'Airline (TL) → Route/Time (center) → Price (BR). Whitespace 16px+ signals premium quality and reduces cognitive load.',research:'"Clutter" = top Trip.com criticism in competitive UX audit vs. Expedia'},
+  ],
+  'fare-select':[
+    {title:'Standardized Fare Matrix',body:'Trip.com naming (Basic/Standard/Flex) replaces airline jargon. Icon-based table is 3× faster to parse than text lists.',research:'Economy Light/Saver/Classic confuse first-time users across all 4 OTAs tested'},
+    {title:'Decoy Effect Anchoring',body:'"Recommended" on Standard: Basic looks too bare, Flex looks expensive — Standard wins as the natural mid-tier choice.',research:'Behavioral econ: center-stage effect increases mid-tier selection ~30%'},
+  ],
+  confirm:[
+    {title:'All-In Price Breakdown',body:'Base + upgrade + taxes itemized. "Total includes taxes & fees" shown upfront — no checkout shock.',research:'"Price you see = price you pay" is the #1 OTA trust builder for first-time users'},
+    {title:'Price Freeze Hook',body:'$15 deposit holds fare 24h — Hopper-proven pattern. Sunk cost effect drives 25%+ return booking rate.',research:'Hopper Price Freeze: converts browsers to committed payers earlier in funnel'},
+  ],
+};
+const RIGHT_ANNS = {
+  variants:[
+    {title:'Anti-Slop Design System',body:'Each variant uses a coherent system: Compact → monospace/utilitarian. Balanced → whitespace/trust. Expressive → hero price/urgency.',research:'System-first: every element earns its place within the variant\'s philosophy'},
+    {title:'Mobile-First Constraint',body:'All variants rendered at 390px mobile width — the primary constraint for OTA design with 60%+ mobile traffic share.',research:'OTA mobile traffic: 60%+ globally · mobile-first = thumb zone compliance'},
+  ],
+  search:[
+    {title:'Trust Signal Layer',body:'"Verified Partner" + "Free Cancellation" + "24/7 Support" on card face — not buried in a detail view.',research:'Trust deficit = primary conversion barrier for new OTA users'},
+    {title:'Low-Friction CTA',body:'"Select" replaces "Book Now" — reduces commitment anxiety for browsers not yet ready to pay.',research:'Microcopy: "Book Now" triggers early-stage browser abandonment (Expedia study)'},
+  ],
+  'fare-select':[
+    {title:'Cost Delta Framing',body:'"+$28" not "$117" — upgrade feels like a small add-on, not a full repurchase. Loss aversion in the upsell direction.',research:'Delta framing increases upgrade acceptance vs. full-price display (behavioral econ)'},
+    {title:'Risky Stop Warning',body:'"1 Stop · KUL" shown in red on timeline — flags the risk before user commits, manages boarding expectations.',research:'Short layover failures = top post-booking complaint in competitive mini-test'},
+  ],
+  confirm:[
+    {title:'Trust Badge Row',body:'"Verified · Instant Confirmation · 24/7 Support" at the moment of highest payment anxiety.',research:'Verified badge directly counters "Trip.com phantom ticket" fear (user review analysis)'},
+    {title:'CFAR Inline (not buried)',body:'"Cancel for Any Reason" presented in confirmation — not in fine print. Post-pandemic flexibility demand.',research:'Flexibility = top purchase driver post-2020 · Skyscanner badge conversion data'},
+  ],
+};
+
+const STEP_INFO = {
+  cover:{n:'01',label:'Project Overview'},
+  variants:{n:'02',label:'Design Variants'},
+  search:{n:'03',label:'Search Results Redesign'},
+  'fare-select':{n:'04',label:'Fare Tier Selection'},
+  confirm:{n:'05',label:'Booking Confirmation'},
+};
+
+// ─── App ───────────────────────────────────────────────────────────────────────
+function App() {
+  const [screen,setScreen] = useLS('fc-portfolio-screen','cover');
+  const [tweaks,setTweaks] = useState({...TWEAK_DEFAULTS});
+  const [showTweaks,setShowTweaks] = useState(false);
+  const [phoneScale,setPhoneScale] = useState(1);
+  const [selFlight,setSelFlight] = useState(null);
+  const [selTier,setSelTier] = useState(null);
+  const accent = tweaks.accentColor;
+
+  useEffect(()=>{
+    const calc=()=>{
+      const sh=Math.min(1,(window.innerHeight-180)/780);
+      const sw=Math.min(1,(window.innerWidth-(tweaks.showAnnotations?520:60))/390);
+      setPhoneScale(Math.min(sh,sw,1));
+    };
+    calc();window.addEventListener('resize',calc);
+    return ()=>window.removeEventListener('resize',calc);
+  },[tweaks.showAnnotations]);
+
+  useEffect(()=>{
+    const h=e=>{
+      if(e.data?.type==='__activate_edit_mode') setShowTweaks(true);
+      if(e.data?.type==='__deactivate_edit_mode') setShowTweaks(false);
+    };
+    window.addEventListener('message',h);
+    window.parent.postMessage({type:'__edit_mode_available'},'*');
+    return ()=>window.removeEventListener('message',h);
+  },[]);
+
+  const updateTweaks=partial=>{
+    const next={...tweaks,...partial};setTweaks(next);
+    window.parent.postMessage({type:'__edit_mode_set_keys',edits:{accentColor:next.accentColor,showAnnotations:next.showAnnotations}},'*');
+  };
+
+  const handleSelectFlight=fl=>{setSelFlight(fl);setScreen('fare-select');};
+  const handleSelectTier=t=>{setSelTier(t);setScreen('confirm');};
+
+  const leftAnns = (tweaks.showAnnotations&&LEFT_ANNS[screen])||[];
+  const rightAnns = (tweaks.showAnnotations&&RIGHT_ANNS[screen])||[];
+  const info = STEP_INFO[screen]||STEP_INFO.cover;
+  const isFullPage = screen==='cover'||screen==='variants';
+
+  return (
+    <div style={{width:'100vw',height:'100vh',fontFamily:'Inter,sans-serif',overflow:'hidden'}}>
+      {screen==='cover' && (
+        <div key="cover" style={{width:'100%',height:'100%',animation:'fadeSlideIn .5s ease both',position:'relative'}}>
+          <CoverScreen onStart={()=>setScreen('variants')} accent={accent}/>
+          <div style={{position:'absolute',bottom:24,left:'50%',transform:'translateX(-50%)',display:'flex',gap:8,zIndex:10}}>
+            {SCREENS.map((s,i)=>(
+              <button key={s} onClick={()=>setScreen(s)} style={{width:screen===s?26:8,height:8,borderRadius:4,background:screen===s?accent:'rgba(255,255,255,.15)',border:'none',cursor:'pointer',padding:0,transition:'all .3s ease'}}/>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {screen==='variants' && (
+        <div key="variants" style={{width:'100%',height:'100%',animation:'fadeSlideIn .5s ease both',position:'relative'}}>
+          <VariantsScreen onContinue={()=>setScreen('search')} accent={accent}/>
+          <div style={{position:'absolute',bottom:20,left:'50%',transform:'translateX(-50%)',display:'flex',gap:8,zIndex:10}}>
+            {SCREENS.map((s,i)=>(
+              <button key={s} onClick={()=>setScreen(s)} style={{width:screen===s?26:8,height:8,borderRadius:4,background:screen===s?accent:'rgba(255,255,255,.18)',border:'none',cursor:'pointer',padding:0,transition:'all .3s ease'}}/>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {!isFullPage && (
+        <div key="proto" style={{display:'flex',flexDirection:'column',alignItems:'center',width:'100%',height:'100%',animation:'fadeSlideIn .4s ease both'}}>
+          <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:12,marginTop:16,flexShrink:0}}>
+            <div style={{background:'rgba(255,255,255,.05)',borderRadius:20,padding:'3px 11px',fontSize:10,color:'rgba(255,255,255,.4)',fontWeight:500}}>UX Design Portfolio</div>
+            <div style={{width:3,height:3,borderRadius:'50%',background:'rgba(255,255,255,.15)'}}/>
+            <div style={{background:'rgba(255,255,255,.05)',borderRadius:20,padding:'3px 11px',fontSize:10,color:'rgba(255,255,255,.4)',fontWeight:500}}>Flight Fare Card · Trip.com</div>
+          </div>
+          <div style={{display:'flex',alignItems:'center',gap:24,width:'100%',maxWidth:1100,padding:'0 16px',flex:1,justifyContent:'center'}}>
+            <div style={{flex:1,display:'flex',flexDirection:'column',gap:12,alignItems:'flex-end',minWidth:180}}>
+              {leftAnns.map((a,i)=><AnnotationCard key={i} {...a} delay={.08+i*.1}/>)}
+            </div>
+            <PhoneFrame scale={phoneScale}>
+              {screen==='search' && <SearchScreen onSelectFlight={handleSelectFlight} accent={accent}/>}
+              {screen==='fare-select' && <FareSelectScreen flight={selFlight||FLIGHTS[0]} onBack={()=>setScreen('search')} onSelect={handleSelectTier} accent={accent}/>}
+              {screen==='confirm' && <ConfirmScreen flight={selFlight||FLIGHTS[0]} tier={selTier||FARE_TIERS[1]} onRestart={()=>{setScreen('cover');setSelFlight(null);setSelTier(null);}} accent={accent}/>}
+            </PhoneFrame>
+            <div style={{flex:1,display:'flex',flexDirection:'column',gap:12,alignItems:'flex-start',minWidth:180}}>
+              {rightAnns.map((a,i)=><AnnotationCard key={i} {...a} delay={.12+i*.1}/>)}
+            </div>
+          </div>
+          <div style={{marginBottom:16,display:'flex',flexDirection:'column',alignItems:'center',gap:7,flexShrink:0}}>
+            <div style={{display:'flex',gap:8,alignItems:'center'}}>
+              {SCREENS.map(s=>(
+                <button key={s} onClick={()=>setScreen(s)} style={{width:screen===s?26:8,height:8,borderRadius:4,background:screen===s?accent:'rgba(255,255,255,.18)',border:'none',cursor:'pointer',padding:0,transition:'all .3s ease'}}/>
+              ))}
+              <span style={{fontSize:10,color:accent,fontWeight:600,marginLeft:6}}>{info.n} / 05 · {info.label}</span>
+            </div>
+            <div key={screen} style={{fontSize:11,color:'rgba(255,255,255,.3)',textAlign:'center',maxWidth:440,lineHeight:1.55,animation:'fadeSlideIn .4s ease both'}}>
+              {screen==='search'&&'Toggle Before / After · Enable "+ Carry-on" for True Cost view · Tap any card to explore fare selection'}
+              {screen==='fare-select'&&'Compare Basic / Standard / Flex · Decoy Effect in action · Toggle Price Freeze add-on'}
+              {screen==='confirm'&&'All-in price breakdown · Trust badge row · CFAR add-on surfaced inline — not buried'}
+            </div>
+          </div>
+        </div>
+      )}
+      {showTweaks&&<TweaksPanel tweaks={tweaks} onUpdate={updateTweaks} onClose={()=>setShowTweaks(false)}/>}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
